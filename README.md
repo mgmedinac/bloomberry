@@ -1,4 +1,4 @@
-🌸 BloomBerry
+#🌸 BloomBerry
 BloomBerry es una aplicación web desarrollada con Django 4 y SQLite3 que permite la gestión de productos, clientes, pedidos y pagos.
 Cuenta con un sistema de login, carrito de compras y un chatbot con IA para recomendaciones.
 
@@ -40,24 +40,35 @@ Además de las operaciones CRUD básicas, la aplicación incluye:
 9. Estructura del proyecto
 bloomberry/
 │── bloomberry/       # Configuración principal del proyecto
+
 │── users/            # Gestión de usuarios y login
+
 │── products/         # Productos, reseñas y wishlist
+
 │── orders/           # Pedidos y carrito de compras
+
 │── payments/         # Pagos
+
 │── chat/             # Chat y recomendaciones IA
+
 │── static/           # Archivos estáticos (CSS, JS, imágenes)
+
 │── templates/        # Plantillas HTML
+
 │── db.sqlite3        # Base de datos
+
 │── manage.py
+
 │── requirements.txt
+
 │── README.md
 
-10. Tecnologías usadas
+11. Tecnologías usadas
 Django 4
 SQLite3
 HTML, CSS, Bootstrap
 Python 3.x
 
-11. Equipo
+12. Equipo
 Arquitecta: Maria Clara Medina Gomez
 Desarrolladora: Salome Serna Restrepo
