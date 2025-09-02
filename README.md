@@ -2,7 +2,7 @@
 BloomBerry es una aplicación web desarrollada con Django 4 y SQLite3 que permite la gestión de productos, clientes, pedidos y pagos.
 Cuenta con un sistema de login, carrito de compras y un chatbot con IA para recomendaciones.
 
-🚀 Instalación y ejecución
+ Instalación y ejecución
 1. Clonar el repositorio
 git clone https://github.com/tu-usuario/bloomberry.git
 cd bloomberry
@@ -31,13 +31,19 @@ Usuario final (/): puede ver productos, agregar al carrito, hacer compras, usar 
 Administrador (/admin/): gestiona productos, usuarios, pedidos y pagos.
 
 8. Funcionalidades interesantes
+   
 Además de las operaciones CRUD básicas, la aplicación incluye:
+
 🔍 Búsqueda de productos por nombre.
+
 🛒 Ver el Top 3 productos más vendidos.
+
 📄 Generar factura de venta en PDF.
+
 ⭐ Ver el Top 4 productos más comentados.
 
-9. Estructura del proyecto
+
+10. Estructura del proyecto
 bloomberry/
 
 │── bloomberry/       # Configuración principal del proyecto
