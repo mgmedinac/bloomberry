@@ -6,6 +6,8 @@ venv/
 *.pyc
 __pycache__/
 
+# Ignorar la base de datos local
+db.sqlite3
 
 # Archivos de configuración locales
 *.env
