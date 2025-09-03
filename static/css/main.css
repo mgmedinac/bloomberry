@@ -1,0 +1,6 @@
+/* Autor: Maria Clara Medina Gomez
+   Archivo: static/css/main.css
+   Descripción: estilos base del sitio (colores de BloomBerry). */
+
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+nav a { margin-right: 12px; text-decoration: none; }

@@ -1,0 +1,26 @@
+# Traducciones al Español para BloomBerry
+# Copyright (C) 2025 BloomBerry
+# Este archivo se distribuye bajo la misma licencia que el paquete BloomBerry.
+# Maria Clara Medina <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: BloomBerry 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 07:06-0500\n"
+"PO-Revision-Date: 2025-09-03 07:25-0500\n"
+"Last-Translator: Maria Clara Medina <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/products/home.html:3
+msgid "Bienvenido a BloomBerry"
+msgstr "Bienvenido a BloomBerry"
+
+#: templates/products/home.html:4
+msgid "Comprar"
+msgstr "Comprar"

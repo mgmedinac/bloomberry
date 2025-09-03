@@ -10,38 +10,41 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+# Autor: Maria Clara Medina Gomez
+# Proyecto: BloomBerry
+# Archivo: settings.py
+# Descripción: Configuración principal de Django para BloomBerry (MVT, i18n, static, templates, DB).
+
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v*m@bg14+02*qahhp3()6ce-i^g2c-7**=((7l@^98o$32omdd'
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = 'dev-secret-key'   # luego hay que moverlas a variables de entorno 
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
+# APPS
 INSTALLED_APPS = [
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Project apps
+    'users',
+    'products',
+    'orders',
+    'payments',
+    'chat',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -54,7 +57,9 @@ ROOT_URLCONF = 'bloomberry.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        
+        # Todas las plantillas del proyecto van aquí (regla: vistas extienden base.html)
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,10 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bloomberry.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+#Base de datos 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,44 +82,40 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+# INTERNACIONALIZACIÓN 
+LANGUAGE_CODE = 'es'          
+TIME_ZONE = 'America/Bogota'             
 USE_I18N = True
-
 USE_TZ = True
 
+# Donde estarán los .po/.mo ( requisito "resources/lang/*")
+from pathlib import Path
+LOCALE_PATHS = [BASE_DIR / 'resources' / 'lang']
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+# STATIC & MEDIA
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']       # assets para desarrollo
+STATIC_ROOT = BASE_DIR / 'staticfiles'         # para collectstatic en despliegue
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# LOGIN (secciones: usuario final vs admin)
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'products:home'           # ruta pública principal
+LOGOUT_REDIRECT_URL = 'products:home'
+
+# Si se usará usuario custom más adelante:
+# AUTH_USER_MODEL = 'users.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email de desarrollo (útil para reseteo de contraseña sin SMTP real)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

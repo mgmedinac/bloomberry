@@ -1,0 +1,48 @@
+<!--
+Autor: Maria Clara Medina Gomez
+Proyecto: BloomBerry
+Archivo: templates/base.html
+Descripción: Layout base del sitio (bloques y carga de static).
+-->
+
+{% load static i18n %}
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}BloomBerry{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- Inicio / Productos -->
+        <a href="{% url 'products:home' %}">{% trans "Inicio" %}</a>
+
+        <!-- Login / Logout -->
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">{% trans "Salir" %}</a>
+          <span>{% trans "Hola," %} {{ user.username }}</span>
+        {% else %}
+          <a href="{% url 'login' %}">{% trans "Ingresar" %}</a>
+        {% endif %}
+
+        <!-- Secciones principales -->
+        <a href="{% url 'orders:home' %}">{% trans "Pedidos" %}</a>
+        <a href="{% url 'payments:home' %}">{% trans "Pagos" %}</a>
+        <a href="{% url 'chat:home' %}">{% trans "Chat" %}</a>
+        
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <small>© BloomBerry</small>
+    </footer>
+  </body>
+</html>
