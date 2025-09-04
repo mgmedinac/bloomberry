@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Registro" %}{% endblock %}
+
+{% block content %}
+  <h2>{% trans "Crear cuenta" %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>{% trans "Datos de usuario" %}</legend>
+      {{ user_form.as_p }}
+    </fieldset>
+    <fieldset>
+      <legend>{% trans "Perfil" %}</legend>
+      {{ profile_form.as_p }}
+    </fieldset>
+    <button type="submit">{% trans "Registrarme" %}</button>
+  </form>
+{% endblock %}

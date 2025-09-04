@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Mi perfil" %}{% endblock %}
+
+{% block content %}
+  <h2>{% trans "Mi perfil" %}</h2>
+  <p><strong>{% trans "Usuario" %}:</strong> {{ request.user.username }}</p>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  <p><strong>{% trans "Teléfono" %}:</strong> {{ profile.phone|default:"—" }}</p>
+  <p><strong>{% trans "Dirección" %}:</strong> {{ profile.address|default:"—" }}</p>
+  <p><strong>{% trans "Ciudad" %}:</strong> {{ profile.city|default:"—" }}</p>
+
+  <p><a href="{% url 'users:profile_edit' %}">{% trans "Editar perfil" %}</a></p>
+{% endblock %}

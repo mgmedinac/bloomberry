@@ -5,23 +5,159 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: BloomBerry 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-03 07:06-0500\n"
-"PO-Revision-Date: 2025-09-03 07:20-0500\n"
-"Last-Translator: Maria Clara Medina <EMAIL@ADDRESS>\n"
-"Language-Team: English\n"
+"POT-Creation-Date: 2025-09-03 22:52-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/products/home.html:3
+#: templates/base.html:22
+msgid "Inicio"
+msgstr "Home"
+
+#: templates/base.html:26
+msgid "Salir"
+msgstr "Logout"
+
+#: templates/base.html:27
+msgid "Mi Perfil"
+msgstr "My Profile"
+
+#: templates/base.html:28
+msgid "Hola,"
+msgstr "Hello,"
+
+#: templates/base.html:31
+msgid "Panel Admin"
+msgstr "Admin Panel"
+
+#: templates/base.html:34 templates/registration/login.html:4
+#: templates/registration/login.html:7
+msgid "Ingresar"
+msgstr "Login"
+
+#: templates/base.html:35
+msgid "Registrarse"
+msgstr "Register"
+
+#: templates/base.html:39
+msgid "Pedidos"
+msgstr "Orders"
+
+#: templates/base.html:40
+msgid "Pagos"
+msgstr "Payments"
+
+#: templates/base.html:41
+msgid "Chat"
+msgstr "Chat"
+
+#: templates/products/home.html:4
+msgid "Inicio · BloomBerry"
+msgstr "Home · BloomBerry"
+
+#: templates/products/home.html:7
 msgid "Bienvenido a BloomBerry"
 msgstr "Welcome to BloomBerry"
 
-#: templates/products/home.html:4
+#: templates/products/home.html:8
 msgid "Comprar"
 msgstr "Shop"
 
+#: templates/registration/logged_out.html:5
+msgid "Has cerrado sesión."
+msgstr "You have logged out."
+
+#: templates/registration/logged_out.html:6
+msgid "Ingresar de nuevo"
+msgstr "Login again"
+
+#: templates/registration/login.html:11
+msgid "Entrar"
+msgstr "Sign in"
+
+#: templates/registration/register.html:4
+msgid "Registro"
+msgstr "Sign up"
+
+#: templates/registration/register.html:7
+msgid "Crear cuenta"
+msgstr "Create account"
+
+#: templates/registration/register.html:11
+msgid "Datos de usuario"
+msgstr "User data"
+
+#: templates/registration/register.html:15
+msgid "Perfil"
+msgstr "Profile"
+
+#: templates/registration/register.html:18
+msgid "Registrarme"
+msgstr "Register"
+
+#: templates/users/admin_dashboard.html:4
+#: templates/users/admin_dashboard.html:7
+msgid "Panel de administración interno"
+msgstr "Internal admin panel"
+
+#: templates/users/admin_dashboard.html:8
+msgid "Solo personal staff autorizado."
+msgstr "Authorized staff only."
+
+#: templates/users/profile.html:4 templates/users/profile.html:7
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: templates/users/profile.html:8
+msgid "Usuario"
+msgstr "User"
+
+#: templates/users/profile.html:10
+msgid "Teléfono"
+msgstr "Phone"
+
+#: templates/users/profile.html:11
+msgid "Dirección"
+msgstr "Address"
+
+#: templates/users/profile.html:12
+msgid "Ciudad"
+msgstr "City"
+
+#: templates/users/profile.html:14 templates/users/profile_edit.html:4
+#: templates/users/profile_edit.html:7
+msgid "Editar perfil"
+msgstr "Edit profile"
+
+#: templates/users/profile_edit.html:11
+msgid "Guardar"
+msgstr "Save"
+
+#: users/views.py:23
+msgid "Ya has iniciado sesión."
+msgstr "You are already logged in."
+
+#: users/views.py:40
+#, fuzzy
+#| msgid "Bienvenido a BloomBerry"
+msgid "Registro exitoso. ¡Bienvenida/o a BloomBerry!"
+msgstr "Welcome to BloomBerry"
+
+#: users/views.py:43
+msgid "Por favor corrige los errores del formulario."
+msgstr "Please correct the errors in the form."
+
+#: users/views.py:75
+msgid "Perfil actualizado."
+msgstr "Profile updated."
+
+#: users/views.py:78
+msgid "Revisa los errores y vuelve a intentar."
+msgstr "Check the errors and try again."

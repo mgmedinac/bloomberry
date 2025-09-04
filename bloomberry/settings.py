@@ -16,10 +16,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 # Descripción: Configuración principal de Django para BloomBerry (MVT, i18n, static, templates, DB).
 
 from pathlib import Path
+from django.utils.translation import gettext_lazy as t
+from django.contrib.messages import constants as messages
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'dev-secret-key'   # luego hay que moverlas a variables de entorno 
+SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -44,7 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  
+    'django.middleware.locale.LocaleMiddleware',   # después de Session, antes de Common
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -57,9 +59,7 @@ ROOT_URLCONF = 'bloomberry.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        
-        # Todas las plantillas del proyecto van aquí (regla: vistas extienden base.html)
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],   # todas las plantillas del proyecto
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,48 +74,55 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bloomberry.wsgi.application'
 
-#Base de datos 
+# Base de datos
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}
 }
 
+# Passwords (recomendado)
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 10}},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# INTERNACIONALIZACIÓN 
-LANGUAGE_CODE = 'es'          
-TIME_ZONE = 'America/Bogota'             
+# Internacionalización
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
 
-# Donde estarán los .po/.mo ( requisito "resources/lang/*")
-from pathlib import Path
+LANGUAGES = [
+    ("es", t("Español")),
+    ("en", t("English")),
+]
+
 LOCALE_PATHS = [BASE_DIR / 'resources' / 'lang']
 
-# STATIC & MEDIA
+# Static & Media
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']       # assets para desarrollo
-STATIC_ROOT = BASE_DIR / 'staticfiles'         # para collectstatic en despliegue
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# LOGIN (secciones: usuario final vs admin)
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'products:home'           # ruta pública principal
-LOGOUT_REDIRECT_URL = 'products:home'
+# Mensajes → clases compatibles con Bootstrap (opcional)
+MESSAGE_TAGS = {
+    messages.DEBUG: "secondary",
+    messages.INFO: "info",
+    messages.SUCCESS: "success",
+    messages.WARNING: "warning",
+    messages.ERROR: "danger",
+}
 
-# Si se usará usuario custom más adelante:
-# AUTH_USER_MODEL = 'users.User'
+# Login/Logout
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'products:home'
+LOGOUT_REDIRECT_URL = 'products:home'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Email de desarrollo (útil para reseteo de contraseña sin SMTP real)
+# Email dev: ver consola
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
