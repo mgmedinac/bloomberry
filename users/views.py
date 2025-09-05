@@ -9,47 +9,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext as _
-
 from .forms import RegisterForm, CustomerAccountForm
 from .models import CustomerAccount
 
-
 def register_view(request):
-    """
-    Registro de usuario + creación/actualización de CustomerAccount.
-    Si ya está autenticado, lo regresamos al home.
-    """
     if request.user.is_authenticated:
-        messages.info(request, _("Ya has iniciado sesión."))
         return redirect("products:home")
 
     if request.method == "POST":
-        user_form = RegisterForm(request.POST)
-        profile_form = CustomerAccountForm(request.POST)
-
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-
-            # Crear/actualizar perfil con campos del formulario
-            profile, _created = CustomerAccount.objects.get_or_create(user=user)
-            for field in ("phone", "address", "city"):
-                setattr(profile, field, profile_form.cleaned_data.get(field))
-            profile.save()
-
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
             login(request, user)
-            messages.success(request, _("Registro exitoso. ¡Bienvenida/o a BloomBerry!"))
+            messages.success(request, "Registro exitoso. ¡Bienvenida/o a BloomBerry!")
             return redirect("products:home")
-        else:
-            messages.error(request, _("Por favor corrige los errores del formulario."))
     else:
-        user_form = RegisterForm()
-        profile_form = CustomerAccountForm()
+        form = RegisterForm()
 
-    return render(
-        request,
-        "registration/register.html",
-        {"user_form": user_form, "profile_form": profile_form},
-    )
+    return render(request, "registration/register.html", {"form": form})
 
 
 @login_required

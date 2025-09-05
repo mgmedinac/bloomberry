@@ -101,7 +101,7 @@ LANGUAGES = [
 LOCALE_PATHS = [BASE_DIR / 'resources' / 'lang']
 
 # Static & Media
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
