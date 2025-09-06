@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-03 22:52-0500\n"
+"POT-Creation-Date: 2025-09-05 21:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/base.html:22
-msgid "Inicio"
-msgstr "Home"
-
-#: templates/base.html:26
-msgid "Salir"
-msgstr "Logout"
-
-#: templates/base.html:27
-msgid "Mi Perfil"
-msgstr "My Profile"
-
 #: templates/base.html:28
+msgid "Categorías"
+msgstr "Categories"
+
+#: templates/base.html:31
+msgid "Cuidado facial"
+msgstr "Skincare"
+
+#: templates/base.html:32
+msgid "Maquillaje"
+msgstr "Makeup"
+
+#: templates/base.html:33
+msgid "Medicamentos"
+msgstr "Medications"
+
+#: templates/base.html:34
+msgid "Aromas y esencias"
+msgstr "Fragrances & Essences"
+
+#: templates/base.html:35
+msgid "Suplementos diarios"
+msgstr "Daily Supplements"
+
+#: templates/base.html:42
+msgid "Buscar productos…"
+msgstr "Search products…"
+
+#: templates/base.html:42
+msgid "Buscar"
+msgstr "Search"
+
+#: templates/base.html:43
+msgid "Limpiar"
+msgstr "Clear"
+
+#: templates/base.html:50 templates/base.html:53 templates/users/profile.html:4
+#: templates/users/profile.html:7
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: templates/base.html:55
 msgid "Hola,"
 msgstr "Hello,"
 
-#: templates/base.html:31
+#: templates/base.html:56
+msgid "Salir"
+msgstr "Logout"
+
+#: templates/base.html:58
 msgid "Panel Admin"
 msgstr "Admin Panel"
 
-#: templates/base.html:34 templates/registration/login.html:4
-#: templates/registration/login.html:7
+#: templates/registration/login.html:4 templates/registration/login.html:12
 msgid "Ingresar"
 msgstr "Login"
 
-#: templates/base.html:35
-msgid "Registrarse"
-msgstr "Register"
+#: templates/base.html:70
+msgid "Carrito"
+msgstr "Cart"
 
-#: templates/base.html:39
-msgid "Pedidos"
-msgstr "Orders"
-
-#: templates/base.html:40
-msgid "Pagos"
-msgstr "Payments"
-
-#: templates/base.html:41
-msgid "Chat"
-msgstr "Chat"
+#: templates/base.html:74
+msgid "Favoritos"
+msgstr "Favorites"
 
 #: templates/products/home.html:4
 msgid "Inicio · BloomBerry"
@@ -78,28 +102,37 @@ msgstr "You have logged out."
 msgid "Ingresar de nuevo"
 msgstr "Login again"
 
-#: templates/registration/login.html:11
+#: templates/registration/login.html:18 templates/registration/register.html:18
+msgid "Nombre de usuario"
+msgstr "Username"
+
+#: templates/registration/login.html:23 templates/registration/register.html:28
+msgid "Contraseña"
+msgstr "Password"
+
+#: templates/registration/login.html:27
 msgid "Entrar"
 msgstr "Sign in"
 
-#: templates/registration/register.html:4
-msgid "Registro"
-msgstr "Sign up"
+#: templates/registration/login.html:31
+msgid "¿No tienes cuenta?"
+msgstr "Don't have an account?"
 
-#: templates/registration/register.html:7
-msgid "Crear cuenta"
+#: templates/registration/login.html:32
+msgid "Regístrate aquí"
+msgstr "Register here"
+
+
+#: templates/registration/register.html:12
+msgid "Crear Cuenta"
 msgstr "Create account"
 
-#: templates/registration/register.html:11
-msgid "Datos de usuario"
-msgstr "User data"
+#: templates/registration/register.html:33
+msgid "Confirmar contraseña"
+msgstr "Confirm password"
 
-#: templates/registration/register.html:15
-msgid "Perfil"
-msgstr "Profile"
-
-#: templates/registration/register.html:18
-msgid "Registrarme"
+#: templates/registration/register.html:37
+msgid "Registrarse"
 msgstr "Register"
 
 #: templates/users/admin_dashboard.html:4
@@ -110,10 +143,6 @@ msgstr "Internal admin panel"
 #: templates/users/admin_dashboard.html:8
 msgid "Solo personal staff autorizado."
 msgstr "Authorized staff only."
-
-#: templates/users/profile.html:4 templates/users/profile.html:7
-msgid "Mi perfil"
-msgstr "My profile"
 
 #: templates/users/profile.html:8
 msgid "Usuario"
@@ -140,24 +169,10 @@ msgstr "Edit profile"
 msgid "Guardar"
 msgstr "Save"
 
-#: users/views.py:23
-msgid "Ya has iniciado sesión."
-msgstr "You are already logged in."
-
-#: users/views.py:40
-#, fuzzy
-#| msgid "Bienvenido a BloomBerry"
-msgid "Registro exitoso. ¡Bienvenida/o a BloomBerry!"
-msgstr "Welcome to BloomBerry"
-
-#: users/views.py:43
-msgid "Por favor corrige los errores del formulario."
-msgstr "Please correct the errors in the form."
-
-#: users/views.py:75
+#: users/views.py:52
 msgid "Perfil actualizado."
 msgstr "Profile updated."
 
-#: users/views.py:78
+#: users/views.py:55
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
