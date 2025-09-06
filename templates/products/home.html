@@ -5,5 +5,16 @@
 
 {% block content %}
   <h1>{% trans "Bienvenido a BloomBerry" %}</h1>
-  <button>{% trans "Comprar" %}</button>
+
+  <h2>{% trans "Productos destacados" %}</h2>
+  <p>{% trans "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en comprar." %}</p>
+  <ul>
+    {% for product in featured_products %}
+      <li>{% trans product.name %} - {% trans product.descripcion %}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'products:list' %}">
+    <button>{% trans "Comprar" %}</button> 
+  </a>
 {% endblock %}

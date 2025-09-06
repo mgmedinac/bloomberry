@@ -66,7 +66,7 @@ msgstr "Home · BloomBerry"
 msgid "Bienvenido a BloomBerry"
 msgstr "Welcome to BloomBerry"
 
-#: templates/products/home.html:8
+#: templates/products/home.html:18
 msgid "Comprar"
 msgstr "Shop"
 
@@ -161,3 +161,31 @@ msgstr "Profile updated."
 #: users/views.py:78
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
+
+#: templates/products/product_list.html:3
+msgid "Productos"
+msgstr "Products"
+
+#: templates/products/product_list.html:5
+msgid "Lista de todos los productos disponibles:"
+msgstr "List of all available products:"
+
+#: templates/products/product_list.html:5
+msgid "Lista de todos los productos disponibles:"
+msgstr "List of all available products:"
+
+#: templates/products/product_detail:3
+msgid "Detalle del producto"
+msgstr "Product Detail"
+
+#: templates/products/product_detail:4
+msgid "Nombre:"
+msgstr "Name:"
+
+#: templates/products/product_detail:5
+msgid "Descripción:"
+msgstr "Description:"
+
+#: templates/products/product_detail:6
+msgid "Precio:"
+msgstr "Price:"

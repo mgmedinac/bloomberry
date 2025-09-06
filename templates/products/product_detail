@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+
+<h1>{% trans "Detalle del producto" %}</h1>
+<h2>{% trans "Nombre:" %} {{ product.name }}</h2>
+<p>{% trans "Descripción:" %} {{ product.description }}</p>
+<p>{% trans "Precio:" %} ${{ product.price }}</p>
+{% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+{% endif %}
+{% endblock %}

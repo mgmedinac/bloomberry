@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>Productos</h1>
+<ul>
+    <p>{% trans "Lista de todos los productos disponibles:" %}</p>
+    {% for product in products %}
+        <li>
+            <a href="{% url 'products:detail' product.id %}">
+                {{ product.name }}
+            </a> - ${{ product.price }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
