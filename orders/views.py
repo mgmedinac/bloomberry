@@ -40,7 +40,7 @@ def checkout_view(request):
         for item in items:
             OrderItem.objects.create(order=order, product=item.product, quantity=item.quantity)
         items.delete()  # Vaciar carrito después del checkout
-        return render(request, "orders/order_success.html", {"order": order})
+        return redirect("payments:checkout", order_id=order.id)
 
     return render(request, "orders/checkout.html", {"items": items, "total": total})
 
@@ -64,3 +64,10 @@ def remove_from_cart(request, item_id):
     item = get_object_or_404(ShoppingCart, id=item_id, user=request.user)
     item.delete()
     return redirect("orders:cart")
+
+@login_required
+def order_detail_view(request, order_id):
+    """Muestra el detalle de una orden específica"""
+    order = get_object_or_404(OrderInfo, id=order_id, user=request.user)
+    items = order.items.select_related('product').all()
+    return render(request, "orders/order_detail.html", {"order": order, "items": items})

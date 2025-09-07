@@ -1,0 +1,54 @@
+.bb-payment-container, .bb-payment-success {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.bb-payment-container h2, .bb-payment-success h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+.bb-payment-container p, .bb-payment-success p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.bb-payment-form {
+  margin: 20px 0;
+}
+
+.bb-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.bb-btn.primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.bb-btn.primary:hover {
+  background-color: #43a047;
+}
+
+.bb-btn.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.bb-btn.secondary:hover {
+  background-color: #d5d5d5;
+}

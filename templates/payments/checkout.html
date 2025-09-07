@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Pago · BloomBerry" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payments.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bb-payment-container">
+  <h2>{% trans "Pago de la Orden" %} {{ order.id }}</h2>
+  <p>{% trans "Total a pagar:" %} <strong>${{ order.total|floatformat:2 }}</strong></p>
+
+  <form method="POST" class="bb-payment-form">
+    {% csrf_token %}
+    <button type="submit" class="bb-btn primary">
+      {% trans "Pagar ahora" %}
+    </button>
+  </form>
+
+  <a href="{% url 'orders:checkout' %}" class="bb-btn secondary">
+    {% trans "Volver al carrito" %}
+  </a>
+</div>
+{% endblock %}

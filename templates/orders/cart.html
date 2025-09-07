@@ -43,7 +43,7 @@
               </form>
             </td>
             <td>
-                $ {{ item.product.price|floatformat:0|add:item.quantity }}
+                $ {{ item.product.price|floatformat:0}}
             </td>
             <td>
               <a href="{% url 'orders:remove_from_cart' item.id %}" class="bb-btn danger">

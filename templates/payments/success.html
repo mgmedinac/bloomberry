@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Pago Exitoso · BloomBerry" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payments.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bb-payment-success">
+  <h2>{% trans "Pago exitoso" %}</h2>
+  <p>{% trans "Pago ID:" %} {{ payment.id }}</p>
+  <p>{% trans "Monto:" %} ${{ payment.amount|floatformat:2 }}</p>
+  <p>{% trans "Estado:" %} {{ payment.get_status_display }}</p>
+
+  <div class="bb-actions">
+    <a href="{% url 'orders:order_detail' payment.order.id %}" class="bb-btn primary">
+      {% trans "Ver mi orden" %}
+    </a>
+    <a href="{% url 'products:list' %}" class="bb-btn secondary">
+      {% trans "Seguir comprando" %}
+    </a>
+  </div>
+</div>
+{% endblock %}

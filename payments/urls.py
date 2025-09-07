@@ -1,4 +1,4 @@
-# Autor: Maria Clara Medina Gomez
+# Autor: Maria Clara Medina Gomez y Salomé Serna
 # Proyecto: BloomBerry
 # Archivo: payments/urls.py
 # Descripción: Rutas de la app payments.
@@ -10,5 +10,6 @@ from . import views
 app_name = 'payments'
 
 urlpatterns = [
-    path('', views.payments_home_view, name='home'),
+    path("checkout/<int:order_id>/", views.payment_checkout_view, name="checkout"),
+    path("success/<int:order_id>/", views.payment_success_view, name="success"),
 ]
