@@ -1,12 +1,34 @@
 {% extends "base.html" %}
-{% block content %}
+{% load static %}
 {% load i18n %}
 
-<h1>{% trans "Detalle del producto" %}</h1>
-<h2>{% trans "Nombre:" %} {{ product.name }}</h2>
-<p>{% trans "Descripción:" %} {{ product.description }}</p>
-<p>{% trans "Precio:" %} ${{ product.price }}</p>
-{% if product.image %}
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-{% endif %}
+{% block title %}{{ product.name }} - BloomBerry{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bb-product-detail">
+  <!-- Imagen -->
+  <div class="bb-product-image">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+      <img src="{% static 'images/no-image.png' %}" alt="Sin imagen">
+    {% endif %}
+  </div>
+
+  <!-- Info -->
+  <div class="bb-product-info">
+    <h1>{{ product.name }}</h1>
+    <p class="description">{{ product.description }}</p>
+    <p class="price">${{ product.price|floatformat:0 }}</p>
+
+    <div class="bb-actions">
+      <a href="#" class="bb-btn primary">Añadir al carrito</a>
+      <a href="{% url 'products:list' %}" class="bb-btn secondary">← Volver</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

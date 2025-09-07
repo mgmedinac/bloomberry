@@ -1,0 +1,64 @@
+/* Autor: Maria Clara Medina Gomez
+   Archivo: static/css/register.css
+   Descripción: estilos de formularios de Auth (login & registro).
+   Requiere que main.css defina variables CSS (var(--pink), etc.)
+*/
+
+:root{
+  --pink:#DA5162;
+  --lime:#D4F389;
+  --text:#222;
+  --muted:#666;
+  --radius:16px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  text-align: center;
+}
+
+.form-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-submit {
+  background: #ff7c88;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 28px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.btn-submit:hover {
+  background: #e56370;
+}

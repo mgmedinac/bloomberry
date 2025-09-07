@@ -4,27 +4,25 @@
 
 {% block title %}Lista de Productos{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-  <div class="row">
-    {% for product in products %}
-      <div class="col-md-3 mb-4">
-        <div class="card h-100 text-center">
-          {% if product.image %}
-            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-          {% else %}
-            <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="Sin imagen">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">${{ product.price|floatformat:0 }}</p>
-            <a href="{% url 'products:detail' product.id %}" class="btn btn-sm btn-primary">
-              Ver detalle
-            </a>
-          </div>
-        </div>
+<div class="bb-products">
+  {% for product in products %}
+    <div class="bb-card">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+        <img src="{% static 'images/no-image.png' %}" alt="Sin imagen">
+      {% endif %}
+      <div class="bb-card-body">
+        <h5>{{ product.name }}</h5>
+        <p class="price">${{ product.price|floatformat:0 }}</p>
+        <a href="{% url 'products:detail' product.id %}" class="bb-btn">Ver detalle</a>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% endfor %}
 </div>
 {% endblock %}

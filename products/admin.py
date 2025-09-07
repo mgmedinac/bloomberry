@@ -4,16 +4,27 @@
 # Descripción: Configuración de modelos en el panel de administración.
 
 from django.contrib import admin
-from .models import Product, Review, Wishlist
+from .models import Product, Review, Wishlist, Category
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'slug')
+    search_fields = ('name',)
+    prepopulated_fields = {"slug": ("name",)}  # slug se genera a partir del nombre
+    ordering = ('name',)
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'price', 'stock', 'fabrication_date', 'quantity_of_reviews', 'created_at')
+    list_display = (
+        'id', 'name', 'category', 'price', 'stock',
+        'fabrication_date', 'quantity_of_reviews', 'created_at'
+    )
     search_fields = ('name', 'description')
-    list_filter = ('fabrication_date', 'created_at')
+    list_filter = ('category', 'fabrication_date', 'created_at')
     ordering = ('-created_at',)
-    list_editable = ('price', 'stock')  
+    list_editable = ('price', 'stock')
 
 
 @admin.register(Review)

@@ -1,0 +1,66 @@
+/* Contenedor de todos los productos */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Cada card */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efecto hover */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Imagen del producto */
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Contenido de la card */
+.product-card .card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+/* Título del producto */
+.product-card h3 {
+  font-size: 1rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+/* Precio o texto destacado */
+.product-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 10px;
+}
+
+/* Botón */
+.product-card button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.product-card button:hover {
+  background: #45a049;
+}
