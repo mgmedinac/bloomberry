@@ -67,9 +67,9 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
           </div>
         {% endif %}
 
-        <a class="bb-action-cart" href="#" title="{% trans 'Carrito' %}">
-          <img src="{% static 'img/cart.png' %}" alt="Carrito">
-        </a>
+       <a class="bb-action-cart" href="{% url 'orders:cart' %}" title="{% trans 'Carrito' %}">
+        <img src="{% static 'img/cart.png' %}" alt="Carrito">
+      </a>
 
         <a class="bb-action-heart" href="#" title="{% trans 'Favoritos' %}">
           <img src="{% static 'img/heart.png' %}" alt="Favoritos">

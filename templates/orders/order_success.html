@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+<div class="success-message">
+  <h2>¡Orden Exitosa!</h2>
+  <p>Tu orden #{{ order.id }} fue procesada correctamente.</p>
+  <a href="{% url 'products_list' %}" class="btn">Seguir Comprando</a>
+</div>
+{% endblock %}

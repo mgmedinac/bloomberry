@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bb-cart">
+  <h1>{% trans "Carrito de compras" %}</h1>
+
+  {% if items %}
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Producto" %}</th>
+          <th>{% trans "Imagen" %}</th>
+          <th>{% trans "Precio" %}</th>
+          <th>{% trans "Cantidad" %}</th>
+          <th>{% trans "Subtotal" %}</th>
+          <th>{% trans "Acciones" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>
+              {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+              {% else %}
+                <img src="{% static 'img/placeholder.png' %}" alt="Sin imagen">
+              {% endif %}
+            </td>
+            <td>${{ item.product.price }}</td>
+            <td>
+              <form method="post" action="{% url 'orders:update_cart' item.id %}">
+                {% csrf_token %}
+                <input type="number" name="quantity" value="{{ item.quantity }}" min="0">
+                <button type="submit" class="bb-btn primary">{% trans "Actualizar" %}</button>
+              </form>
+            </td>
+            <td>
+                $ {{ item.product.price|floatformat:0|add:item.quantity }}
+            </td>
+            <td>
+              <a href="{% url 'orders:remove_from_cart' item.id %}" class="bb-btn danger">
+                {% trans "Eliminar" %}
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="bb-cart-total">
+      {% trans "Total" %}: ${{ total }}
+    </div>
+
+    <div style="text-align:right; margin-top: 1rem;">
+      <a href="{% url 'orders:checkout' %}" class="bb-btn primary">{% trans "Ir a pagar" %}</a>
+    </div>
+  {% else %}
+    <p>{% trans "Tu carrito está vacío." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

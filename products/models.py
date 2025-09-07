@@ -1,7 +1,7 @@
 # Autor: Salome Serna
 # Proyecto: BloomBerry
 # Archivo: products/models.py
-# Descripción: Modelos para productos, reseñas y listas de deseos.
+# Descripción: Modelos para productos, categorias, reseñas y listas de deseos.
 
 from django.db import models
 from django.contrib.auth.models import User

@@ -1,20 +1,35 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Inicio · BloomBerry" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 {% block content %}
   <h1>{% trans "Bienvenido a BloomBerry" %}</h1>
 
   <h2>{% trans "Productos destacados" %}</h2>
   <p>{% trans "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en comprar." %}</p>
-  <ul>
+  
+  <div class="products-grid featured">
     {% for product in featured_products %}
-      <li>{% trans product.name %} - {% trans product.descripcion %}</li>
-    {% endfor %}
-  </ul>
+    <a href="{% url 'products:detail' product.id %}" class="product-link">
+      <div class="product-card small">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'img/placeholder.png' %}" alt="Sin imagen">
+        {% endif %}
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.descripcion|truncatewords:10 }}</p>
+      </div>
+    </a>
+  {% endfor %}
+  </div>
 
   <a href="{% url 'products:list' %}">
-    <button>{% trans "Comprar" %}</button> 
+    <button class="btn-comprar">{% trans "Comprar" %}</button> 
   </a>
 {% endblock %}

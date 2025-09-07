@@ -26,8 +26,9 @@
     <p class="price">${{ product.price|floatformat:0 }}</p>
 
     <div class="bb-actions">
-      <a href="#" class="bb-btn primary">Añadir al carrito</a>
-      <a href="{% url 'products:list' %}" class="bb-btn secondary">← Volver</a>
+      <a href="{% url 'orders:add_to_cart' product.id %}" class="bb-btn primary">
+        Añadir al carrito
+      </a>
     </div>
   </div>
 </div>
