@@ -185,9 +185,6 @@ msgstr "Products"
 msgid "Lista de todos los productos disponibles:"
 msgstr "List of all available products:"
 
-#: templates/products/product_list.html:5
-msgid "Lista de todos los productos disponibles:"
-msgstr "List of all available products:"
 
 #: templates/products/product_detail:3
 msgid "Detalle del producto"
