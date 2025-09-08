@@ -27,4 +27,3 @@ def add_to_cart(user, product, quantity=1):
         item.quantity += quantity
         item.save()
     return item
-

@@ -66,8 +66,7 @@ def remove_from_cart(request, item_id):
     return redirect("orders:cart")
 
 @login_required
-def order_detail_view(request, order_id):
-    """Muestra el detalle de una orden específica"""
-    order = get_object_or_404(OrderInfo, id=order_id, user=request.user)
-    items = order.items.select_related('product').all()
-    return render(request, "orders/order_detail.html", {"order": order, "items": items})
+def order_history_view(request):
+    """Lista todas las órdenes del usuario actual"""
+    orders = OrderInfo.objects.filter(user=request.user).order_by("-created_at")
+    return render(request, "orders/order_history.html", {"orders": orders})

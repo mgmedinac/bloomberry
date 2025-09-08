@@ -67,3 +67,9 @@ def admin_dashboard_view(request):
     - Si está autenticado pero NO es staff -> 403 Forbidden.
     """
     return render(request, "users/admin_dashboard.html")
+
+@login_required
+def order_history_view(request):
+    """Muestra el historial de órdenes del usuario autenticado"""
+    orders = request.user.orders.all().order_by("-created_at")
+    return render(request, "orders/order_history.html", {"orders": orders})

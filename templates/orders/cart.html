@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load helpers %}
 
 
 {% block extra_css %}
@@ -43,7 +44,7 @@
               </form>
             </td>
             <td>
-                $ {{ item.product.price|floatformat:0}}
+                ${{ item.quantity|mul:item.product.price|floatformat:2 }}
             </td>
             <td>
               <a href="{% url 'orders:remove_from_cart' item.id %}" class="bb-btn danger">

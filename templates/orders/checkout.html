@@ -1,14 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load helpers %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkout_invoice.css' %}">
 
-<h2>Checkout</h2>
-<div class="checkout-form">
-  <p>Total a pagar: <strong>${{ total }}</strong></p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn">Confirmar Orden</button>
-  </form>
+<div class="checkout-invoice">
+  <div class="checkout-header">
+    <h2>Checkout</h2>
+  </div>
+  <div class="checkout-form">
+    <p>Total a pagar: <strong>${{ total }}</strong></p>
+    <table class="invoice-table" style="width:100%;margin-bottom:18px;border-collapse:collapse;">
+      <thead>
+        <tr style="background:#f7fafc;">
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:left;">Producto</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Cantidad</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Precio</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td style="text-align:right;">{{ item.quantity }}</td>
+                <td style="text-align:right;">${{ item.product.price|floatformat:2 }}</td>
+                <td style="text-align:right;">${{ item.quantity|mul:item.product.price|floatformat:2 }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn">Confirmar Orden</button>
+    </form>
+    <div style="text-align: center;">
+        <button onclick="window.history.back()" class="btn btn-secondary">Volver al carrito</button>
+    </div>
+  </div>
 </div>
 {% endblock %}

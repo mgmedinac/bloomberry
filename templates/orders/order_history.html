@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Historial de compras" %}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+<div class="bb-order-history">
+  <h2>{% trans "Historial de compras" %}</h2>
+
+  {% if orders %}
+    <table class="bb-table">
+      <thead>
+        <tr>
+          <th>{% trans "Orden" %}</th>
+          <th>{% trans "Fecha" %}</th>
+          <th>{% trans "Estado" %}</th>
+          <th>{% trans "Total" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <td>#{{ order.id }}</td>
+            <td>{{ order.created_at|date:"d/m/Y H:i" }}</td>
+            <td>{{ order.get_status_display }}</td>
+            <td>${{ order.total|floatformat:2 }}</td>
+            
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>{% trans "No tienes compras registradas aún." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

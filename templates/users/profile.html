@@ -12,4 +12,5 @@
   <p><strong>{% trans "Ciudad" %}:</strong> {{ profile.city|default:"—" }}</p>
 
   <p><a href="{% url 'users:profile_edit' %}">{% trans "Editar perfil" %}</a></p>
+  <p><a href="{% url 'users:order_history' %}">{% trans "Historial de órdenes" %}</a></p>
 {% endblock %}

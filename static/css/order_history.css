@@ -1,0 +1,62 @@
+.bb-order-history {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+}
+
+.bb-order-history h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: #2d3748;
+  text-align: center;
+}
+
+.bb-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.bb-table th, .bb-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bb-table th {
+  background: #f7fafc;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.bb-table tr:hover {
+  background: #f1f5f9;
+}
+
+.bb-btn.small {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+  background: #3182ce;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.bb-btn.small:hover {
+  background: #2563eb;
+}
+
+@media (max-width: 600px) {
+  .bb-order-history {
+    padding: 16px 4px;
+  }
+  .bb-table th, .bb-table td {
+    padding: 8px 4px;
+    font-size: 0.95rem;
+  }
+}

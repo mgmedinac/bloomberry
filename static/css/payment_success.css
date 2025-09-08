@@ -1,0 +1,68 @@
+.bb-payment-success {
+  max-width: 420px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.bb-payment-success h2 {
+  font-size: 2rem;
+  color: #38a169;
+  margin-bottom: 18px;
+}
+
+.bb-payment-success p {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin-bottom: 10px;
+  background: #f7fafc;
+  border-radius: 6px;
+  padding: 10px 0;
+  border: 1px dashed #c6f6d5;
+}
+
+.bb-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.bb-btn.primary {
+  background: #3182ce;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.bb-btn.primary:hover {
+  background: #2563eb;
+}
+
+.bb-btn.secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+  border-radius: 5px;
+  padding: 10px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.bb-btn.secondary:hover {
+  background: #cbd5e1;
+}
+
+@media (max-width: 600px) {
+  .bb-payment-success {
+    padding: 16px 4px;
+  }
+  .bb-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
