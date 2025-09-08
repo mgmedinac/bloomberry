@@ -302,18 +302,44 @@ msgstr "You have no registered purchases yet."
 
 
 #: templates/orders/checkout:18
+#: templates/orders/cart:19
 msgid "Producto"
 msgstr "Product"
 
 #: templates/orders/checkout:19
+#: templates/orders/cart:22
 msgid "Cantidad"
 msgstr "Quantity"
 
 #: templates/orders/checkout:20
+#: templates/orders/cart:21
 msgid "Precio"
 msgstr "Price"
 
 #: templates/orders/checkout:37
 msgid "Confirmar orden"
 msgstr "Confirm order"
+
+
+
+
+#: templates/orders/cart:20
+msgid "Imagen"
+msgstr "Image"
+
+#: templates/orders/cart:24
+msgid "Acciones"
+msgstr "Actions"
+
+#: templates/orders/cart:43
+msgid "Actualizar"
+msgstr "Update"
+
+#: templates/orders/cart:51
+msgid "Eliminar"
+msgstr "Delete"
+
+#: templates/orders/cart:67
+msgid "Tu carrito está vacío."
+msgstr "Your cart is empty."
 
