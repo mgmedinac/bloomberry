@@ -86,6 +86,17 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
       </div>
     </div>
   </header>
+  <!-- Mensajes -->
+
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
 
   <main class="bb-main">
     {% block content %}{% endblock %}
@@ -120,17 +131,5 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
     })();
   </script>
 </body>
-
-<!-- Mensajes -->
-
-{% if messages %}
-  <div class="messages">
-    {% for message in messages %}
-      <div class="alert {{ message.tags }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
 
 </html>
