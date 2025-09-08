@@ -5,6 +5,9 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from django.db.models import Avg
 
 
 class Category(models.Model):
@@ -59,3 +62,9 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"Wishlist de {self.user.username}"
+
+@receiver([post_save, post_delete], sender=Review)
+def update_product_reviews_count(sender, instance, **kwargs):
+    product = instance.product
+    product.quantity_of_reviews = product.reviews.count()
+    product.save(update_fields=['quantity_of_reviews'])

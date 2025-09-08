@@ -28,11 +28,9 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
           {% trans "Categorías" %} <span class="bb-caret">▾</span>
         </button>
         <div class="bb-cat-menu">
-          <a href="#">{% trans "Cuidado facial" %}</a>
-          <a href="#">{% trans "Maquillaje" %}</a>
-          <a href="#">{% trans "Medicamentos" %}</a>
-          <a href="#">{% trans "Aromas y esencias" %}</a>
-          <a href="#">{% trans "Suplementos diarios" %}</a>
+          {% for category in categories %}
+            <a href="{% url 'products:category' category.slug %}">{{ category.name }}</a>
+          {% endfor %}
         </div>
       </div>
 
@@ -122,4 +120,17 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
     })();
   </script>
 </body>
+
+<!-- Mensajes -->
+
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
 </html>

@@ -180,3 +180,33 @@ body{
 .bb-footer .bb-pink{ background:var(--pink) }
 .bb-footer .bb-lime{ background:var(--lime) }
 .bb-footer .bb-lime{background:var(--lime)}
+
+
+.messages {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.alert {
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: fadeOut 4s forwards; /* Desaparece en 4s */
+}
+
+/* Colores según tipo de mensaje */
+.alert.success { background: #4caf50; }
+.alert.error { background: #f44336; }
+.alert.warning { background: #ff9800; }
+.alert.info { background: #2196f3; }
+
+/* Animación */
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
