@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load helpers %}
+{% load i18n %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/checkout_invoice.css' %}">
 
 <div class="checkout-invoice">
   <div class="checkout-header">
-    <h2>Checkout</h2>
+    <h2>{% trans "Confirmar compra" %}</h2>
   </div>
   <div class="checkout-form">
     <p>Total a pagar: <strong>${{ total }}</strong></p>
     <table class="invoice-table" style="width:100%;margin-bottom:18px;border-collapse:collapse;">
       <thead>
         <tr style="background:#f7fafc;">
-          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:left;">Producto</th>
-          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Cantidad</th>
-          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Precio</th>
-          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">Subtotal</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:left;">{% trans "Producto" %}</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">{% trans "Cantidad" %}</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">{% trans "Precio" %}</th>
+          <th style="padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:right;">{% trans "Subtotal" %}</th>
         </tr>
       </thead>
       <tbody>
@@ -32,10 +34,10 @@
     </table>
     <form method="post">
       {% csrf_token %}
-      <button type="submit" class="btn">Confirmar Orden</button>
+      <button type="submit" class="btn">{% trans "Confirmar Orden" %}</button>
     </form>
     <div style="text-align: center;">
-        <button onclick="window.history.back()" class="btn btn-secondary">Volver al carrito</button>
+        <button onclick="window.history.back()" class="btn btn-secondary">{% trans "Volver al carrito" %}</button>
     </div>
   </div>
 </div>

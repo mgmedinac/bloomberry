@@ -2,7 +2,9 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}Lista de Productos{% endblock %}
+{% block title %}
+{% trans "Lista de todos los productos disponible" %}
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
@@ -20,7 +22,7 @@
       <div class="bb-card-body">
         <h5>{{ product.name }}</h5>
         <p class="price">${{ product.price|floatformat:0 }}</p>
-        <a href="{% url 'products:detail' product.id %}" class="bb-btn">Ver detalle</a>
+        <a href="{% url 'products:detail' product.id %}" class="bb-btn">{% trans "Ver detalle" %}</a>
       </div>
     </div>
   {% endfor %}
