@@ -34,7 +34,7 @@
       <form method="post" action="{% url 'products:add_to_wishlist' product.id %}" style="display:inline;">
         {% csrf_token %}
         <input type="hidden" name="wishlist_name" value="Favoritos">
-        <button type="submit" class="bb-btn">
+        <button type="submit" class="bb-btn secondary">
           {% if in_wishlist %}{% trans "En tus favoritos" %}{% else %}{% trans "Agregar a favoritos" %}{% endif %}
         </button>
       </form>

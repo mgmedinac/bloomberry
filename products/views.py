@@ -65,3 +65,19 @@ def add_to_wishlist(request, product_id):
     messages.success(request, _("Producto agregado a tu lista de deseos."))
     return redirect('products:detail', product_id=product.id)
 
+@login_required
+def wishlist_view(request):
+    wishlist = Wishlist.objects.filter(user=request.user).first()
+    products = wishlist.products.all() if wishlist else []
+    return render(request, "products/wishlist.html", {"products": products})
+
+@login_required
+def remove_from_wishlist(request, item_id):
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user, name='Favoritos')
+    product = get_object_or_404(Product, id=item_id)
+    if product in wishlist.products.all():
+        wishlist.products.remove(product)
+        messages.success(request, _("Producto eliminado de tu lista de deseos."))
+    else:
+        messages.error(request, _("El producto no está en tu lista de deseos."))
+    return redirect('products:view_wishlist')

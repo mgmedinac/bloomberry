@@ -69,10 +69,10 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
         <img src="{% static 'img/cart.png' %}" alt="Carrito">
       </a>
 
-        <a class="bb-action-heart" href="#" title="{% trans 'Favoritos' %}">
+        <a class="bb-action-heart" href="{% url 'products:view_wishlist' %}" title="{% trans 'Favoritos' %}">
           <img src="{% static 'img/heart.png' %}" alt="Favoritos">
         </a>
-
+        
         <form class="bb-lang" action="{% url 'set_language' %}" method="post">
           {% csrf_token %}
           <select name="language" onchange="this.form.submit()">
@@ -88,15 +88,15 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
   </header>
   <!-- Mensajes -->
 
-{% if messages %}
-  <div class="messages">
-    {% for message in messages %}
-      <div class="alert {{ message.tags }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
   <main class="bb-main">
     {% block content %}{% endblock %}
