@@ -2,3 +2,4 @@ Django==4.2
 Pillow        # para manejo de imágenes
 reportlab     # para generar PDF
 requests>=2.31 # para la AI 
+python-dotenv
