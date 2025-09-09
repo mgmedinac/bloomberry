@@ -1,9 +1,3 @@
-<!--
-Autor: Maria Clara Medina Gomez
-Proyecto: BloomBerry
-Archivo: templates/chat.html
-Descripción: Layout del chat del chatbot del sitio 
--->
 {% extends "base.html" %}
 {% load static i18n %}
 
@@ -12,13 +6,17 @@ Descripción: Layout del chat del chatbot del sitio
   <h2>Asistente BloomBerry</h2>
 
   <div id="chat" class="border rounded p-3" style="height:60vh; overflow-y:auto;">
-    {% for m in messages %}
+    {# OJO: chat_messages, no messages #}
+    {% for m in chat_messages %}
       <div class="p-2 my-2 {% if m.role == 'user' %}bg-light text-end{% else %}bg-white border{% endif %}">
         {% if m.role != 'user' %}<div class="text-muted small mb-1">Asistente</div>{% endif %}
         <div>{{ m.content|linebreaksbr }}</div>
       </div>
     {% empty %}
-      <div class="text-muted"> ¡Hola! Cuéntame tu tipo de piel, objetivos y presupuesto.</div>
+      <div class="text-muted">
+        ¡Hola! Soy tu asistente virtual de BloomBerry 😊. Puedo ayudarte con productos de cuidado facial, maquillaje,
+        medicamentos naturales, esencias y suplementos diarios. ¿Qué estás buscando hoy?
+      </div>
     {% endfor %}
   </div>
 
@@ -28,31 +26,5 @@ Descripción: Layout del chat del chatbot del sitio
     <button class="btn btn-primary" type="submit">Enviar</button>
   </form>
 </div>
-
-<script>
-function getCookie(name){const v=`; ${document.cookie}`.split(`; ${name}=`);if(v.length===2) return v.pop().split(';').shift();}
-const csrftoken=getCookie('csrftoken');
-const chat=document.getElementById("chat");
-const form=document.getElementById("chat-form");
-const input=document.getElementById("msg");
-
-function addBubble(text, who){
-  const b=document.createElement("div");
-  b.className="p-2 my-2 "+(who==="user"?"bg-light text-end":"bg-white border");
-  if(who!=="user"){const h=document.createElement("div");h.className="text-muted small mb-1";h.textContent="Asistente";b.appendChild(h);}
-  const d=document.createElement("div");d.innerHTML=text.replace(/\n/g,"<br>");b.appendChild(d);
-  chat.appendChild(b); chat.scrollTop=chat.scrollHeight;
-}
-
-form.addEventListener("submit", async e=>{
-  e.preventDefault();
-  const text=input.value.trim(); if(!text) return;
-  addBubble(text,"user"); input.value="";
-  try{
-    const r=await fetch(form.action,{method:"POST",headers:{"X-CSRFToken":csrftoken,"X-Requested-With":"XMLHttpRequest"},body:new URLSearchParams({message:text})});
-    const data=await r.json();
-    if(data.ok) addBubble(data.reply,"assistant"); else addBubble("Hubo un error al procesar tu mensaje.","assistant");
-  }catch{ addBubble("Error de red. Intenta de nuevo.","assistant"); }
-});
-</script>
+…
 {% endblock %}
