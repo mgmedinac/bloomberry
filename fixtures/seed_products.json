@@ -1,0 +1,102 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Cuidado facial",
+    "slug": "cuidado-facial"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Maquillaje",
+    "slug": "maquillaje"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Medicamentos",
+    "slug": "medicamentos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Aromas y esencias",
+    "slug": "aromas-y-esencias"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Cuidado diario",
+    "slug": "cuidado-diario"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": null,
+    "name": "Lip Balm",
+    "description": "Bálsamo hidratante para labios de fresa, con manteca de cacao y vitamina E, hidrata y nutre tus labios.",
+    "price": "15000.00",
+    "stock": 10,
+    "fabrication_date": "2025-09-01",
+    "image": "products/IMG-20250905-WA0049.jpg",
+    "quantity_of_reviews": 0,
+    "created_at": "2025-09-06T12:58:05.112Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 4,
+    "name": "Kit aromático",
+    "description": "Este kit incluye aceite esencial de árbol de té, aceite de romero, y aceite esencial relajante de lavanda y un jabón liquido con esencia de romero",
+    "price": "80000.00",
+    "stock": 5,
+    "fabrication_date": "2025-09-07",
+    "image": "products/IMG-20250905-WA0054.jpg",
+    "quantity_of_reviews": 0,
+    "created_at": "2025-09-07T18:34:26.614Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 5,
+    "name": "Desodorante natural",
+    "description": "Desodorante natural elaborado con ingredientes suaves y libres de químicos agresivos. Ayuda a mantener una sensación de frescura durante todo el día, cuidando tu piel de manera saludable y amigable con el medio ambiente.",
+    "price": "20000.00",
+    "stock": 15,
+    "fabrication_date": "2025-09-08",
+    "image": "products/descarga_2.jpeg",
+    "quantity_of_reviews": 0,
+    "created_at": "2025-09-08T18:18:09.772Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "name": "Pestañina negra",
+    "description": "Producto 100% natural diseñado para el cuidado diario. Formulado con ingredientes de origen vegetal, sin parabenos ni químicos agresivos, brindando bienestar y frescura de forma segura y responsable con el medio ambiente.",
+    "price": "18000.00",
+    "stock": 18,
+    "fabrication_date": "2025-09-03",
+    "image": "products/descarga.jpeg",
+    "quantity_of_reviews": 0,
+    "created_at": "2025-09-08T19:02:09.515Z"
+  }
+}
+]

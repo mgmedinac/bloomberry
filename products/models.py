@@ -5,9 +5,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
-from django.db.models import Avg
+from django.urls import reverse  
+
 
 
 class Category(models.Model):
@@ -39,6 +38,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        """
+        Devuelve la URL de detalle del producto.
+        Si tu ruta es path("<int:pk>/", views.product_detail, name="product_detail"),
+        esto generará "/<pk>/" (ej. /1/).
+        """
+        return reverse("product_detail", args=[self.pk])
+
+    def __str__(self):
+        return self.name
 
 
 class Review(models.Model):
@@ -62,9 +72,3 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"Wishlist de {self.user.username}"
-
-@receiver([post_save, post_delete], sender=Review)
-def update_product_reviews_count(sender, instance, **kwargs):
-    product = instance.product
-    product.quantity_of_reviews = product.reviews.count()
-    product.save(update_fields=['quantity_of_reviews'])

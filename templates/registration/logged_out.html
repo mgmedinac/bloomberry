@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load static i18n %}
 {% block title %}Logout{% endblock %}
 {% block content %}
+
   <p>{% trans "Has cerrado sesión." %}</p>
   <a href="{% url 'login' %}">{% trans "Ingresar de nuevo" %}</a>
 {% endblock %}

@@ -1,0 +1,159 @@
+/* Widget de chat BloomBerry
+   Colocar en: static/chat/widget.css
+*/
+
+:root {
+  /* Offset desde el borde inferior; el JS lo ajusta si hay footer sticky */
+  --bb-bottom-offset: 20px;
+}
+
+/* === FAB (botón flotante) === */
+#bb-fab{
+  position: fixed;
+  right: 20px;
+  bottom: var(--bb-bottom-offset);
+  z-index: 2147483647;              /* por encima de todo */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #15c488;        /* borde verde */
+  background: #fff;                  /* fondo blanco */
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+#bb-fab img{
+  width: 240%;
+  height: 240%;
+  display: block;
+  object-fit: contain;     /* respeta proporción */
+  padding: 0;              
+  box-sizing: border-box;
+}
+
+
+/* === Panel del chat === */
+#bb-panel{
+  position: fixed;
+  right: 20px;
+  bottom: calc(var(--bb-bottom-offset) + 66px); /* encima del botón */
+  z-index: 2147483647;
+  width: 360px;
+  max-width: calc(100vw - 40px);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+  background: #fff;
+  display: none;                 /* el JS lo alterna a flex */
+  flex-direction: column;
+}
+#bb-header{
+  background: #15c488;
+  color: #fff;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#bb-close{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+#bb-log{
+  padding: 12px;
+  height: 380px;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+/* Burbujas */
+.bb-bubble{
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  max-width: 82%;
+  white-space: pre-wrap;
+}
+.bb-user{
+  background: #e7f1ff;
+  margin-left: auto;
+}
+.bb-assistant{
+  background: #fff;
+  border: 1px solid #eee;
+}
+.bb-meta{
+  color: #666;
+  font-size: .85rem;
+  margin-bottom: 4px;
+}
+
+/* Formulario */
+#bb-form{
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+#bb-input{
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+#bb-send{
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #15c488;
+  background: #15c488;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Indicador "escribiendo..." (tres puntos) */
+.bb-typing{ display:inline-block; }
+.bb-typing .dot{
+  display: inline-block;
+  width: 6px; height: 6px;
+  margin: 0 2px;
+  background: #999;
+  border-radius: 50%;
+  animation: bbblink 1.2s infinite;
+}
+.bb-typing .dot:nth-child(2){ animation-delay: .2s; }
+.bb-typing .dot:nth-child(3){ animation-delay: .4s; }
+@keyframes bbblink { 0%{opacity:.2} 20%{opacity:1} 100%{opacity:.2} }
+
+/* Chips con enlaces a productos */
+.bb-products{
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bb-chip{
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: .88rem;
+  background: #fff;
+  text-decoration: none;
+  color: #333;
+}
+.bb-chip:hover{
+  border-color: #15c488;
+  color: #15c488;
+}
+
+/* Responsive: panel más estrecho en móviles */
+@media (max-width: 480px){
+  #bb-panel{ width: 92vw; right: 4vw; }
+}

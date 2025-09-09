@@ -1,20 +1,26 @@
-# Entorno virtual
+# Entornos y editor
 env/
 venv/
-
-# Archivos de Python
-*.pyc
-__pycache__/
-
-# Archivos de configuración locales
-*.env
-
-# Archivos de IDE
-.vscode/
 .idea/
+.vscode/
 
-# Archivos de sistema macOS
-.DS_Store
+# Compilados / caché
+__pycache__/
+*.pyc
 
-# Ignorar archivos binarios compilados de traducción
+# Base de datos local (¡no versionarla!)
+db.sqlite3
+
+# Archivos de i18n compilados (se regeneran)
 *.mo
+
+# Archivos generados / build
+staticfiles/
+media/
+*.log
+
+# Node / otros
+node_modules/
+
+# Sistemas
+.DS_Store

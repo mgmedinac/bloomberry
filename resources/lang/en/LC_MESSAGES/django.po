@@ -1,22 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: BloomBerry 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-05 21:22-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2025-09-08 20:00-0500\n"
+"Last-Translator: Sanm <sanm@example.com>\n"
+"Language-Team: BloomBerry i18n Team <i18n@example.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
+"X-Generator: django-admin makemessages\n"
 
 
 #: templates/base.html:28
@@ -80,15 +75,9 @@ msgstr "Cart"
 msgid "Favoritos"
 msgstr "Favorites"
 
-
-
-
 #: templates/registration/login.html:4 templates/registration/login.html:12
 msgid "Ingresar"
 msgstr "Login"
-
-
-
 
 #: templates/products/home.html:4
 msgid "Inicio · BloomBerry"
@@ -103,16 +92,16 @@ msgid "Productos destacados"
 msgstr "Featured products"
 
 #: templates/products/home.html:14
-msgid "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en comprar."
-msgstr "Explore our selection of featured organic products. To see all available products, click "Shop Now.""
+msgid ""
+"Explora nuestra selección de productos ecológicos destacados, si quieres ver "
+"todos los productos disponibles, dale click en comprar."
+msgstr ""
+"Explore our selection of featured organic products. "
+"To see all available products, click Shop Now."
 
 #: templates/products/home.html:33
 msgid "Comprar"
-msgstr "Shop"
-
-
-
-
+msgstr "Shop Now"
 
 #: templates/registration/logged_out.html:5
 msgid "Has cerrado sesión."
@@ -142,10 +131,6 @@ msgstr "Don't have an account?"
 msgid "Regístrate aquí"
 msgstr "Register here"
 
-
-
-
-
 #: templates/registration/register.html:12
 msgid "Crear Cuenta"
 msgstr "Create account"
@@ -158,9 +143,6 @@ msgstr "Confirm password"
 msgid "Registrarse"
 msgstr "Register"
 
-
-
-
 #: templates/users/admin_dashboard.html:4
 #: templates/users/admin_dashboard.html:7
 msgid "Panel de administración interno"
@@ -169,9 +151,6 @@ msgstr "Internal admin panel"
 #: templates/users/admin_dashboard.html:8
 msgid "Solo personal staff autorizado."
 msgstr "Authorized staff only."
-
-
-
 
 #: templates/users/profile.html:8
 msgid "Usuario"
@@ -206,10 +185,6 @@ msgstr "Profile updated."
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
 
-
-
-
-
 #: templates/products/product_list.html:5
 msgid "Lista de todos los productos disponibles:"
 msgstr "List of all available products:"
@@ -218,13 +193,9 @@ msgstr "List of all available products:"
 msgid "Ver detalle"
 msgstr "See details"
 
-
 #: templates/products/product_detail:30
 msgid "Añadir al carrito"
 msgstr "Add to cart"
-
-
-
 
 #: templates/payments/checkout:5
 msgid "Pago · BloomBerry"
@@ -246,11 +217,6 @@ msgstr "Pay Now"
 #: templates/orders/checkout:40
 msgid "Volver al carrito"
 msgstr "Go back to cart"
-
-
-
-
-
 
 #: templates/payments/success:5
 #: templates/payments/success:10
@@ -278,9 +244,6 @@ msgstr "View my purchases"
 msgid "Seguir comprando"
 msgstr "Continue shopping"
 
-
-
-
 #: templates/orders/order_history:5
 #: templates/orders/order_history:10
 msgid "Historial de compras"
@@ -297,9 +260,6 @@ msgstr "Date"
 #: templates/orders/order_history:35
 msgid "No tienes compras registradas aún."
 msgstr "You have no registered purchases yet."
-
-
-
 
 #: templates/orders/checkout:18
 #: templates/orders/cart:19
@@ -320,9 +280,6 @@ msgstr "Price"
 msgid "Confirmar orden"
 msgstr "Confirm order"
 
-
-
-
 #: templates/orders/cart:20
 msgid "Imagen"
 msgstr "Image"
@@ -342,4 +299,3 @@ msgstr "Delete"
 #: templates/orders/cart:67
 msgid "Tu carrito está vacío."
 msgstr "Your cart is empty."
-

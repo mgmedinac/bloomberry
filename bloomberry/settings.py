@@ -9,17 +9,20 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 # Autor: Maria Clara Medina Gomez
 # Proyecto: BloomBerry
 # Archivo: settings.py
 # Descripción: Configuración principal de Django para BloomBerry (MVT, i18n, static, templates, DB).
 
 from pathlib import Path
+import os
 from django.utils.translation import gettext_lazy as t
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True
@@ -40,6 +43,8 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'payments',
+
+    # Chat de IA
     'chat',
 ]
 
@@ -105,7 +110,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Mensajes → clases compatibles con Bootstrap (opcional)
@@ -126,3 +131,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email dev: ver consola
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# ============================
+# AI Chat / LLM (BloomBerry)
+# ============================
+CHATBOT_BACKEND = "openrouter"  # usamos OpenRouter
+
+# OpenRouter
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+OPENROUTER_MODEL = "google/gemma-3n-e2b-it:free"  # modelo elegido
+OPENROUTER_SITE_URL = "http://localhost:8000"     # opcional (ayuda a la cuota)
+OPENROUTER_APP_NAME = "BloomBerry"                # opcional (ayuda a la cuota)
+
+# Parámetros generales del chat
+CHATBOT_MAX_HISTORY = 8
+CHATBOT_MAX_PRODUCTS = 12
+CHATBOT_NEVER_HALLUCINATE_PRICES = True

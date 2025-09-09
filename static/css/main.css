@@ -15,11 +15,34 @@
 }
 
 *{box-sizing:border-box}
+
+/* --- Sticky footer layout --- */
+html, body { height: 100%; }
 html,body{margin:0;padding:0}
 body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
   color:var(--text);
   background:#fff;
+}
+
+/* Contenedor de página para empujar el footer al fondo */
+#page{
+  min-height:100dvh;     /* altura total de la ventana; soporta móviles */
+  display:flex;
+  flex-direction:column;
+}
+
+/* El contenido crece y empuja el footer */
+#content{ flex:1 0 auto; }
+
+/* Footer normal (no fixed) */
+footer,
+.footer,
+[role="contentinfo"]{
+  position: static !important;
+  bottom:auto; left:auto; right:auto;
+  width:100%;
+  z-index:auto;
 }
 
 /* ========== HEADER ========== */
@@ -180,33 +203,3 @@ body{
 .bb-footer .bb-pink{ background:var(--pink) }
 .bb-footer .bb-lime{ background:var(--lime) }
 .bb-footer .bb-lime{background:var(--lime)}
-
-
-.messages {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-}
-.alert {
-  padding: 12px 20px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  animation: fadeOut 4s forwards; /* Desaparece en 4s */
-}
-
-/* Colores según tipo de mensaje */
-.alert.success { background: #4caf50; }
-.alert.error { background: #f44336; }
-.alert.warning { background: #ff9800; }
-.alert.info { background: #2196f3; }
-
-/* Animación */
-@keyframes fadeOut {
-  0%   { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
