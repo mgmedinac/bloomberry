@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
+load_dotenv(BASE_DIR / "env" / ".env")
 
 SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True

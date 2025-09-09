@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% load i18n %}
+{% block content %}
+<div class="container" style="max-width:700px;">
+  <h1>{% trans "Eliminar producto" %}</h1>
+  <p>{% blocktrans with name=object.name %}¿Seguro que quieres eliminar “{{ name }}”?{% endblocktrans %}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">{% trans "Eliminar" %}</button>
+    <a href="{% url 'products_admin:admin_products_list' %}">{% trans "Cancelar" %}</a>
+  </form>
+</div>
+{% endblock %}

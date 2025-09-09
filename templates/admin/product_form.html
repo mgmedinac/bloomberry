@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% load i18n %}
+
+
+
+{% block content %}
+<div class="container" style="max-width:900px;">
+  <h1>{% if object %}{% trans "Editar producto" %}{% else %}{% trans "Crear producto" %}{% endif %}</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for e in field.errors %}<div class="error">{{ e }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if object and object.image %}
+      <p><strong>{% trans "Imagen actual" %}:</strong><br>
+        <img src="{{ object.image.url }}" alt="{{ object.name }}" style="max-height:160px;border-radius:8px;">
+      </p>
+    {% endif %}
+
+    <button type="submit" class="bb-btn primary">{% trans "Guardar" %}</button>
+    <a href="{% url 'products_admin:admin_products_list' %}" class="bb-btn secondary">{% trans "Cancelar" %}</a>
+  </form>
+</div>
+{% endblock %}

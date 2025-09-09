@@ -1,4 +1,4 @@
-# Autor: Maria Clara Medina Gomez
+# Autor: Maria Clara y Salome
 # Proyecto: BloomBerry
 # Archivo: products/urls.py
 # Descripción: Rutas de la app products.

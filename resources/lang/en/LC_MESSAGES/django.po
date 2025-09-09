@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BloomBerry 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-05 21:22-0500\n"
-"PO-Revision-Date: 2025-09-08 20:00-0500\n"
+"POT-Creation-Date: 2025-09-08 23:34-0500\n"
+"PO-Revision-Date: 2025-09-09 00:00-0500\n"
 "Last-Translator: Sanm <sanm@example.com>\n"
 "Language-Team: BloomBerry i18n Team <i18n@example.com>\n"
 "Language: en\n"
@@ -13,289 +13,487 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: django-admin makemessages\n"
 
+#: templates/orders/cart.html:23
+msgid "Acciones"
+msgstr "Actions"
 
-#: templates/base.html:28
-msgid "Categorías"
-msgstr "Categories"
+#: templates/admin/products_list.html:24
+msgid "Activo"
+msgstr "Active"
 
-#: templates/base.html:31
-msgid "Cuidado facial"
-msgstr "Skincare"
+#: templates/admin/products_list.html:10
+msgid "Activos"
+msgstr "Active"
 
-#: templates/base.html:32
-msgid "Maquillaje"
-msgstr "Makeup"
+#: templates/orders/cart.html:42
+msgid "Actualizar"
+msgstr "Update"
 
-#: templates/base.html:33
-msgid "Medicamentos"
-msgstr "Medications"
+#: templates/products/product_detail.html:37
+msgid "Agregar a favoritos"
+msgstr "Add to favorites"
 
-#: templates/base.html:34
+#: templates/admin/products_list.html:52
+msgid "Anterior"
+msgstr "Previous"
+
+#: templates/base.html:35
 msgid "Aromas y esencias"
 msgstr "Fragrances & Essences"
 
-#: templates/base.html:35
-msgid "Suplementos diarios"
-msgstr "Daily Supplements"
+#: templates/products/product_detail.html:29
+msgid "Añadir al carrito"
+msgstr "Add to cart"
 
-#: templates/base.html:42
-msgid "Buscar productos…"
-msgstr "Search products…"
-
-#: templates/base.html:42
-msgid "Buscar"
-msgstr "Search"
-
-#: templates/base.html:43
-msgid "Limpiar"
-msgstr "Clear"
-
-#: templates/base.html:50 templates/base.html:53 templates/users/profile.html:4
-#: templates/users/profile.html:7
-msgid "Mi perfil"
-msgstr "My profile"
-
-#: templates/base.html:55
-msgid "Hola,"
-msgstr "Hello,"
-
-#: templates/base.html:56
-msgid "Salir"
-msgstr "Logout"
-
-#: templates/base.html:58
-msgid "Panel Admin"
-msgstr "Admin Panel"
-
-#: templates/base.html:70
-msgid "Carrito"
-msgstr "Cart"
-
-#: templates/base.html:74
-msgid "Favoritos"
-msgstr "Favorites"
-
-#: templates/registration/login.html:4 templates/registration/login.html:12
-msgid "Ingresar"
-msgstr "Login"
-
-#: templates/products/home.html:4
-msgid "Inicio · BloomBerry"
-msgstr "Home · BloomBerry"
+#: templates/products/product_detail.html:65
+msgid "Aún no hay reseñas para este producto."
+msgstr "There are no reviews for this product yet."
 
 #: templates/products/home.html:11
 msgid "Bienvenido a BloomBerry"
 msgstr "Welcome to BloomBerry"
 
-#: templates/products/home.html:13
-msgid "Productos destacados"
-msgstr "Featured products"
+#: templates/base.html:43
+msgid "Buscar"
+msgstr "Search"
 
-#: templates/products/home.html:14
-msgid ""
-"Explora nuestra selección de productos ecológicos destacados, si quieres ver "
-"todos los productos disponibles, dale click en comprar."
-msgstr ""
-"Explore our selection of featured organic products. "
-"To see all available products, click Shop Now."
+#: templates/base.html:43
+msgid "Buscar productos…"
+msgstr "Search products…"
+
+#: templates/admin/products_list.html:7
+msgid "Buscar…"
+msgstr "Search…"
+
+#: templates/admin/product_confirm_delete.html:9
+#: templates/admin/product_form.html:24
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: templates/orders/cart.html:21 templates/orders/checkout.html:19
+msgid "Cantidad"
+msgstr "Quantity"
+
+#: templates/base.html:70
+msgid "Carrito"
+msgstr "Cart"
+
+#: templates/orders/cart.html:12
+msgid "Carrito de compras"
+msgstr "Shopping cart"
+
+#: products/forms.py:38 templates/admin/products_list.html:25
+#: templates/base.html:29
+msgid "Categorías"
+msgstr "Categories"
+
+#: templates/users/profile.html:12
+msgid "Ciudad"
+msgstr "City"
 
 #: templates/products/home.html:33
-msgid "Comprar"
-msgstr "Shop Now"
+msgid "Ver más"
+msgstr "See more"
 
-#: templates/registration/logged_out.html:5
-msgid "Has cerrado sesión."
-msgstr "You have logged out."
+#: templates/orders/checkout.html:37
+msgid "Confirmar Orden"
+msgstr "Confirm order"
 
-#: templates/registration/logged_out.html:6
-msgid "Ingresar de nuevo"
-msgstr "Login again"
-
-#: templates/registration/login.html:18 templates/registration/register.html:18
-msgid "Nombre de usuario"
-msgstr "Username"
-
-#: templates/registration/login.html:23 templates/registration/register.html:28
-msgid "Contraseña"
-msgstr "Password"
-
-#: templates/registration/login.html:27
-msgid "Entrar"
-msgstr "Sign in"
-
-#: templates/registration/login.html:31
-msgid "¿No tienes cuenta?"
-msgstr "Don't have an account?"
-
-#: templates/registration/login.html:32
-msgid "Regístrate aquí"
-msgstr "Register here"
-
-#: templates/registration/register.html:12
-msgid "Crear Cuenta"
-msgstr "Create account"
+#: templates/orders/checkout.html:11
+msgid "Confirmar compra"
+msgstr "Confirm purchase"
 
 #: templates/registration/register.html:33
 msgid "Confirmar contraseña"
 msgstr "Confirm password"
 
-#: templates/registration/register.html:37
-msgid "Registrarse"
-msgstr "Register"
+#: templates/registration/login.html:23 templates/registration/register.html:28
+msgid "Contraseña"
+msgstr "Password"
 
-#: templates/users/admin_dashboard.html:4
-#: templates/users/admin_dashboard.html:7
-msgid "Panel de administración interno"
-msgstr "Internal admin panel"
+#: templates/registration/register.html:12
+msgid "Crear Cuenta"
+msgstr "Create account"
 
-#: templates/users/admin_dashboard.html:8
-msgid "Solo personal staff autorizado."
-msgstr "Authorized staff only."
+#: templates/registration/register.html:4
+msgid "Crear cuenta"
+msgstr "Create account"
 
-#: templates/users/profile.html:8
-msgid "Usuario"
-msgstr "User"
+#: templates/admin/product_form.html:4
+msgid "Crear producto"
+msgstr "Create product"
 
-#: templates/users/profile.html:10
-msgid "Teléfono"
-msgstr "Phone"
+#: templates/base.html:32
+msgid "Cuidado facial"
+msgstr "Skincare"
 
-#: templates/users/profile.html:11
+#: templates/products/product_detail.html:88
+msgid "Debes"
+msgstr "You must"
+
+#: templates/products/product_detail.html:71
+msgid "Deja tu reseña"
+msgstr "Leave your review"
+
+#: products/forms.py:40 templates/users/profile.html:11
 msgid "Dirección"
 msgstr "Address"
 
-#: templates/users/profile.html:12
-msgid "Ciudad"
-msgstr "City"
+#: templates/admin/products_list.html:37
+msgid "Editar"
+msgstr "Edit"
 
 #: templates/users/profile.html:14 templates/users/profile_edit.html:4
 #: templates/users/profile_edit.html:7
 msgid "Editar perfil"
 msgstr "Edit profile"
 
-#: templates/users/profile_edit.html:11
+#: templates/admin/product_form.html:4
+msgid "Editar producto"
+msgstr "Edit product"
+
+#: products/views.py:82
+msgid "El producto no está en tu lista de deseos."
+msgstr "The product is not in your wishlist."
+
+#: templates/admin/product_confirm_delete.html:4
+#: templates/admin/product_confirm_delete.html:8 templates/orders/cart.html:50
+msgid "Eliminar"
+msgstr "Delete"
+
+#: templates/products/product_detail.html:37
+msgid "En tus favoritos"
+msgstr "In your favorites"
+
+#: templates/registration/login.html:27
+msgid "Entrar"
+msgstr "Sign in"
+
+#: templates/products/product_detail.html:85
+msgid "Enviar reseña"
+msgstr "Submit review"
+
+#: templates/orders/order_history.html:17 templates/payments/success.html:12
+msgid "Estado"
+msgstr "Status"
+
+#: templates/payments/success.html:12
+msgid "Estado:"
+msgstr "Status:"
+
+#: templates/products/home.html:14
+msgid ""
+"Explora nuestra selección de productos ecológicos destacados, si quieres ver "
+"todos los productos disponibles, dale click en ver más."
+msgstr ""
+"Explore our selection of featured organic products. To see all available "
+"products, click See more."
+
+#: templates/base.html:74
+msgid "Favoritos"
+msgstr "Favorites"
+
+#: templates/orders/order_history.html:16
+msgid "Fecha"
+msgstr "Date"
+
+#: templates/admin/products_list.html:13
+msgid "Filtrar"
+msgstr "Filter"
+
+#: templates/users/admin_dashboard.html:11
+msgid "Gestionar productos"
+msgstr "Manage products"
+
+#: templates/admin/product_form.html:23 templates/users/profile_edit.html:11
 msgid "Guardar"
 msgstr "Save"
+
+#: templates/registration/logged_out.html:6
+msgid "Has cerrado sesión."
+msgstr "You have logged out."
+
+#: templates/orders/order_history.html:4 templates/orders/order_history.html:9
+msgid "Historial de compras"
+msgstr "Purchase history"
+
+#: templates/users/profile.html:15
+msgid "Historial de órdenes"
+msgstr "Order history"
+
+#: templates/base.html:56
+msgid "Hola,"
+msgstr "Hello,"
+
+#: products/views.py:55
+msgid "Hubo un error al enviar la reseña."
+msgstr "There was an error submitting the review."
+
+#: products/forms.py:39 templates/orders/cart.html:19
+msgid "Imagen"
+msgstr "Image"
+
+#: templates/admin/product_form.html:18
+msgid "Imagen actual"
+msgstr "Current image"
+
+#: templates/admin/products_list.html:11
+msgid "Inactivos"
+msgstr "Inactive"
+
+#: templates/base.html:63 templates/base.html:66
+#: templates/registration/login.html:4 templates/registration/login.html:12
+msgid "Ingresar"
+msgstr "Login"
+
+#: templates/registration/logged_out.html:7
+msgid "Ingresar de nuevo"
+msgstr "Login again"
+
+#: templates/products/home.html:4
+msgid "Inicio · BloomBerry"
+msgstr "Home · BloomBerry"
+
+#: templates/orders/cart.html:63
+msgid "Ir a pagar"
+msgstr "Go to checkout"
+
+#: templates/base.html:44
+msgid "Limpiar"
+msgstr "Clear"
+
+#: templates/products/product_list.html:5
+msgid "Lista de todos los productos disponible"
+msgstr "List of all available products"
+
+#: templates/base.html:33
+msgid "Maquillaje"
+msgstr "Makeup"
+
+#: templates/base.html:34
+msgid "Medicamentos"
+msgstr "Medications"
+
+#: templates/base.html:51 templates/base.html:54 templates/users/profile.html:4
+#: templates/users/profile.html:7
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: templates/products/wishlist.html:7
+msgid "Mis favoritos"
+msgstr "My favorites"
+
+#: templates/payments/success.html:11
+msgid "Monto:"
+msgstr "Amount:"
+
+#: templates/admin/products_list.html:44
+msgid "No hay productos."
+msgstr "No products available."
+
+#: templates/orders/order_history.html:34
+msgid "No tienes compras registradas aún."
+msgstr "You have no registered purchases yet."
+
+#: products/forms.py:34 templates/admin/products_list.html:21
+msgid "Nombre"
+msgstr "Name"
+
+#: templates/registration/login.html:18 templates/registration/register.html:18
+msgid "Nombre de usuario"
+msgstr "Username"
+
+#: templates/admin/products_list.html:15
+msgid "Nuevo producto"
+msgstr "New product"
+
+#: templates/orders/order_history.html:15
+msgid "Orden"
+msgstr "Order"
+
+#: templates/payments/checkout.html:18
+msgid "Pagar ahora"
+msgstr "Pay Now"
+
+#: templates/payments/success.html:10
+msgid "Pago ID:"
+msgstr "Payment ID:"
+
+#: templates/payments/checkout.html:12
+msgid "Pago de la Orden"
+msgstr "Order payment"
+
+#: templates/payments/success.html:4 templates/payments/success.html:9
+msgid "Pago exitoso"
+msgstr "Payment successful"
+
+#: templates/payments/checkout.html:4
+msgid "Pago · BloomBerry"
+msgstr "Payment · BloomBerry"
+
+#: templates/base.html:59
+msgid "Panel Admin"
+msgstr "Admin Panel"
+
+#: templates/users/admin_dashboard.html:4
+#: templates/users/admin_dashboard.html:7
+msgid "Panel de administración interno"
+msgstr "Internal admin panel"
 
 #: users/views.py:52
 msgid "Perfil actualizado."
 msgstr "Profile updated."
 
+#: products/forms.py:36 templates/admin/products_list.html:22
+#: templates/orders/cart.html:20 templates/orders/checkout.html:20
+msgid "Precio"
+msgstr "Price"
+
+#: templates/orders/cart.html:18 templates/orders/checkout.html:18
+msgid "Producto"
+msgstr "Product"
+
+#: products/admin_views.py:56
+msgid "Producto actualizado correctamente."
+msgstr "Product updated successfully."
+
+#: products/views.py:65
+msgid "Producto agregado a tu lista de deseos."
+msgstr "Product added to your wishlist."
+
+#: products/admin_views.py:45
+msgid "Producto creado correctamente."
+msgstr "Product created successfully."
+
+#: products/views.py:80
+msgid "Producto eliminado de tu lista de deseos."
+msgstr "Product removed from your wishlist."
+
+#: templates/admin/products_list.html:4
+msgid "Productos"
+msgstr "Products"
+
+#: products/admin_views.py:66 templates/products/home.html:13
+msgid "Productos destacados"
+msgstr "Featured products"
+
+#: templates/products/product_detail.html:55
+msgid "Promedio"
+msgstr "Average"
+
+#: templates/products/wishlist.html:19
+msgid "Quitar"
+msgstr "Remove"
+
+#: templates/registration/register.html:37
+msgid "Registrarse"
+msgstr "Register"
+
+#: templates/registration/login.html:32
+msgid "Regístrate aquí"
+msgstr "Register here"
+
+#: templates/products/product_detail.html:55
+msgid "Reseñas"
+msgstr "Reviews"
+
 #: users/views.py:55
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
 
-#: templates/products/product_list.html:5
-msgid "Lista de todos los productos disponibles:"
-msgstr "List of all available products:"
+#: templates/base.html:57
+msgid "Salir"
+msgstr "Logout"
 
-#: templates/products/product_list.html:23
-msgid "Ver detalle"
-msgstr "See details"
-
-#: templates/products/product_detail:30
-msgid "Añadir al carrito"
-msgstr "Add to cart"
-
-#: templates/payments/checkout:5
-msgid "Pago · BloomBerry"
-msgstr "Payment · BloomBerry"
-
-#: templates/payments/checkout:13
-msgid "Pago de la orden"
-msgstr "Payment of the order"
-
-#: templates/payments/checkout:14
-msgid "Total a pagar:"
-msgstr "Total to pay:"
-
-#: templates/payments/checkout:19
-msgid "Pagar ahora"
-msgstr "Pay Now"
-
-#: templates/payments/checkout:24
-#: templates/orders/checkout:40
-msgid "Volver al carrito"
-msgstr "Go back to cart"
-
-#: templates/payments/success:5
-#: templates/payments/success:10
-msgid "Pago exitoso"
-msgstr "Payment successful"
-
-#: templates/payments/success:11
-msgid "Pago ID:"
-msgstr "Payment ID:"
-
-#: templates/payments/success:12
-msgid "Monto:"
-msgstr "Amount:"
-
-#: templates/payments/success:13
-#: templates/orders/order_history:18
-msgid "Estado"
-msgstr "State"
-
-#: templates/payments/success:17
-msgid "Ver mis compras"
-msgstr "View my purchases"
-
-#: templates/payments/success:20
+#: templates/payments/success.html:19
 msgid "Seguir comprando"
 msgstr "Continue shopping"
 
-#: templates/orders/order_history:5
-#: templates/orders/order_history:10
-msgid "Historial de compras"
-msgstr "Purchases history"
+#: templates/admin/products_list.html:56
+msgid "Siguiente"
+msgstr "Next"
 
-#: templates/orders/order_history:16
-msgid "Orden"
-msgstr "Order"
+#: templates/users/admin_dashboard.html:8
+msgid "Solo personal staff autorizado."
+msgstr "Authorized staff only."
 
-#: templates/orders/order_history:17
-msgid "Fecha"
-msgstr "Date"
+#: products/forms.py:37 templates/admin/products_list.html:23
+msgid "Stock"
+msgstr "Stock"
 
-#: templates/orders/order_history:35
-msgid "No tienes compras registradas aún."
-msgstr "You have no registered purchases yet."
+#: templates/orders/cart.html:22 templates/orders/checkout.html:21
+msgid "Subtotal"
+msgstr "Subtotal"
 
-#: templates/orders/checkout:18
-#: templates/orders/cart:19
-msgid "Producto"
-msgstr "Product"
+#: templates/base.html:36
+msgid "Suplementos diarios"
+msgstr "Daily Supplements"
 
-#: templates/orders/checkout:19
-#: templates/orders/cart:22
-msgid "Cantidad"
-msgstr "Quantity"
+#: templates/users/profile.html:10
+msgid "Teléfono"
+msgstr "Phone"
 
-#: templates/orders/checkout:20
-#: templates/orders/cart:21
-msgid "Precio"
-msgstr "Price"
+#: templates/products/wishlist.html:26
+msgid "Todavía no has agregado productos a tu lista"
+msgstr "You haven't added any products to your list yet."
 
-#: templates/orders/checkout:37
-msgid "Confirmar orden"
-msgstr "Confirm order"
+#: templates/admin/products_list.html:9
+msgid "Todos"
+msgstr "All"
 
-#: templates/orders/cart:20
-msgid "Imagen"
-msgstr "Image"
+#: templates/orders/cart.html:59 templates/orders/order_history.html:18
+msgid "Total"
+msgstr "Total"
 
-#: templates/orders/cart:24
-msgid "Acciones"
-msgstr "Actions"
+#: templates/payments/checkout.html:13
+msgid "Total a pagar:"
+msgstr "Total to pay:"
 
-#: templates/orders/cart:43
-msgid "Actualizar"
-msgstr "Update"
-
-#: templates/orders/cart:51
-msgid "Eliminar"
-msgstr "Delete"
-
-#: templates/orders/cart:67
+#: templates/orders/cart.html:66
 msgid "Tu carrito está vacío."
 msgstr "Your cart is empty."
+
+#: products/views.py:53
+msgid "Tu reseña fue guardada."
+msgstr "Your review has been saved."
+
+#: templates/users/profile.html:8
+msgid "Usuario"
+msgstr "User"
+
+#: templates/products/wishlist.html:18
+msgid "Ver"
+msgstr "View"
+
+#: templates/products/product_list.html:24
+msgid "Ver detalle"
+msgstr "See details"
+
+#: templates/payments/success.html:16
+msgid "Ver mis compras"
+msgstr "View my purchases"
+
+#: templates/orders/checkout.html:40 templates/payments/checkout.html:23
+msgid "Volver al carrito"
+msgstr "Go back to cart"
+
+#: templates/products/product_detail.html:88
+msgid "iniciar sesión"
+msgstr "log in"
+
+#: templates/products/product_detail.html:88
+msgid "para dejar una reseña."
+msgstr "to leave a review."
+
+#: templates/admin/products_list.html:38
+msgid "¿Eliminar este producto?"
+msgstr "Delete this product?"
+
+#: templates/registration/login.html:31
+msgid "¿No tienes cuenta?"
+msgstr "Don't have an account?"
+
+#: templates/admin/product_confirm_delete.html:5
+#, python-format
+msgid "¿Seguro que quieres eliminar “%(name)s”?"
+msgstr "Are you sure you want to delete “%(name)s”?"

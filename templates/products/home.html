@@ -11,7 +11,7 @@
   <h1>{% trans "Bienvenido a BloomBerry" %}</h1>
 
   <h2>{% trans "Productos destacados" %}</h2>
-  <p>{% trans "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en comprar." %}</p>
+  <p>{% trans "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en ver más." %}</p>
   
   <div class="products-grid featured">
     {% for product in featured_products %}
@@ -30,6 +30,6 @@
   </div>
 
   <a href="{% url 'products:list' %}">
-    <button class="btn-comprar">{% trans "Comprar" %}</button> 
+    <button class="btn-comprar">{% trans "Ver más" %}</button> 
   </a>
 {% endblock %}

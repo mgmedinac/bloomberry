@@ -202,4 +202,115 @@ footer,
 .bb-footer-bar{ height:14px }
 .bb-footer .bb-pink{ background:var(--pink) }
 .bb-footer .bb-lime{ background:var(--lime) }
-.bb-footer .bb-lime{background:var(--lime)}
+
+
+
+/* === Product grid vertical cards (tipo IG) === */
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:16px;
+  align-items:start;
+}
+
+.product-card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.product-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+
+/* Relación 4:5 como post de IG */
+.product-media{
+  display:block;
+  position:relative;
+  width:100%;
+  aspect-ratio:4/5;
+  background:#f7f7f7;
+}
+.product-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.product-body{
+  padding:12px 12px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.product-title{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.25;
+  margin:0;
+  display:-webkit-box;
+  -webkit-line-clamp:2;      /* máximo 2 líneas */
+  line-clamp:2;              /* estándar para compatibilidad */
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.product-price{
+  color:#e61e62;             /* rosa/rojo BloomBerry */
+  font-weight:700;
+  font-size:16px;
+}
+
+.product-actions{
+  margin-top:4px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+@media (min-width:480px){
+  .product-actions{ grid-template-columns:1fr 1fr; }
+}
+
+/* Botones (compatibles con tu patrón) */
+.btn{
+  cursor:pointer;
+  border:1px solid #eee;
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:14px;
+  text-align:center;
+}
+.btn-sm{ padding:6px 8px; font-size:13px; }
+.btn-primary{
+  background:#ff4d7e;
+  color:#fff;
+  border-color:#ff4d7e;
+}
+.btn-primary:hover{ filter:brightness(0.95); }
+.btn-outline{
+  background:#fff;
+  color:#333;
+  border-color:#ddd;
+}
+.btn-outline:hover{ background:#f7f7f7; }
+
+.muted{ color:#777; }
+
+/* Aún más compacto en desktop grande */
+@media (min-width:1024px){
+  .product-grid{ grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); }
+  .product-title{ font-size:14px; }
+  .product-price{ font-size:15px; }
+}
+
+/* Accesibilidad: oculta solo visualmente */
+.sr-only{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}

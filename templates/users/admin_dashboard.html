@@ -6,4 +6,9 @@
 {% block content %}
   <h1>{% trans "Panel de administración interno" %}</h1>
   <p>{% trans "Solo personal staff autorizado." %}</p>
+
+<a class="btn btn-primary" href="{% url 'products_admin:admin_products_list' %}">
+  {% trans "Gestionar productos" %}
+</a>
+
 {% endblock %}

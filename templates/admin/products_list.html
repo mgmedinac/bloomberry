@@ -3,9 +3,13 @@
 
 {% block title %}{% trans "Lista de todos los productos disponibles" %}{% endblock %}
 
-{% block extra_css %}{# sin product_list.css #}{% endblock %}
+{# opcional: si no usas product_list.css, puedes quitar este bloque #}
+{% block extra_css %}
+  {# <link rel="stylesheet" href="{% static 'css/product_list.css' %}"> #}
+{% endblock %}
 
 {% block content %}
+<div class="bb-main">
   <h1 class="sr-only">{% trans "Lista de todos los productos disponibles" %}</h1>
 
   <div class="product-grid">
@@ -40,4 +44,5 @@
       <p class="muted">{% trans "No hay productos." %}</p>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

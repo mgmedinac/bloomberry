@@ -34,6 +34,7 @@ urlpatterns = [
     path('payments/', include('payments.urls', namespace='payments')),
     path('chat/', include('chat.urls', namespace='chat')),
     path('users/', include('users.urls', namespace='users')),
+    path("admin/", include("products.admin_urls")), 
     
 ]
 
