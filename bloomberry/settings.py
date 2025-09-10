@@ -85,7 +85,7 @@ DATABASES = {
     'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}
 }
 
-# Passwords (recomendado)
+# Passwords 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 10}},
@@ -114,7 +114,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Mensajes → clases compatibles con Bootstrap (opcional)
+
 MESSAGE_TAGS = {
     messages.DEBUG: "secondary",
     messages.INFO: "info",
@@ -141,8 +141,8 @@ CHATBOT_BACKEND = "openrouter"  # usamos OpenRouter
 # OpenRouter
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 OPENROUTER_MODEL = "google/gemma-3n-e2b-it:free"  # modelo elegido
-OPENROUTER_SITE_URL = "http://localhost:8000"     # opcional (ayuda a la cuota)
-OPENROUTER_APP_NAME = "BloomBerry"                # opcional (ayuda a la cuota)
+OPENROUTER_SITE_URL = "http://localhost:8000"     
+OPENROUTER_APP_NAME = "BloomBerry"               
 
 # Parámetros generales del chat
 CHATBOT_MAX_HISTORY = 8

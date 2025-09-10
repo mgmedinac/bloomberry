@@ -90,7 +90,6 @@ def order_invoice_pdf(request, order_id):
     """
     order = get_object_or_404(OrderInfo, id=order_id, user=request.user)
 
-    # Obtén ítems de la orden (ajusta si tienes related_name)
     items = OrderItem.objects.filter(order=order).select_related("product")
 
     filename = f"Factura_BloomBerry_Orden_{order.id}.pdf"
@@ -140,7 +139,6 @@ def order_invoice_pdf(request, order_id):
         name = getattr(getattr(it, "product", None), "name", None) or getattr(it, "product_name", "Producto")
         qty = getattr(it, "quantity", 1)
 
-        # Precio: usa el del item si existe; si no, el del producto; si no, 0
         unit_price = getattr(it, "price", None)
         if unit_price is None and getattr(it, "product", None) is not None:
             unit_price = getattr(it.product, "price", Decimal("0.00"))

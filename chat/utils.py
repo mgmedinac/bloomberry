@@ -227,7 +227,6 @@ def extract_keywords(text: str, vocab=None, limit=8):
         toks.append(corr)
 
     expanded = expand_keywords(_unique(multi + toks))
-    # deja un poco más amplio que limit para dar más chances
     return expanded[: max(limit, 12)]
 
 
@@ -303,7 +302,7 @@ def retrieve_catalog(filters: dict, limit=None):
     if not items:
         qs = qs_base
         qk = Q()
-        # ¿buscamos vitaminas/suplementos?
+        
         vitamin_triggers = ["vitamina", "vitaminas", "multivitam", "b12", "biotina", "vitamina c", "vitamina d"]
         if any(any(vt in _norm(k) for vt in vitamin_triggers) for k in keywords):
             for t in ["vitamin", "vitamina", "multivit", "multivitam",

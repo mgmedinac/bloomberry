@@ -13,5 +13,4 @@ def create_or_update_customer_account(sender, instance, created, **kwargs):
     if created:
         CustomerAccount.objects.create(user=instance)
     else:
-        # asegura que exista en casos de usuarios antiguos
         CustomerAccount.objects.get_or_create(user=instance)
