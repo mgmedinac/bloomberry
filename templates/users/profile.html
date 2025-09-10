@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+
+{% endblock %}
+
 {% block title %}{% trans "Mi perfil" %}{% endblock %}
-
 {% block content %}
-  <h2>{% trans "Mi perfil" %}</h2>
-  <p><strong>{% trans "Usuario" %}:</strong> {{ request.user.username }}</p>
-  <p><strong>Email:</strong> {{ request.user.email }}</p>
-  <p><strong>{% trans "Teléfono" %}:</strong> {{ profile.phone|default:"—" }}</p>
-  <p><strong>{% trans "Dirección" %}:</strong> {{ profile.address|default:"—" }}</p>
-  <p><strong>{% trans "Ciudad" %}:</strong> {{ profile.city|default:"—" }}</p>
+  <div class="profile-page">
+    <div class="profile-container">
+      <h2>{% trans "Mi perfil" %}</h2>
+      <p><strong>{% trans "Usuario" %}:</strong> {{ request.user.username }}</p>
+      <p><strong>Email:</strong> {{ request.user.email }}</p>
+      <p><strong>{% trans "Teléfono" %}:</strong> {{ profile.phone|default:"—" }}</p>
+      <p><strong>{% trans "Dirección" %}:</strong> {{ profile.address|default:"—" }}</p>
+      <p><strong>{% trans "Ciudad" %}:</strong> {{ profile.city|default:"—" }}</p>
 
-  <p><a href="{% url 'users:profile_edit' %}">{% trans "Editar perfil" %}</a></p>
-  <p><a href="{% url 'users:order_history' %}">{% trans "Historial de órdenes" %}</a></p>
+      <div class="profile-actions">
+        <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">{% trans "Editar perfil" %}</a>
+        <a href="{% url 'users:order_history' %}" class="btn btn-outline">{% trans "Historial de órdenes" %}</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
