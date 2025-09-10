@@ -29,17 +29,29 @@ Además, incluye integración con un **chatbot de IA** que responde a comandos d
 
 BLOOMBERRYPROJECT/
 ├── bloomberry/ # Configuración principal Django
+
 ├── chat/ # Chatbot con integración a API de IA
+
 ├── orders/ # Órdenes, historial, facturas PDF
+
 ├── payments/ # Pasarela de pagos (simulada)
+
 ├── products/ # Productos, búsqueda, wishlist
+
 ├── users/ # Autenticación y perfiles
+
 ├── fixtures/ # Datos iniciales en JSON (productos, usuarios, etc.)
+
 ├── static/ # Archivos estáticos (CSS, imágenes, JS)
+
 ├── templates/ # Templates globales y de apps
+
 ├── resources/lang/ # Archivos de traducción (.po / .mo)
+
 ├── manage.py
+
 └── requirements.txt
+
 
 
 ---
