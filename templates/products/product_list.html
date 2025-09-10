@@ -1,43 +1,14 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Lista de todos los productos disponibles" %}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
 
-{% block extra_css %}{# sin product_list.css #}{% endblock %}
+{% block title %}{% trans "Productos" %}{% endblock %}
 
 {% block content %}
-  <h1 class="sr-only">{% trans "Lista de todos los productos disponibles" %}</h1>
+<h2>{% trans "Productos" %}</h2>
 
-  <div class="product-grid">
-    {% for product in products %}
-      <article class="product-card">
-        <a class="product-media" href="{% url 'products:detail' product.id %}">
-          {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% else %}
-            <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}">
-          {% endif %}
-        </a>
-
-        <div class="product-body">
-          <h3 class="product-title">{{ product.name }}</h3>
-          <div class="product-price">${{ product.price|floatformat:0 }}</div>
-
-          <div class="product-actions">
-            <a class="btn btn-primary btn-sm" href="{% url 'products:detail' product.id %}">
-              {% trans "Ver detalle" %}
-            </a>
-            <form method="post" action="{% url 'orders:add_to_cart' product.id %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-outline btn-sm">
-                {% trans "Añadir al carrito" %}
-              </button>
-            </form>
-          </div>
-        </div>
-      </article>
-    {% empty %}
-      <p class="muted">{% trans "No hay productos." %}</p>
-    {% endfor %}
-  </div>
+{% include "products/product_baselist.html" with products=products %}
 {% endblock %}

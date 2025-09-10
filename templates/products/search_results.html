@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
+{% block title %}{% trans "Resultados de búsqueda" %}{% endblock %}
+
+{% block content %}
+<h2>{% trans "Resultados de búsqueda" %}</h2>
+
+{% if query %}
+    <p>{% trans "Mostrando resultados para:" %} <strong>{{ query }}</strong></p>
+{% endif %}
+
+{% include "products/product_baselist.html" with products=results %}
+{% endblock %}

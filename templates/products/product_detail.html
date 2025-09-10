@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}{{ product.name }} - BloomBerry{% endblock %}
-
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
 <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
 {% endblock %}
+
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
 <div class="bb-main">

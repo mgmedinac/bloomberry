@@ -1,29 +1,49 @@
+
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
 <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
-<div class="wishlist-container">
-  <h2>{% trans "Mis favoritos" %}</h2>
+{% endblock %}
 
-  {% if products %}
-    <div class="wishlist-grid">
-      {% for product in products %}
-        <div class="wishlist-card">
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          <div class="card-content">
-            <h3>{{ product.name }}</h3>
-            <p class="price">${{ product.price }}</p>
-            <div class="card-actions">
-              <a href="{% url 'products:detail' product.id %}" class="btn view">{% trans "Ver" %}</a>
-              <a href="{% url 'products:wishlist_remove' product.id %}" class="btn remove">{% trans "Quitar" %}</a>
-            </div>
+
+{% block content %}
+<h2>{% trans "Mis favoritos" %}</h2>
+
+{% if messages %}
+  <ul class="messages">
+    {% for m in messages %}
+      <li class="{{ m.tags }}">{{ m }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if items %}
+  <div class="product-grid">
+    {% for p in items %}
+      <article class="product-card">
+        <a class="product-media" href="{% url 'products:detail' p.id %}">
+          {% if p.image %}
+            <img src="{{ p.image.url }}" alt="{{ p.name }}">
+          {% else %}
+            <img src="{% static 'img/no-image.png' %}" alt="Sin imagen">
+          {% endif %}
+        </a>
+        <div class="product-body">
+          <h3 class="product-title">{{ p.name }}</h3>
+          {% if p.price %}
+            <div class="product-price">${{ p.price|floatformat:0 }}</div>
+          {% endif %}
+          <div class="product-actions">
+            <a class="btn btn-primary btn-sm" href="{% url 'products:detail' p.id %}"> {% trans "Ver" %}</a>
+            <a class="btn btn-outline btn-sm" href="{% url 'products:wishlist_remove' p.id %}"> {% trans "Quitar" %}</a>
           </div>
         </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="empty">{% trans "Todavía no has agregado productos a tu lista" %}</p>
-  {% endif %}
-</div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="muted"> trans Todavía no has agregado productos a tu lista.</p>
+{% endif %}
 {% endblock %}

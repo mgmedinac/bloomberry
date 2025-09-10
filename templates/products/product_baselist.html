@@ -1,0 +1,33 @@
+{% comment %}
+Template reutilizable para mostrar productos en formato tarjeta.
+Se usa en product_list.html y search_results.html
+Variables esperadas:
+- products: queryset con los productos a mostrar
+{% endcomment %}
+
+{% load static i18n %}
+
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'products:detail' product.id %}" class="product-media">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            <div class="product-body">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-price">${{ product.price }}</p>
+
+                <div class="product-actions">
+                    <a href="{% url 'products:detail' product.id %}" class="btn btn-primary">
+                        {% trans "Ver detalle" %}
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                        {% trans "Añadir al carrito" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>{% trans "No hay productos disponibles." %}</p>
+    {% endfor %}
+</div>

@@ -26,16 +26,17 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
 
-    path('', include('products.urls', namespace='products')),
-    path('orders/', include('orders.urls', namespace='orders')),
-    path('payments/', include('payments.urls', namespace='payments')),
-    path('chat/', include('chat.urls', namespace='chat')),
-    path('users/', include('users.urls', namespace='users')),
+    # apps
+    path("", include(("products.urls", "products"), namespace="products")),
+    path("orders/", include(("orders.urls", "orders"), namespace="orders")),
+    path("payments/", include(("payments.urls", "payments"), namespace="payments")),
+    path("chat/", include(("chat.urls", "chat"), namespace="chat")),
+    path("users/", include(("users.urls", "users"), namespace="users")),
+
     path("admin/", include("products.admin_urls")), 
-    
 ]
 
 if settings.DEBUG:

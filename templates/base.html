@@ -41,7 +41,7 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
 
 
         <!-- Buscador -->
-        <form class="bb-search" action="#" method="get">
+        <form class="bb-search" action="{% url 'products:search_products' %}" method="get">
           <span class="bb-search-icon">🔍</span>
           <input name="q" type="search" placeholder="{% trans 'Buscar productos…' %}" aria-label="{% trans 'Buscar' %}">
           <button type="button" class="bb-search-clear" aria-label="{% trans 'Limpiar' %}">✕</button>
@@ -74,7 +74,7 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
             <img src="{% static 'img/cart.png' %}" alt="Carrito">
           </a>
 
-          <a class="bb-action-heart" href="#" title="{% trans 'Favoritos' %}">
+          <a class="bb-action-heart" href="{% url 'products:view_wishlist' %}" title="Favoritos">
             <img src="{% static 'img/heart.png' %}" alt="Favoritos">
           </a>
 
