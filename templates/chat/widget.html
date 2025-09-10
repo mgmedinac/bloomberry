@@ -1,12 +1,11 @@
 <!--
 Autor: Maria Clara Medina Gomez
 Proyecto: BloomBerry
-Archivo: templates/widget.html
+Archivo: templates/chat/widget.html
 Descripción: Layout del widget del chatbot del sitio 
 -->
 
-
-{% load static i18n %}
+{% load static %}
 
 <!-- Hoja de estilos del widget -->
 <link rel="stylesheet" href="{% static 'css/widget.css' %}?v=3">
@@ -19,26 +18,23 @@ Descripción: Layout del widget del chatbot del sitio
 <!-- Panel del chat -->
 <div id="bb-panel" role="dialog" aria-label="Chat BloomBerry" aria-modal="false">
   <div id="bb-header">
-    <strong>  Asistente BloomBerry</strong>
+    <strong>Asistente BloomBerry</strong>
     <button id="bb-close" aria-label="Cerrar">×</button>
   </div>
 
-  <div id="bb-log">
-    <div class="bb-bubble bb-assistant">
-      <div class="bb-meta">  Asistente</div>
-      ¡Hola! Cuéntame tu tipo de piel, objetivos y presupuesto.
-    </div>
-  </div>
+  <div id="bb-log"></div>
 
   <form id="bb-form" action="{% url 'chat:send_message' %}" method="post">
     {% csrf_token %}
-    <input id="bb-input" type="text" name="message" placeholder="Escribe tu duda…">
+    <input id="bb-input" type="text" name="message" placeholder="Escribe tu duda…" autocomplete="off">
     <button id="bb-send" type="submit">Enviar</button>
   </form>
 </div>
 
 <script>
 (function(){
+  const BB_CHAT_GREETING = "¡Hola! Soy tu asistente virtual de BloomBerry 😊. Puedo ayudarte con productos de cuidado facial, maquillaje, medicamentos naturales, esencias y suplementos diarios. ¿Qué estás buscando hoy?";
+
   const fab     = document.getElementById("bb-fab");
   const panel   = document.getElementById("bb-panel");
   const log     = document.getElementById("bb-log");
@@ -48,7 +44,10 @@ Descripción: Layout del widget del chatbot del sitio
   const sendBtn = document.getElementById("bb-send");
 
   /* ---------- UI ---------- */
-  function togglePanel(show){ panel.style.display = show ? "flex" : "none"; }
+  function togglePanel(show){ 
+    panel.style.display = show ? "flex" : "none"; 
+    if (show) initGreetingIfNeeded();
+  }
   fab.addEventListener("click", ()=> togglePanel(panel.style.display !== "flex"));
   closeBtn.addEventListener("click", ()=> togglePanel(false));
 
@@ -86,6 +85,21 @@ Descripción: Layout del widget del chatbot del sitio
     log.appendChild(b);
     log.scrollTop = log.scrollHeight;
     return b;
+  }
+
+  function initGreetingIfNeeded(){
+    if (!log.querySelector('[data-greeting]')) {
+      const b = document.createElement("div");
+      b.className = "bb-bubble bb-assistant";
+      b.setAttribute("data-greeting","true");
+      const meta = document.createElement("div");
+      meta.className = "bb-meta"; meta.textContent = "Asistente";
+      const body = document.createElement("div");
+      body.textContent = BB_CHAT_GREETING;
+      b.appendChild(meta); b.appendChild(body);
+      log.appendChild(b);
+      log.scrollTop = log.scrollHeight;
+    }
   }
 
   /* ---------- Envío al backend ---------- */
@@ -141,87 +155,7 @@ Descripción: Layout del widget del chatbot del sitio
     }
   });
 
-  /* ---------- Colocar por encima del footer dentro del área blanca ---------- */
-
-  // Empuja el widget cuando el footer aparece (sea sticky/fixed o normal)
-  const BASE = 0.1;  // separación mínima desde el borde inferior
-
-  function placeWidget(){
-    const footer = document.querySelector('footer, .footer, [role="contentinfo"]');
-
-    // safe-area de móviles (iOS notch)
-    const safe = Number(
-      getComputedStyle(document.documentElement)
-      .getPropertyValue('env(safe-area-inset-bottom, 0px)').replace('px','')
-    ) || 0;
-
-    let offsetPx = BASE + safe;
-
-    if (footer){
-      const cs = getComputedStyle(footer);
-      const isSticky = cs.position === 'fixed' || cs.position === 'sticky';
-
-      if (isSticky) {
-        // footer pegado: súbelo por su altura
-        offsetPx += (footer.offsetHeight || 0) + 8;
-      } else {
-        // footer normal: levanta el FAB cuando el footer entra en el viewport
-        const r  = footer.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        if (r.top < vh) {
-          const overlap = (vh - r.top) + 4; // 8px de aire
-          offsetPx += Math.max(0, overlap);
-        }
-      }
-    }
-
-    // No subir demasiado (máx ~40% del alto de la ventana)
-    const maxLift = Math.round((window.innerHeight || 800) * 0.4);
-    offsetPx = Math.min(offsetPx, BASE + maxLift);
-
-    document.documentElement.style.setProperty('--bb-bottom-offset', offsetPx + 'px');
-  }
-
-  // Portal a <body> para evitar stacking contexts que tapen el FAB/panel
-  function createsStackingContext(el){
-    const cs = getComputedStyle(el);
-    return (
-      cs.transform !== 'none' ||
-      cs.perspective !== 'none' ||
-      cs.filter !== 'none' ||
-      cs.backdropFilter !== 'none' ||
-      cs.willChange.includes('transform') ||
-      cs.contain !== 'none' ||
-      cs.overflow !== 'visible'
-    );
-  }
-  function needsPortal(node){
-    let p = node.parentElement;
-    while (p && p !== document.body){
-      if (createsStackingContext(p)) return true;
-      p = p.parentElement;
-    }
-    return false;
-  }
-  function portalizeWidget(){
-    if ((needsPortal(fab) || needsPortal(panel)) && fab.parentElement !== document.body){
-      document.body.appendChild(fab);
-      document.body.appendChild(panel);
-    }
-    // z-index siempre por encima del footer
-    let footerZ = 0;
-    document.querySelectorAll('footer, .footer, [role="contentinfo"]').forEach(f=>{
-      const zi = parseInt(getComputedStyle(f).zIndex || '0', 10) || 0;
-      if (zi > footerZ) footerZ = zi;
-    });
-    const topZ = Math.max(footerZ + 10, 999999);
-    fab.style.zIndex   = String(topZ);
-    panel.style.zIndex = String(topZ);
-  }
-
-  // Listeners
-  window.addEventListener('load',  ()=>{ portalizeWidget(); placeWidget(); });
-  window.addEventListener('resize',()=>{ portalizeWidget(); placeWidget(); });
-  window.addEventListener('scroll', placeWidget, { passive:true });
+  /* ---------- Inicializa el saludo al cargar ---------- */
+  document.addEventListener("DOMContentLoaded", ()=> initGreetingIfNeeded());
 })();
 </script>
