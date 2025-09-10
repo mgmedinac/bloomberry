@@ -1,80 +1,90 @@
-🌸 BloomBerry
-BloomBerry es una aplicación web desarrollada con Django 4 y SQLite3 que permite la gestión de productos, clientes, pedidos y pagos.
-Cuenta con un sistema de login, carrito de compras y un chatbot con IA para recomendaciones.
+# 🌸 BloomBerry – E-commerce Django Project
 
- Instalación y ejecución
-1. Clonar el repositorio
-git clone https://github.com/tu-usuario/bloomberry.git
+##  Descripción
+BloomBerry es una aplicación web de comercio electrónico desarrollada en **Django**, como proyecto académico de **Tópicos Especiales en Ingeniería de Software**.  
+Permite a los usuarios navegar productos, gestionar un carrito de compras, realizar pedidos, consultar historial de órdenes y descargar facturas en PDF.  
+Además, incluye integración con un **chatbot de IA** que responde a comandos definidos y funcionalidades de internacionalización (i18n).
+
+---
+
+## � Integrantes
+- Maria Clara Medina Gómez  
+- Salomé Serna  
+
+---
+
+##  Funcionalidades principales
+- **Catálogo de productos** con búsqueda y wishlist.  
+- **Carrito de compras** persistente por usuario.  
+- **Checkout y gestión de órdenes**.  
+- **Historial de compras** con descarga de **factura PDF**.  
+- **Autenticación de usuarios** (registro, login, perfil).  
+- **Perfil de usuario** editable.  
+- **Traducciones i18n** (Español / Inglés) con ficheros `.po`/`.mo`.  
+- **Chatbot de IA** conectado a API externa.  
+
+---
+
+## 🗂️ Estructura del proyecto
+
+BLOOMBERRYPROJECT/
+├── bloomberry/ # Configuración principal Django
+├── chat/ # Chatbot con integración a API de IA
+├── orders/ # Órdenes, historial, facturas PDF
+├── payments/ # Pasarela de pagos (simulada)
+├── products/ # Productos, búsqueda, wishlist
+├── users/ # Autenticación y perfiles
+├── fixtures/ # Datos iniciales en JSON (productos, usuarios, etc.)
+├── static/ # Archivos estáticos (CSS, imágenes, JS)
+├── templates/ # Templates globales y de apps
+├── resources/lang/ # Archivos de traducción (.po / .mo)
+├── manage.py
+└── requirements.txt
+
+
+---
+
+
+##  Instalación y configuración
+
+### 1) Clonar el repositorio
+
+git clone https://github.com/mgmedinac/bloomberry.git
 cd bloomberry
 
-2. Crear entorno virtual
-python -m venv venv
-source env/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+## 2) Crear y activar entorno virtual
+python3 -m venv env
+source env/bin/activate   # en Mac/Linux
+env\Scripts\activate      # en Windows
 
-3. Instalar dependencias
+## 3) Instalar dependencias
 pip install -r requirements.txt
 
-4. Ejecutar migraciones
+## 4) Base de datos
+La base de datos no se incluye (db.sqlite3 está en .gitignore).
+Se debe cargar desde los fixtures JSON:
 python manage.py migrate
+python manage.py loaddata fixtures/initial_data.json
 
-5. Crear superusuario (admin)
-python manage.py createsuperuser
 
-6. Ejecutar el servidor
+## 5) Chatbot de IA
+El chatbot se encuentra en la app chat/.
+Para activarlo:
+Configura la variable de entorno con tu API Key (por ejemplo, en .env):
+OPENAI_API_KEY=tu_api_key_aqui
+Inicia el servidor y accede al chat en la sección correspondiente.
+Los comandos soportados se encuentran documentados en chat/views.py y en la Wiki del repo.
+
+
+## 6)  Internacionalización
+Idiomas disponibles: Español (default), Inglés.
+Traducciones en resources/lang/.
+Para compilar mensajes:
+django-admin makemessages -l en
+django-admin makemessages -l es
+django-admin compilemessages
+
+## 7) Ejecución
 python manage.py runserver
-Luego abre en tu navegador:
-http://127.0.0.1:8000/
+Accede en tu navegador a: http://localhost:8000
 
-7. Roles y secciones
-Usuario final (/): puede ver productos, agregar al carrito, hacer compras, usar el chatbot.
-Administrador (/admin/): gestiona productos, usuarios, pedidos y pagos.
-
-8. Funcionalidades interesantes
-   
-Además de las operaciones CRUD básicas, la aplicación incluye:
-
-🔍 Búsqueda de productos por nombre.
-
-🛒 Ver el Top 3 productos más vendidos.
-
-📄 Generar factura de venta en PDF.
-
-AI uso de chatbot AI para recomendaciones de productos.
-
-10. Estructura del proyecto
-bloomberry/
-
-│── bloomberry/       # Configuración principal del proyecto
-
-│── users/            # Gestión de usuarios y login
-
-│── products/         # Productos, reseñas y wishlist
-
-│── orders/           # Pedidos y carrito de compras
-
-│── payments/         # Pagos
-
-│── chat/             # Chat y recomendaciones IA
-
-│── static/           # Archivos estáticos (CSS, JS, imágenes)
-
-│── templates/        # Plantillas HTML
-
-│── db.sqlite3        # Base de datos
-
-│── manage.py
-
-│── requirements.txt
-
-│── README.md
-
-11. Tecnologías usadas
-Django 4
-SQLite3
-HTML, CSS, Bootstrap
-Python 3.x
-
-12. Equipo
-Arquitecta: Maria Clara Medina Gomez
-Desarrolladora: Salome Serna Restrepo
