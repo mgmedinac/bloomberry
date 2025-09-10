@@ -7,7 +7,7 @@ Además, incluye integración con un **chatbot de IA** que responde a comandos d
 
 ---
 
-## � Integrantes
+##  Integrantes
 - Maria Clara Medina Gómez  
 - Salomé Serna  
 
