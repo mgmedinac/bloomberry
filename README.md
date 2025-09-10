@@ -9,7 +9,7 @@ cd bloomberry
 
 2. Crear entorno virtual
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
+source env/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
 
 3. Instalar dependencias
@@ -40,8 +40,7 @@ Además de las operaciones CRUD básicas, la aplicación incluye:
 
 📄 Generar factura de venta en PDF.
 
-⭐ Ver el Top 4 productos más comentados.
-
+AI uso de chatbot AI para recomendaciones de productos.
 
 10. Estructura del proyecto
 bloomberry/
