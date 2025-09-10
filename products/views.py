@@ -9,16 +9,28 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Product, Review, Wishlist
+from .models import Category, Product, Review, Wishlist
 from .forms import ReviewForm
 
 def home_view(request):
     featured_products = Product.objects.all()[:4]
     return render(request, "products/home.html", {"featured_products": featured_products})
 
-def product_list(request):
+def product_list(request, category_slug=None):
+    categories = Category.objects.all()
     products = Product.objects.all()
-    return render(request, "products/product_list.html", {"products": products})
+
+    category = None
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+
+    return render(request, "products/product_list.html", {
+        "categories": categories,
+        "products": products,
+        "selected_category": category,
+    })
+
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
