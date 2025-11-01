@@ -1,4 +1,4 @@
-# BloomBerry Translations
+# BloomBerry English Translations
 # Copyright (C) 2025 BloomBerry
 # This file is distributed under the same license as the BloomBerry project.
 # Maria Clara <EMAIL@ADDRESS>, 2025.
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BloomBerry 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-09 22:07-0500\n"
-"PO-Revision-Date: 2025-09-09 21:00+0000\n"
+"POT-Creation-Date: 2025-10-30 20:16-0500\n"
+"PO-Revision-Date: 2025-10-30 22:00+0000\n"
 "Last-Translator: Maria Clara <EMAIL@ADDRESS>\n"
 "Language-Team: English <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -54,13 +54,13 @@ msgstr "Image"
 msgid "Descripción"
 msgstr "Description"
 
-#: products/views.py:68
+#: products/views.py:80
 msgid "Tu reseña fue guardada."
-msgstr "Your review has been saved."
+msgstr "Your review was saved."
 
-#: products/views.py:70
+#: products/views.py:82
 msgid "Hubo un error al enviar la reseña."
-msgstr "There was an error submitting the review."
+msgstr "There was an error submitting your review."
 
 #: templates/admin/product_confirm_delete.html:4
 msgid "Eliminar producto"
@@ -69,7 +69,7 @@ msgstr "Delete product"
 #: templates/admin/product_confirm_delete.html:5
 #, python-format
 msgid "¿Seguro que quieres eliminar “%(name)s”?"
-msgstr "Are you sure you want to delete %(name)s?"
+msgstr "Are you sure you want to delete “%(name)s”?"
 
 #: templates/admin/product_confirm_delete.html:8 templates/orders/cart.html:50
 msgid "Eliminar"
@@ -100,7 +100,7 @@ msgstr "Save"
 msgid "Lista de todos los productos disponibles"
 msgstr "List of all available products"
 
-#: templates/admin/products_list.html:22
+#: templates/admin/products_list.html:22 templates/products/home.html:56
 #: templates/products/product_detail.html:20
 msgid "Sin imagen"
 msgstr "No image"
@@ -120,67 +120,49 @@ msgstr "Add to cart"
 msgid "No hay productos."
 msgstr "No products available."
 
-#: templates/base.html:29
+#: templates/base.html:31
 msgid "Categorías"
 msgstr "Categories"
 
-#: templates/base.html:32
-msgid "Cuidado facial"
-msgstr "Facial care"
+#: templates/base.html:39
+msgid "No hay categorías disponibles"
+msgstr "No categories available"
 
-#: templates/base.html:33
-msgid "Maquillaje"
-msgstr "Makeup"
-
-#: templates/base.html:34
-msgid "Medicamentos"
-msgstr "Medicines"
-
-#: templates/base.html:35
-msgid "Aromas y esencias"
-msgstr "Aromas and essences"
-
-#: templates/base.html:36
-msgid "Suplementos diarios"
-msgstr "Daily supplements"
-
-#: templates/base.html:43
-#, fuzzy
-#| msgid "Buscar productos"
+#: templates/base.html:48
 msgid "Buscar productos…"
-msgstr "Search products"
+msgstr "Search products…"
 
-#: templates/base.html:43
+#: templates/base.html:48
 msgid "Buscar"
 msgstr "Search"
 
-#: templates/base.html:44
+#: templates/base.html:49
 msgid "Limpiar"
 msgstr "Clear"
 
-#: templates/base.html:51 templates/base.html:54 templates/users/profile.html:4
-#: templates/users/profile.html:7
+#: templates/base.html:56 templates/base.html:59 templates/users/profile.html:9
+#: templates/users/profile.html:13
 msgid "Mi perfil"
 msgstr "My profile"
 
-#: templates/base.html:56
+#: templates/base.html:61
 msgid "Hola,"
 msgstr "Hello,"
 
-#: templates/base.html:57
+#: templates/base.html:62
 msgid "Salir"
 msgstr "Logout"
 
-#: templates/base.html:59
+#: templates/base.html:64
 msgid "Panel Admin"
 msgstr "Admin Panel"
 
-#: templates/base.html:63 templates/base.html:66
+#: templates/base.html:68 templates/base.html:71
 #: templates/registration/login.html:4 templates/registration/login.html:12
 msgid "Ingresar"
 msgstr "Login"
 
-#: templates/base.html:70
+#: templates/base.html:75
 msgid "Carrito"
 msgstr "Cart"
 
@@ -248,13 +230,21 @@ msgstr "Date"
 msgid "Estado"
 msgstr "Status"
 
-#: templates/orders/order_history.html:34
+#: templates/orders/order_history.html:19
+msgid "Factura"
+msgstr "Invoice"
+
+#: templates/orders/order_history.html:31
+msgid "Descargar PDF"
+msgstr "Download PDF"
+
+#: templates/orders/order_history.html:39
 msgid "No tienes compras registradas aún."
-msgstr "You have no registered purchases yet."
+msgstr "You have no purchases yet."
 
 #: templates/payments/checkout.html:4
 msgid "Pago · BloomBerry"
-msgstr "BloomBerry Payment"
+msgstr "Payment · BloomBerry"
 
 #: templates/payments/checkout.html:12
 msgid "Pago de la Orden"
@@ -294,27 +284,53 @@ msgstr "Continue shopping"
 
 #: templates/products/home.html:4
 msgid "Inicio · BloomBerry"
-msgstr "BloomBerry Home"
+msgstr "Home · BloomBerry"
 
-#: templates/products/home.html:11
-msgid "Bienvenido a BloomBerry"
-msgstr "Welcome to BloomBerry"
+#: templates/products/home.html:18
+msgid "Vive tu esencia natural"
+msgstr "Live your natural essence"
 
-#: templates/products/home.html:13
+#: templates/products/home.html:22
+msgid ""
+"\n"
+"        Productos ecológicos pensados para cuidar de ti y del planeta.\n"
+"        Ingredientes naturales, envases sostenibles y resultados reales.\n"
+"        "
+msgstr ""
+"\n"
+"        Eco-friendly products designed to care for you and the planet.\n"
+"        Natural ingredients, sustainable packaging, and real results.\n"
+"        "
+
+#: templates/products/home.html:29
+msgid "Explorar catálogo"
+msgstr "Browse catalog"
+
+#: templates/products/home.html:39
 msgid "Productos destacados"
 msgstr "Featured products"
 
-#: templates/products/home.html:14
+#: templates/products/home.html:43
 msgid ""
-"Explora nuestra selección de productos ecológicos destacados, si quieres ver "
-"todos los productos disponibles, dale click en ver más."
+"\n"
+"    Una selección especial de nuestros favoritos. Si quieres ver todos los "
+"productos disponibles,\n"
+"    dale click en \"ver más\".\n"
+"    "
 msgstr ""
-"Explore our selection of featured eco-friendly products. If you want to see "
-"all available products, click on see more."
+"\n"
+"    A special selection of our favorites. If you want to see all available "
+"products,\n"
+"    click on “see more”.\n"
+"    "
 
-#: templates/products/home.html:33
+#: templates/products/home.html:70
 msgid "Ver más"
 msgstr "See more"
+
+#: templates/products/home.html:79
+msgid "Ver todos los productos"
+msgstr "View all products"
 
 #: templates/products/product_baselist.html:31
 msgid "No hay productos disponibles."
@@ -380,11 +396,11 @@ msgstr "My favorites"
 
 #: templates/products/wishlist.html:39
 msgid "Ver"
-msgstr "See"
+msgstr "View"
 
 #: templates/products/wishlist.html:40
 msgid "Quitar"
-msgstr "Delete"
+msgstr "Remove"
 
 #: templates/registration/logged_out.html:6
 msgid "Has cerrado sesión."
@@ -433,7 +449,7 @@ msgstr "Register"
 #: templates/users/admin_dashboard.html:4
 #: templates/users/admin_dashboard.html:7
 msgid "Panel de administración interno"
-msgstr "Internal admin panel"
+msgstr "Internal administration panel"
 
 #: templates/users/admin_dashboard.html:8
 msgid "Solo personal staff autorizado."
@@ -443,28 +459,28 @@ msgstr "Authorized staff only."
 msgid "Gestionar productos"
 msgstr "Manage products"
 
-#: templates/users/profile.html:8
+#: templates/users/profile.html:14
 msgid "Usuario"
 msgstr "User"
 
-#: templates/users/profile.html:10
+#: templates/users/profile.html:16
 msgid "Teléfono"
 msgstr "Phone"
 
-#: templates/users/profile.html:11
+#: templates/users/profile.html:17
 msgid "Dirección"
 msgstr "Address"
 
-#: templates/users/profile.html:12
+#: templates/users/profile.html:18
 msgid "Ciudad"
 msgstr "City"
 
-#: templates/users/profile.html:14 templates/users/profile_edit.html:4
+#: templates/users/profile.html:21 templates/users/profile_edit.html:4
 #: templates/users/profile_edit.html:7
 msgid "Editar perfil"
 msgstr "Edit profile"
 
-#: templates/users/profile.html:15
+#: templates/users/profile.html:22
 msgid "Historial de órdenes"
 msgstr "Order history"
 

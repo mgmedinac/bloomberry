@@ -8,28 +8,77 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{% trans "Bienvenido a BloomBerry" %}</h1>
 
-  <h2>{% trans "Productos destacados" %}</h2>
-  <p>{% trans "Explora nuestra selección de productos ecológicos destacados, si quieres ver todos los productos disponibles, dale click en ver más." %}</p>
-  
-  <div class="products-grid featured">
-    {% for product in featured_products %}
-    <a href="{% url 'products:detail' product.id %}" class="product-link">
-      <div class="product-card small">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-          <img src="{% static 'img/placeholder.png' %}" alt="Sin imagen">
-        {% endif %}
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.descripcion|truncatewords:10 }}</p>
+<!-- ===== HERO PRINCIPAL (de pared a pared) ===== -->
+<div class="hero-wrapper">
+  <section class="home-hero">
+    <div class="hero-inner">
+
+      <h1 class="hero-title">
+        🌿 {% trans "Vive tu esencia natural" %}
+      </h1>
+
+      <p class="hero-text">
+        {% blocktrans %}
+        Productos ecológicos pensados para cuidar de ti y del planeta.
+        Ingredientes naturales, envases sostenibles y resultados reales.
+        {% endblocktrans %}
+      </p>
+
+      <a href="{% url 'products:list' %}" class="btn-primary hero-cta">
+        {% trans "Explorar catálogo" %}
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<!-- ===== PRODUCTOS DESTACADOS ===== -->
+<section class="featured-products">
+  <h2 class="section-title">
+    ✨ {% trans "Productos destacados" %}
+  </h2>
+
+  <p class="section-desc">
+    {% blocktrans %}
+    Una selección especial de nuestros favoritos. Si quieres ver todos los productos disponibles,
+    dale click en "ver más".
+    {% endblocktrans %}
+  </p>
+
+  <div class="featured-grid">
+    {% for product in featured_products|slice:":3" %}
+      <div class="featured-card">
+        <div class="featured-image-wrapper">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="{% static 'img/placeholder.png' %}" alt="{% trans 'Sin imagen' %}">
+          {% endif %}
+        </div>
+
+        <div class="featured-info">
+          <h3 class="featured-name">{{ product.name }}</h3>
+
+          {% if product.descripcion %}
+          <p class="featured-desc">
+            {{ product.descripcion|truncatechars:100 }}
+          </p>
+          {% endif %}
+
+          <a href="{% url 'products:detail' product.id %}" class="btn-outline">
+            {% trans "Ver más" %}
+          </a>
+        </div>
       </div>
-    </a>
-  {% endfor %}
+    {% endfor %}
   </div>
 
-  <a href="{% url 'products:list' %}">
-    <button class="btn-comprar">{% trans "Ver más" %}</button> 
-  </a>
+  <div class="featured-more">
+    <a href="{% url 'products:list' %}" class="btn-success">
+      {% trans "Ver todos los productos" %}
+    </a>
+  </div>
+</section>
+
 {% endblock %}

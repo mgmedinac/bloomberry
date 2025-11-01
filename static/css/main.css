@@ -74,7 +74,7 @@ footer,
 }
 .bb-logo img{
   position:absolute;
-  left:0;
+  left:-50px;
   bottom:-55px;              /* “cuelga” un poco hacia abajo */
   height:200px;              /* tamaño visible del logo */
   width:auto;
@@ -108,24 +108,38 @@ footer,
 }
 .bb-cat-menu a:hover{background:rgba(255,255,255,.6)}
 
-/* ========== BUSCADOR ========== */
-.bb-search{
-  position:relative;
-  display:flex;
-  align-items:center;
-  background:#fff;
-  border:1px solid #e8e8e8;
-  border-radius:999px;
-  padding:8px 12px;
+/* ===== BUSCADOR ===== */
+.bb-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dadada;
+  border-radius: 999px;
+  padding: 10px 14px;
+  height: 44px;
+  max-width: 900px;
+  width: 100%;
+  margin-left: -40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.03);
 }
-.bb-search-icon{margin-right:8px}
-.bb-search input{
-  width:100%; border:0; outline:0; font-size:15px; background:transparent;
+
+.bb-search-icon { margin-right: 8px; }
+.bb-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  background: transparent;
 }
-.bb-search-clear{
-  border:0; background:transparent; font-size:16px; cursor:pointer; opacity:.5;
+.bb-search-clear {
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: .5;
 }
-.bb-search-clear:hover{opacity:1}
+.bb-search-clear:hover { opacity: 1; }
 
 /* ========== ACCIONES (user, cart, heart, idioma) ========== */
 .bb-actions{

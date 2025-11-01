@@ -10,13 +10,15 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
 <head>
   <meta charset="utf-8">
   <title>{% block title %}BloomBerry{% endblock %}</title>
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="{% static 'css/main.css' %}?v=3" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}?v=10000" rel="stylesheet">
   {% block extra_css %}{% endblock %}
 </head>
 <body>
   <div id="page">
-    <header class="bb-header">
+      <header class="bb-header" style="width:100%;">
       <div class="bb-header-inner">
         <!-- Logo (clic = inicio) -->
         <a class="bb-logo" href="{% url 'products:home' %}">
