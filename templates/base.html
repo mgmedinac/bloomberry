@@ -158,6 +158,24 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
       const menu = document.getElementById("bbFilterMenu");
       if (!e.target.closest(".bb-filters")) menu.style.display = "none";
     });
+
+
+    // Interacción con rating de flores
+    document.addEventListener("DOMContentLoaded", () => {
+      const flowers = document.querySelectorAll(".bb-flower-label");
+      flowers.forEach(flower => {
+        flower.addEventListener("click", () => {
+          flowers.forEach(f => f.style.opacity = "0.4");
+          flower.style.opacity = "1";
+          let prev = flower.previousElementSibling;
+          while (prev) {
+            if (prev.classList?.contains("bb-flower-label")) prev.style.opacity = "1";
+            prev = prev.previousElementSibling;
+          }
+        });
+      });
+    });
+
   </script>
 
 

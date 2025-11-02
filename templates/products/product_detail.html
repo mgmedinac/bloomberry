@@ -64,20 +64,29 @@
   <!-- Reseñas -->
   <section class="bb-reviews">
     <h2>
-      {% trans "Reseñas" %} ({{ product.quantity_of_reviews }}) — 
-      {% trans "Promedio" %}: {{ product.avg_rating }}
+      {% trans "Reseñas" %} ({{ product.quantity_of_reviews }})
     </h2>
 
-    {% for review in reviews %}
-      <div class="bb-review">
-        <strong>{{ review.user.username }}</strong>
-        <span class="rating">{{ review.rating }} / 5</span>
-        <p>{{ review.comment|linebreaks }}</p>
-        <small>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }}</small>
-      </div>
-    {% empty %}
+    {% if reviews %}
+      {% for review in reviews %}
+        <div class="bb-review">
+          <div class="bb-review-header">
+            <strong>{{ review.user.username }}</strong>
+            <div class="bb-rating">
+              {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}
+                  🌸
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <p>{{ review.comment|linebreaks }}</p>
+          <small>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }}</small>
+        </div>
+      {% endfor %}
+    {% else %}
       <p>{% trans "Aún no hay reseñas para este producto." %}</p>
-    {% endfor %}
+    {% endif %}
   </section>
 
   <!-- Formulario para dejar reseña -->
@@ -89,26 +98,34 @@
         {% csrf_token %}
         {{ review_form.non_field_errors }}
 
-        <div class="form-row">
-          <label for="{{ review_form.rating.id_for_label }}">{{ review_form.rating.label }}</label>
-          {{ review_form.rating }}
+        <!-- Selector de calificación -->
+        <div class="form-row bb-rating-input">
+          <label>{% trans "Tu calificación" %}</label>
+          <div class="bb-flower-select">
+            {% for i in "54321" %}
+              <input type="radio" id="rating{{ i }}" name="rating" value="{{ i }}">
+              <label for="rating{{ i }}" class="bb-flower-label">🌸</label>
+            {% endfor %}
+          </div>
         </div>
 
+        <!-- Comentario -->
         <div class="form-row">
           <label for="{{ review_form.comment.id_for_label }}">{{ review_form.comment.label }}</label>
           {{ review_form.comment }}
         </div>
 
+        <!-- Botón enviar -->
         <button type="submit" class="bb-btn primary">
           {% trans "Enviar reseña" %}
         </button>
       </form>
     {% else %}
       <p>
-        {% trans "Debes" %} 
+        {% trans "Debes" %}
         <a href="{% url 'login' %}?next={{ request.path }}">
           {% trans "iniciar sesión" %}
-        </a> 
+        </a>
         {% trans "para dejar una reseña." %}
       </p>
     {% endif %}
