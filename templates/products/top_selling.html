@@ -24,7 +24,7 @@
           </a>
           <div class="product-body">
             <h3 class="product-title">{{ product.name }}</h3>
-            <p class="product-price">🛒 Ventas: {{ product.total_sold|default:"0" }}</p>
+            <p class="product-price">Ventas: {{ product.total_sold|default:"0" }}</p>
             <div class="product-actions">
               <a href="{% url 'products:detail' product.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
             </div>
