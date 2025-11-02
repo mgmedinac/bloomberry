@@ -29,4 +29,8 @@ urlpatterns = [
 
     # Búsqueda 
     path("search/", views.search_products, name="search_products"),
+
+    # Funcionalidades interesantes: top 3 más vendidor y top 4 más comentados
+    path("top-sold/", views.top_selling_products, name="top_selling_products"),
+    path("top-reviewed/", views.most_reviewed_products, name="most_reviewed_products"),
 ]

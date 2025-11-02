@@ -59,7 +59,7 @@ footer,
   max-width:1200px;
   margin:0 auto;
   display:grid;
-  grid-template-columns:220px 170px 1fr auto; /* logo | categorías | search | acciones */
+  grid-template-columns: 220px auto 1fr auto; /* ← más espacio para cat+filtro */
   align-items:center;
   gap:16px;
   padding:14px 20px;
@@ -120,8 +120,9 @@ footer,
   height: 44px;
   max-width: 900px;
   width: 100%;
-  margin-left: -40px;
+  margin-left: 0;
   box-shadow: 0 4px 12px rgba(0,0,0,.03);
+  z-index: 1;
 }
 
 .bb-search-icon { margin-right: 8px; }
@@ -208,6 +209,81 @@ footer,
   padding:4px 10px;
   border-radius:999px;
 }
+
+/* === FILTROS COMPACTOS (alineados con header) === */
+.bb-filters {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+/* Botón redondo pequeño tipo icono */
+.bb-filter-btn {
+  background: var(--light);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bb-filter-btn:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
+.bb-filter-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: invert(40%);
+}
+
+/* Menú desplegable */
+.bb-filter-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  z-index: 100;
+  min-width: 160px;
+}
+
+.bb-filter-link {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.bb-filter-link:hover {
+  background: var(--pink);
+  color: #fff;
+}
+
+
+.bb-cat-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* separa categoría y filtro */
+}
+
 
 /* ========== MAIN & FOOTER ========== */
 .bb-main{ max-width:1200px; margin:24px auto; padding:0 20px }

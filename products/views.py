@@ -9,8 +9,11 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from payments import models
+
 from .models import Category, Product, Review, Wishlist
 from .forms import ReviewForm
+from django.db.models import Sum, Count
 
 def home_view(request):
     featured_products = Product.objects.all()[:4]
@@ -59,6 +62,28 @@ def search_products(request):
         'query': query,
         'results': results,
     })
+
+
+# Funciones interesantes faltantes en la entrega anterior
+
+# Vista para mostrar los 3 productos más vendidos
+def top_selling_products(request):
+    top_products = (
+        Product.objects
+        .annotate(total_sold=Sum('orderitem__quantity'))  # suma de todas las cantidades vendidas
+        .order_by('-total_sold')[:3]
+    )
+    return render(request, "products/top_selling.html", {"top_products": top_products})
+
+
+# Vista para mostrar los 4 productos más comentados
+def most_reviewed_products(request):
+    most_reviewed = (
+        Product.objects
+        .annotate(num_reviews=Count('reviews'))
+        .order_by('-num_reviews')[:4]
+    )
+    return render(request, "products/most_reviewed.html", {"most_reviewed": most_reviewed})
 
 
 @login_required

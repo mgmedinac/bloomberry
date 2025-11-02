@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Top 4 Productos Más Comentados{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="product-list-section">
+  <h2 class="text-center" style="margin-bottom: 24px;">🌸 Top 4 Productos Más Comentados 🌸</h2>
+
+  {% if most_reviewed %}
+    <div class="product-grid">
+      {% for product in most_reviewed %}
+        <div class="product-card">
+          <a href="{% url 'products:detail' product.id %}" class="product-media">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+              <img src="{% static 'img/default_product.png' %}" alt="Imagen no disponible">
+            {% endif %}
+          </a>
+          <div class="product-body">
+            <h3 class="product-title">{{ product.name }}</h3>
+            <p class="product-price">Comentarios: {{ product.num_reviews }}</p>
+            <div class="product-actions">
+              <a href="{% url 'products:detail' product.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-muted" style="margin-top: 20px;">
+      No hay comentarios aún en los productos.
+    </p>
+  {% endif %}
+</section>
+{% endblock %}

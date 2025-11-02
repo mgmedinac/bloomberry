@@ -25,21 +25,38 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
           <img src="{% static 'img/logo1SinFondo.png' %}" alt="BloomBerry">
         </a>
 
-        <!-- Categorías -->
-        <div class="bb-categories">
-          <button class="bb-cat-btn" type="button">
-            {% trans "Categorías" %} <span class="bb-caret">▾</span>
-          </button>
-          <div class="bb-cat-menu">
-            {% for category in categories %}
-              <a href="{% url 'products:category' category.slug %}">
-                {{ category.name }}
+        <!-- Categorías + Filtros -->
+        <div class="bb-cat-filter-wrap">
+          <div class="bb-categories">
+            <button class="bb-cat-btn" type="button">
+              {% trans "Categorías" %} <span class="bb-caret">▾</span>
+            </button>
+            <div class="bb-cat-menu">
+              {% for category in categories %}
+                <a href="{% url 'products:category' category.slug %}">
+                  {{ category.name }}
+                </a>
+              {% empty %}
+                <span>{% trans "No hay categorías disponibles" %}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="bb-filters">
+            <button class="bb-filter-btn" type="button" onclick="toggleFilters()" title="Filtros">
+              <img src="{% static 'img/filter.png' %}" alt="Filtros" class="bb-filter-icon">
+            </button>
+            <div class="bb-filter-menu" id="bbFilterMenu">
+              <a href="{% url 'products:top_selling_products' %}" class="bb-filter-link">
+                Top Vendidos
               </a>
-            {% empty %}
-              <span>{% trans "No hay categorías disponibles" %}</span>
-            {% endfor %}
+              <a href="{% url 'products:most_reviewed_products' %}" class="bb-filter-link">
+                Más Comentados
+              </a>
+            </div>
           </div>
         </div>
+
 
 
         <!-- Buscador -->
@@ -129,7 +146,20 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
       if (!clearBtn || !input) return;
       clearBtn.addEventListener('click', () => { input.value=''; input.focus(); });
     })();
+
+
+    // Toggle filtros
+    function toggleFilters() {
+      const menu = document.getElementById("bbFilterMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    window.addEventListener("click", (e) => {
+      const menu = document.getElementById("bbFilterMenu");
+      if (!e.target.closest(".bb-filters")) menu.style.display = "none";
+    });
   </script>
+
 
   {% block extra_js %}{% endblock %}
 </body>
