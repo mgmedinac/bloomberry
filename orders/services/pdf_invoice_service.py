@@ -25,7 +25,7 @@ class PDFInvoiceGenerator:
         p.drawString(100, height - 110, f"Orden ID: {order.id}")
         p.drawString(100, height - 125, f"Cliente: {order.user.username}")
         p.drawString(100, height - 140, f"Estado: {order.status}")
-        p.drawString(100, height - 160, f"Total: ${order.total}")  # ✅ corregido
+        p.drawString(100, height - 160, f"Total: ${order.total}")  
 
         # Línea divisoria
         p.line(80, height - 170, 500, height - 170)
@@ -40,7 +40,7 @@ class PDFInvoiceGenerator:
         y -= 20
 
         for item in OrderItem.objects.filter(order=order):
-            subtotal = item.product.price * item.quantity  # ✅ calculamos subtotal
+            subtotal = item.product.price * item.quantity 
             p.drawString(100, y, item.product.name)
             p.drawString(300, y, str(item.quantity))
             p.drawString(400, y, f"${subtotal:.2f}")

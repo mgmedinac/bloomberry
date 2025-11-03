@@ -16,7 +16,7 @@ class ExcelInvoiceGenerator:
 
         data = []
         for item in items:
-            subtotal = item.product.price * item.quantity  # ✅ corregido
+            subtotal = item.product.price * item.quantity 
             data.append({
                 "Producto": item.product.name,
                 "Cantidad": item.quantity,
@@ -25,7 +25,7 @@ class ExcelInvoiceGenerator:
             })
 
         df = pd.DataFrame(data)
-        df.loc[len(df.index)] = ["", "", "TOTAL", order.total]  # ✅ usamos el campo correcto
+        df.loc[len(df.index)] = ["", "", "TOTAL", order.total]  
 
         response = HttpResponse(content_type='application/vnd.ms-excel')
         response['Content-Disposition'] = f'attachment; filename="Factura_{order.id}.xlsx"'
