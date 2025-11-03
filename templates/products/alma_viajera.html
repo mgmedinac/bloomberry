@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Producto Aliado — Alma Viajera{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+<style>
+  /* Estilos adicionales solo para esta página */
+  .ally-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+
+  .ally-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ally-header h2 {
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+
+  .ally-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .ally-product img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+
+  .ally-info p {
+    margin: 6px 0;
+    font-size: 15px;
+  }
+
+  .ally-info strong {
+    color: var(--green);
+  }
+
+  .ally-rating {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .ally-status {
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  .ally-btn {
+    display: inline-block;
+    background: var(--pink);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin-top: 15px;
+    transition: background 0.2s ease;
+  }
+
+  .ally-btn:hover {
+    background: #d9436a;
+  }
+
+  @media (max-width: 768px) {
+    .ally-product {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ally-container">
+
+  <div class="ally-header">
+    <h2>🌎 Producto aliado — Alma Viajera</h2>
+    <p>Este producto es traído desde la API del equipo aliado <strong>Alma Viajera</strong>.</p>
+  </div>
+
+  {% if data.error %}
+    <p class="text-center" style="color:red;">{{ data.error }}</p>
+  {% else %}
+  <div class="ally-product">
+    
+    <!-- Imagen -->
+    <div class="ally-image">
+      <img src="https://alma-viajera-190826772076.us-central1.run.app{{ data.imagen }}" alt="{{ data.nombre }}">
+    </div>
+
+    <!-- Información -->
+    <div class="ally-info">
+      <h3>{{ data.nombre }}</h3>
+      <p><strong>Descripción:</strong> {{ data.descripcion }}</p>
+      <p><strong>Categoría:</strong> {{ data.categoria }}</p>
+      <p><strong>Ubicación:</strong> {{ data.ubicacion }}</p>
+      <p><strong>Precio:</strong> ${{ data.precio }}</p>
+      <p><strong>Stock:</strong> {{ data.stock }}</p>
+      <p><strong>Vendedor:</strong> {{ data.vendedor }}</p>
+
+      <div class="ally-rating">
+        <strong>Calificación:</strong>
+        {% for i in "12345" %}
+          {% if forloop.counter <= data.estrellas.llenas %}
+            🌸
+          {% elif forloop.counter == data.estrellas.llenas|add:1 and data.estrellas.media == 1 %}
+            🌺
+          {% else %}
+            ⚪
+          {% endif %}
+        {% endfor %}
+        <span>({{ data.promedio_calificacion }}/5)</span>
+      </div>
+
+      <div class="ally-status">
+        {% if data.disponibilidad %}
+          <span style="color:green;">Disponible ✅</span>
+        {% else %}
+          <span style="color:red;">No disponible ❌</span>
+        {% endif %}
+      </div>
+
+      <a href="https://alma-viajera-190826772076.us-central1.run.app/item/{{ data.id }}/" 
+         target="_blank" class="ally-btn">Ver en sitio aliado</a>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

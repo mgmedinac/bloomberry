@@ -37,4 +37,7 @@ urlpatterns = [
 
     # API JSON
     path("products/api/", views_api.product_list_api, name="product_list_api"),
+
+    # API de servicio de Alma viajera
+    path("alma-viajera/", views.api_viajera_view, name="alma_viajera_service"),
 ]

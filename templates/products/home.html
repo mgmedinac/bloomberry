@@ -79,6 +79,26 @@
       {% trans "Ver todos los productos" %}
     </a>
   </div>
+
+  <!-- ===== Sección para servicio de Alma Viajera ===== -->
+  <section class="alma-viajera">
+    <h2 class="section-title">
+      🌍 {% trans "Alma Viajera" %}
+    </h2>
+
+    <p class="section-desc">
+      {% blocktrans %}
+      Descubre productos únicos y experiencias inolvidables con nuestro aliado Alma Viajera.
+      {% endblocktrans %}
+    </p>
+
+    <!-- Contenido promocional de Alma Viajera, botón para ver la info del json en pagina nueva -->
+    <div class="alma-content">
+      <a href="{% url 'products:alma_viajera_service' %}" target="_blank" class="btn-primary">
+        {% trans "Explorar Alma Viajera" %}
+      </a>
+    </div>
+  </section>
 </section>
 
 {% endblock %}

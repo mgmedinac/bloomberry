@@ -4,6 +4,7 @@
 # Descripción: Vistas para listar y detallar productos.
 
 
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
@@ -14,6 +15,8 @@ from payments import models
 from .models import Category, Product, Review, Wishlist
 from .forms import ReviewForm
 from django.db.models import Sum, Count
+
+import requests
 
 def home_view(request):
     featured_products = Product.objects.all()[:4]
@@ -135,3 +138,18 @@ def remove_from_wishlist(request, item_id):
     else:
         messages.info(request, "El producto no estaba en tu lista.")
     return redirect("products:view_wishlist")
+
+
+# Servicio JSON que nos provee el otro equipo: Alma viajera
+def api_viajera_view(request):
+    url = "https://alma-viajera-190826772076.us-central1.run.app/api/item/5/"
+    # Extraemos datos del servicio externo para mostrarlos en nuestra app
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+    except requests.RequestException:
+        data = {"error": "No se pudo obtener datos del servicio Alma Viajera."}
+    
+    # Pasamos los datos al template para mostrarlos
+    return render(request, "products/alma_viajera.html", {"data": data})
