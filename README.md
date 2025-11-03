@@ -100,3 +100,17 @@ django-admin compilemessages
 python manage.py runserver
 Accede en tu navegador a: http://localhost:8000
 
+
+
+### 🌸 Servicio JSON - Productos BloomBerry
+**Endpoint:** `/products/api/`  
+**Método:** `GET`  
+**Descripción:** Retorna la lista de productos disponibles con su nombre, descripción, precio, stock, imagen y enlace de detalle.  
+**Ejemplo de respuesta:**
+```json
+[ {"id": 2, "nombre": "Kit aromático", 
+    "descripcion": "Este kit incluye aceite esencial de árbol de té, aceite de romero, y aceite esencial relajante de lavanda y un jabón liquido con esencia de romero", 
+    "precio": 80000.0, 
+    "stock": 5, 
+    "imagen": "http://127.0.0.1:8000/media/products/IMG-20250905-WA0054.jpg", 
+    "detalle_url": "http://127.0.0.1:8000/2/"}]
