@@ -1,6 +1,7 @@
 
 {% extends "base.html" %}
 {% load static i18n %}
+{% load humanize %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
@@ -33,7 +34,7 @@
         <div class="product-body">
           <h3 class="product-title">{{ p.name }}</h3>
           {% if p.price %}
-            <div class="product-price">${{ p.price|floatformat:0 }}</div>
+            <div class="product-price">${{ p.price|floatformat:0|intcomma }}</div>
           {% endif %}
           <div class="product-actions">
             <a class="btn btn-primary btn-sm" href="{% url 'products:product_detail' p.id %}"> {% trans "Ver" %}</a>

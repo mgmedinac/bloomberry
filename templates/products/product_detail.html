@@ -1,9 +1,12 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n humanize l10n %}
+
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
 <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+
+
 {% endblock %}
 
 {% block title %}{{ product.name }}{% endblock %}
@@ -91,12 +94,23 @@
           {{ product.description }}
         </p>
 
-        <p class="price" style="color:#111; font-weight:600; margin:0 0 1rem 0;">
-          ${{ product.price|floatformat:0 }}
+        <!-- Precio original -->
+        <p class="price" style="color:#111; font-weight:600; margin:0;">
+          ${{ product.price|floatformat:0|intcomma }}
+
         </p>
 
+        <!-- Conversión COP -> USD -->
+        <div class="converted-price"
+            data-price-cop="{{ product.price|unlocalize|floatformat:'2' }}">
+          <span class="label">≈</span>
+          <span id="price-usd" class="value">Cargando...</span>
+          <span class="currency">USD</span>
+        </div>
+
+
         <!-- Botones carrito / favoritos -->
-        <div class="bb-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; margin-bottom:2rem;">
+        <div class="bb-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; margin-bottom:2rem; margin-top:1rem;">
           <!-- Botón principal (rosa): Add to cart -->
           <form method="post" action="{% url 'orders:add_to_cart' product.id %}" style="margin:0;">
             {% csrf_token %}  
@@ -204,4 +218,67 @@
   {% endif %}
 
 </div><!-- /.bb-main -->
+
+<!-- === Script para conversión COP → USD === -->
+<script>
+(function () {
+  const box = document.querySelector('.converted-price');
+  if (!box) return;
+
+  // ── Parseo robusto (maneja espacios, NBSP, puntos y comas)
+  function toNumber(str) {
+    if (str == null) return NaN;
+    let s = String(str).trim()
+      .replace(/\u00A0/g, '')   // NBSP
+      .replace(/\s+/g, '');     // espacios
+    const hasComma = s.includes(',');
+    const hasDot   = s.includes('.');
+    if (hasComma && hasDot) {
+      // El último símbolo decide el separador decimal
+      if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+        s = s.replace(/\./g, '').replace(',', '.'); // coma decimal
+      } else {
+        s = s.replace(/,/g, '');                    // punto decimal
+      }
+    } else if (hasComma) {
+      s = s.replace(',', '.');                      // solo coma -> decimal
+    }
+    return Number(s);
+  }
+
+  const raw = box.getAttribute('data-price-cop');
+  const cop = toNumber(raw);   // ← ya no dará NaN
+
+  const out = document.getElementById('price-usd');
+  const fmtUSD = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+  const CACHE_KEY = 'rate_COP_USD';
+  const cached = sessionStorage.getItem(CACHE_KEY);
+  const cacheObj = cached ? JSON.parse(cached) : null;
+  const isFresh = cacheObj && (Date.now() - cacheObj.t) < (1000 * 60 * 30);
+
+  function render(rate) {
+    const usd = cop * rate;
+    out.textContent = isFinite(usd) ? fmtUSD.format(usd) : '—';
+  }
+
+  async function fetchRate() {
+    try {
+      const API_KEY = "a802b0563a53230a8e0d21f3";
+      const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/COP`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const rate = data?.conversion_rates?.USD;
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ r: rate, t: Date.now() }));
+      render(rate);
+    } catch (e) {
+      out.textContent = '—';
+      console.error('Exchange API error:', e);
+    }
+  }
+
+  if (isFresh) render(cacheObj.r); else fetchRate();
+})();
+</script>
+
 {% endblock %}
