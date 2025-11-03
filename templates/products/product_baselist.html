@@ -23,7 +23,7 @@ Variables esperadas:
                     </a>
                     <form method="post" action="{% url 'orders:add_to_cart' product.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="bb-btn primary">
+                    <button type="submit" class="btn btn-add-cart">
                         {% trans "Añadir al carrito" %}
                     </button>
                     </form>
