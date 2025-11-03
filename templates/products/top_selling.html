@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Top 3 Productos Más Vendidos{% endblock %}
+{% block title %}
+{% trans "Top 3 Productos Más Vendidos" %}
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
@@ -9,24 +11,28 @@
 
 {% block content %}
 <section class="product-list-section">
-  <h2 class="text-center" style="margin-bottom: 24px;">🌸 Top 3 Productos Más Vendidos 🌸</h2>
+  <h2 class="text-center" style="margin-bottom: 24px;">🌸 {% trans "Top 3 Productos Más Vendidos" %} 🌸</h2>
 
   {% if top_products %}
     <div class="product-grid">
       {% for product in top_products %}
         <div class="product-card">
-          <a href="{% url 'products:detail' product.id %}" class="product-media">
+          <a href="{% url 'products:product_detail' product.id %}" class="product-media">
             {% if product.image %}
               <img src="{{ product.image.url }}" alt="{{ product.name }}">
             {% else %}
-              <img src="{% static 'img/default_product.png' %}" alt="Imagen no disponible">
+              <img src="{% static 'img/default_product.png' %}" alt="{% trans 'Imagen no disponible' %}">
             {% endif %}
           </a>
           <div class="product-body">
             <h3 class="product-title">{{ product.name }}</h3>
-            <p class="product-price">Ventas: {{ product.total_sold|default:"0" }}</p>
+            <p class="product-price">
+              {% trans "Ventas" %}: {{ product.total_sold|default:"0" }}
+            </p>
             <div class="product-actions">
-              <a href="{% url 'products:detail' product.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+              <a href="{% url 'products:product_detail' product.id %}" class="btn btn-primary btn-sm">
+                {% trans "Ver Detalles" %}
+              </a>
             </div>
           </div>
         </div>
@@ -34,7 +40,7 @@
     </div>
   {% else %}
     <p class="text-center text-muted" style="margin-top: 20px;">
-      No hay productos vendidos aún.
+      {% trans "No hay productos vendidos aún." %}
     </p>
   {% endif %}
 </section>
