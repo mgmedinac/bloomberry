@@ -138,18 +138,16 @@ def remove_from_wishlist(request, item_id):
     else:
         messages.info(request, "El producto no estaba en tu lista.")
     return redirect("products:view_wishlist")
-
-
 # Servicio JSON que nos provee el otro equipo: Alma viajera
 def api_viajera_view(request):
     url = "https://alma-viajera-190826772076.us-central1.run.app/api/item/5/"
-    # Extraemos datos del servicio externo para mostrarlos en nuestra app
+    data = {} 
+
     try:
         response = requests.get(url, timeout=5)
-        response.raise_for_status()
+        response.raise_for_status()  
         data = response.json()
-    except requests.RequestException:
-        data = {"error": "No se pudo obtener datos del servicio Alma Viajera."}
-    
-    # Pasamos los datos al template para mostrarlos
+    except requests.RequestException as e:
+        data = {"error": f"No se pudo obtener datos del servicio Alma Viajera. ({e})"}
+
     return render(request, "products/alma_viajera.html", {"data": data})
