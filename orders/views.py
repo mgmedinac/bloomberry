@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .models import ShoppingCart, OrderInfo, OrderItem
 from .helpers import calcular_total
 from products.models import Product
+from orders.services.pdf_invoice_service import PDFInvoiceGenerator
+from orders.services.excel_invoice_service import ExcelInvoiceGenerator
 
 # ====== IMPORTS PARA PDF======
 from decimal import Decimal
@@ -82,96 +84,19 @@ def order_history_view(request):
     return render(request, "orders/order_history.html", {"orders": orders})
 
 
+
+
+
 @login_required
-def order_invoice_pdf(request, order_id):
-    """
-    Genera y descarga la factura en PDF para una orden del usuario actual.
-    Usa OrderInfo y OrderItem. Si OrderItem no guarda precio, toma product.price.
-    """
+def order_invoice(request, order_id, format):
+    """Genera y descarga la factura en el formato especificado (pdf o excel) para una orden del usuario actual."""
     order = get_object_or_404(OrderInfo, id=order_id, user=request.user)
 
-    items = OrderItem.objects.filter(order=order).select_related("product")
+    if format == "pdf":
+        generator = PDFInvoiceGenerator()
+    elif format == "excel":
+        generator = ExcelInvoiceGenerator()
+    else:
+        return HttpResponse("Formato no soportado", status=400)
 
-    filename = f"Factura_BloomBerry_Orden_{order.id}.pdf"
-    response = HttpResponse(content_type="application/pdf")
-    response["Content-Disposition"] = f'attachment; filename="{filename}"'
-
-    # === PDF con ReportLab ===
-    p = canvas.Canvas(response, pagesize=A4)
-    w, h = A4
-    x = 20 * mm
-    y = h - 25 * mm
-
-    # Encabezado
-    p.setFont("Helvetica-Bold", 20)
-    p.drawString(x, y, "BloomBerry - Factura")
-    y -= 12 * mm
-
-    p.setFont("Helvetica", 11)
-    p.drawString(x, y, f"Orden: #{order.id}")
-    y -= 6 * mm
-
-    created = getattr(order, "created_at", None) or getattr(order, "created", timezone.now())
-    p.drawString(x, y, f"Fecha: {timezone.localtime(created).strftime('%d/%m/%Y %H:%M')}")
-    y -= 6 * mm
-
-    p.drawString(x, y, f"Cliente: {request.user.get_full_name() or request.user.username}")
-    y -= 6 * mm
-    p.drawString(x, y, f"Email: {request.user.email}")
-    y -= 10 * mm
-
-    # Separador
-    p.line(x, y, w - x, y)
-    y -= 8 * mm
-
-    # Cabecera tabla
-    p.setFont("Helvetica-Bold", 12)
-    p.drawString(x, y, "Producto")
-    p.drawString(w/2, y, "Cantidad")
-    p.drawRightString(w - x, y, "Subtotal")
-    y -= 7 * mm
-    p.setFont("Helvetica", 11)
-
-    total = Decimal("0.00")
-
-    for it in items:
-        # Datos por ítem
-        name = getattr(getattr(it, "product", None), "name", None) or getattr(it, "product_name", "Producto")
-        qty = getattr(it, "quantity", 1)
-
-        unit_price = getattr(it, "price", None)
-        if unit_price is None and getattr(it, "product", None) is not None:
-            unit_price = getattr(it.product, "price", Decimal("0.00"))
-        unit_price = Decimal(str(unit_price or "0.00"))
-
-        subtotal = unit_price * Decimal(qty)
-        total += subtotal
-
-        # Salto de página simple
-        if y < 25 * mm:
-            p.showPage()
-            y = h - 25 * mm
-            p.setFont("Helvetica", 11)
-
-        p.drawString(x, y, f"{name}")
-        p.drawString(w/2, y, f"{qty}")
-        p.drawRightString(w - x, y, f"${subtotal:,.2f}")
-        y -= 6 * mm
-
-    # Total
-    y -= 8 * mm
-    p.line(x, y, w - x, y)
-    y -= 10 * mm
-
-    p.setFont("Helvetica-Bold", 13)
-    p.drawRightString(w - x, y, f"Total: ${total:,.2f}")
-
-    y -= 20 * mm
-    p.setFont("Helvetica", 9)
-    p.drawString(x, y, "Gracias por tu compra 💜")
-
-    p.showPage()
-    p.save()
-    # === /PDF ===
-
-    return response
+    return generator.generate_invoice(order)

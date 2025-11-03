@@ -10,6 +10,7 @@
 
 from django.urls import path
 from . import views
+from . import views_api
 
 app_name = 'products'
 
@@ -33,4 +34,7 @@ urlpatterns = [
     # Funcionalidades interesantes: top 3 más vendidor y top 4 más comentados
     path("top-sold/", views.top_selling_products, name="top_selling_products"),
     path("top-reviewed/", views.most_reviewed_products, name="most_reviewed_products"),
+
+    # API JSON
+    path("products/api/", views_api.product_list_api, name="product_list_api"),
 ]
