@@ -1,14 +1,17 @@
+    <!-- product_list -->
+
 {% extends "base.html" %}
 {% load static i18n %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
 {% endblock %}
 
 {% block title %}{% trans "Productos" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Productos" %}</h2>
+<h2>{% trans "Products" %}</h2>
 
 {% include "products/product_baselist.html" with products=products %}
 {% endblock %}

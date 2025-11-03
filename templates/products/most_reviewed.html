@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load static i18n %}
 
-{% block title %}Top 4 Productos Más Comentados{% endblock %}
+{% block title %}
+{% trans "Top 4 Productos Más Comentados" %}
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
@@ -9,24 +12,26 @@
 
 {% block content %}
 <section class="product-list-section">
-  <h2 class="text-center" style="margin-bottom: 24px;">🌸 Top 4 Productos Más Comentados 🌸</h2>
+  <h2 class="text-center" style="margin-bottom: 24px;">🌸 {% trans "Top 4 Productos Más Comentados" %} 🌸</h2>
 
   {% if most_reviewed %}
     <div class="product-grid">
       {% for product in most_reviewed %}
         <div class="product-card">
-          <a href="{% url 'products:detail' product.id %}" class="product-media">
+          <a href="{% url 'products:product_detail' product.id %}" class="product-media">
             {% if product.image %}
               <img src="{{ product.image.url }}" alt="{{ product.name }}">
             {% else %}
-              <img src="{% static 'img/default_product.png' %}" alt="Imagen no disponible">
+              <img src="{% static 'img/default_product.png' %}" alt="{% trans 'Imagen no disponible' %}">
             {% endif %}
           </a>
           <div class="product-body">
             <h3 class="product-title">{{ product.name }}</h3>
-            <p class="product-price">Comentarios: {{ product.num_reviews }}</p>
+            <p class="product-price">{% trans "Comentarios" %}: {{ product.num_reviews }}</p>
             <div class="product-actions">
-              <a href="{% url 'products:detail' product.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+              <a href="{% url 'products:product_detail' product.id %}" class="btn btn-primary btn-sm">
+                {% trans "Ver Detalles" %}
+              </a>
             </div>
           </div>
         </div>
@@ -34,7 +39,7 @@
     </div>
   {% else %}
     <p class="text-center text-muted" style="margin-top: 20px;">
-      No hay comentarios aún en los productos.
+      {% trans "No hay comentarios aún en los productos." %}
     </p>
   {% endif %}
 </section>

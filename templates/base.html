@@ -11,105 +11,124 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
   <meta charset="utf-8">
   <title>{% block title %}BloomBerry{% endblock %}</title>
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="{% static 'css/main.css' %}?v=10000" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}?v=20002" rel="stylesheet">
   {% block extra_css %}{% endblock %}
 </head>
 <body>
   <div id="page">
-      <header class="bb-header" style="width:100%;">
-      <div class="bb-header-inner">
-        <!-- Logo (clic = inicio) -->
-        <a class="bb-logo" href="{% url 'products:home' %}">
-          <img src="{% static 'img/logo1SinFondo.png' %}" alt="BloomBerry">
-        </a>
 
-        <!-- Categorías + Filtros -->
-        <div class="bb-cat-filter-wrap">
-          <div class="bb-categories">
-            <button class="bb-cat-btn" type="button">
-              {% trans "Categorías" %} <span class="bb-caret">▾</span>
-            </button>
-            <div class="bb-cat-menu">
-              {% for category in categories %}
-                <a href="{% url 'products:category' category.slug %}">
-                  {{ category.name }}
-                </a>
-              {% empty %}
-                <span>{% trans "No hay categorías disponibles" %}</span>
-              {% endfor %}
-            </div>
-          </div>
+<header class="bb-header">
+  <div class="bb-header-inner">
 
-          <div class="bb-filters">
-            <button class="bb-filter-btn" type="button" onclick="toggleFilters()" title="Filtros">
-              <img src="{% static 'img/filter.png' %}" alt="Filtros" class="bb-filter-icon">
-            </button>
-            <div class="bb-filter-menu" id="bbFilterMenu">
-              <a href="{% url 'products:top_selling_products' %}" class="bb-filter-link">
-                Top Vendidos
-              </a>
-              <a href="{% url 'products:most_reviewed_products' %}" class="bb-filter-link">
-                Más Comentados
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- ========== IZQUIERDA: LOGO ========== -->
+    <div class="bb-left">
+      <a class="bb-logo" href="{% url 'products:home' %}">
+        <img src="{% static 'img/logo1SinFondo.png' %}" alt="BloomBerry">
+      </a>
+    </div>
 
+    <!-- ========== CENTRO: CATEGORIES + FILTER + SEARCH ========== -->
+    <div class="bb-middle">
 
-
-        <!-- Buscador -->
-        <form class="bb-search" action="{% url 'products:search_products' %}" method="get">
-          <span class="bb-search-icon">🔍</span>
-          <input name="q" type="search" placeholder="{% trans 'Buscar productos…' %}" aria-label="{% trans 'Buscar' %}">
-          <button type="button" class="bb-search-clear" aria-label="{% trans 'Limpiar' %}">✕</button>
-        </form>
-
-        <!-- Acciones: user, carrito, favoritos, idioma -->
-        <div class="bb-actions">
-          {% if user.is_authenticated %}
-            <div class="bb-user-wrapper">
-              <a class="bb-action-user" href="{% url 'users:profile' %}" title="{% trans 'Mi perfil' %}">
-                <img src="{% static 'img/user.png' %}" alt="User">
-              </a>
-              <span class="bb-user-label">{% trans "Mi perfil" %}</span>
-            </div>
-            <span class="bb-hello">{% trans "Hola," %} {{ user.username }}</span>
-            <a class="bb-link small" href="{% url 'logout' %}">{% trans 'Salir' %}</a>
-            {% if user.is_staff %}
-              <a class="bb-link small" href="{% url 'users:admin_dashboard' %}">{% trans 'Panel Admin' %}</a>
-            {% endif %}
-          {% else %}
-            <div class="bb-user-wrapper">
-              <a class="bb-action-user" href="{% url 'login' %}" title="{% trans 'Ingresar' %}">
-                <img src="{% static 'img/user.png' %}" alt="User">
-              </a>
-              <span class="bb-user-label">{% trans "Ingresar" %}</span>
-            </div>
-          {% endif %}
-
-          <a class="bb-action-cart" href="{% url 'orders:cart' %}" title="{% trans 'Carrito' %}">
-            <img src="{% static 'img/cart.png' %}" alt="Carrito">
-          </a>
-
-          <a class="bb-action-heart" href="{% url 'products:view_wishlist' %}" title="Favoritos">
-            <img src="{% static 'img/heart.png' %}" alt="Favoritos">
-          </a>
-
-          <form class="bb-lang" action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <select name="language" onchange="this.form.submit()">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% for code, name in LANGUAGES %}
-                <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
-              {% endfor %}
-            </select>
-          </form>
+      <!-- Botón categorías -->
+      <div class="bb-categories">
+        <button class="bb-cat-btn" type="button">
+          {% trans "Categorias" %} <span class="bb-caret">▾</span>
+        </button>
+        <div class="bb-cat-menu">
+          {% for category in categories %}
+            <a href="{% url 'products:category' category.slug %}">{{ category.name }}</a>
+          {% empty %}
+            <span>{% trans "No hay categorías disponibles" %}</span>
+          {% endfor %}
         </div>
       </div>
-    </header>
+
+      <!-- Botón filtro -->
+      <div class="bb-filters">
+        <button class="bb-filter-btn" type="button" onclick="toggleFilters()" title="Filtros">
+          <img src="{% static 'img/filter.png' %}" alt="Filtros" class="bb-filter-icon">
+        </button>
+        <div class="bb-filter-menu" id="bbFilterMenu">
+          <a href="{% url 'products:top_selling_products' %}" class="bb-filter-link">{% trans "Top Vendidos" %}</a>
+          <a href="{% url 'products:most_reviewed_products' %}" class="bb-filter-link">{% trans "Más Comentados" %}</a>
+        </div>
+      </div>
+
+      <!-- Buscador -->
+      <form class="bb-search" action="{% url 'products:search_products' %}" method="get">
+        <span class="bb-search-icon">🔍</span>
+        <input name="q"
+               type="search"
+               placeholder="{% trans 'Buscar productos' %}"
+               aria-label="{% trans 'Buscar' %}">
+        <button type="button" class="bb-search-clear" aria-label="{% trans 'Limpiar' %}">✕</button>
+      </form>
+
+    </div>
+
+    <!-- ========== DERECHA: PERFIL + ICONOS + IDIOMA ========== -->
+    <div class="bb-right">
+
+      {% if user.is_authenticated %}
+        <div class="bb-profile-block">
+          <span class="bb-profile-icon">👤</span>
+
+          <div class="bb-profile-text">
+            <span class="bb-hello">{% trans "Hola," %} {{ user.username }}</span>
+
+            <div class="bb-profile-links">
+              <a class="bb-link small" href="{% url 'users:profile' %}">{% trans 'Mi perfil' %}</a>
+
+              <a class="bb-link small" href="{% url 'logout' %}">{% trans 'Salir' %}</a>
+
+              {% if user.is_staff %}
+                <a class="bb-link small" href="{% url 'users:admin_dashboard' %}">{% trans 'Panel de admin' %}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="bb-profile-block">
+          <span class="bb-profile-icon">👤</span>
+          <div class="bb-profile-text">
+            <div class="bb-profile-links">
+              <a class="bb-link small" href="{% url 'login' %}">{% trans "Ingresar" %}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="bb-icons-wrap">
+        <a class="bb-action-cart" href="{% url 'orders:cart' %}" title="{% trans 'Carrito' %}">
+          <img src="{% static 'img/cart.png' %}" alt="Cart">
+        </a>
+
+        <a class="bb-action-heart" href="{% url 'products:view_wishlist' %}" title="{% trans 'Favoritos' %}">
+          <img src="{% static 'img/heart.png' %}" alt="Fav">
+        </a>
+      </div>
+
+      <form class="bb-lang" action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language" onchange="this.form.submit()">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% for code, name in LANGUAGES %}
+            <option value="{{ code }}"
+                    {% if code == LANGUAGE_CODE %}selected{% endif %}>
+              {{ name }}
+            </option>
+          {% endfor %}
+        </select>
+      </form>
+
+    </div>
+
+  </div>
+</header>
+
 
     <main id="content" class="bb-main">
       {% block content %}{% endblock %}
@@ -122,11 +141,10 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
     </footer>
   </div>
 
-  <!-- Widget de chat: SIEMPRE fuera de #page y justo antes de </body> -->
   {% include "chat/widget.html" %}
 
   <script>
-    // Toggle categorías
+    // Categorías dropdown
     (function () {
       const catBtn = document.querySelector('.bb-cat-btn');
       const catMenu = document.querySelector('.bb-cat-menu');
@@ -144,40 +162,55 @@ Descripción: Layout base del sitio (bloques, carga de static, navegación, trad
       const clearBtn = document.querySelector('.bb-search-clear');
       const input = document.querySelector('.bb-search input');
       if (!clearBtn || !input) return;
-      clearBtn.addEventListener('click', () => { input.value=''; input.focus(); });
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        input.focus();
+      });
     })();
 
-
-    // Toggle filtros
+    // Filtro dropdown
     function toggleFilters() {
       const menu = document.getElementById("bbFilterMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      if (!menu) return;
+      const currently = menu.style.display;
+      menu.style.display = (currently === "flex") ? "none" : "flex";
+      menu.style.flexDirection = "column";
     }
 
     window.addEventListener("click", (e) => {
       const menu = document.getElementById("bbFilterMenu");
-      if (!e.target.closest(".bb-filters")) menu.style.display = "none";
+      if (!menu) return;
+      if (!e.target.closest(".bb-filters")) {
+        menu.style.display = "none";
+      }
     });
 
-
-    // Interacción con rating de flores
+    // Rating con flores (para reseñas)
     document.addEventListener("DOMContentLoaded", () => {
-      const flowers = document.querySelectorAll(".bb-flower-label");
-      flowers.forEach(flower => {
-        flower.addEventListener("click", () => {
-          flowers.forEach(f => f.style.opacity = "0.4");
-          flower.style.opacity = "1";
-          let prev = flower.previousElementSibling;
-          while (prev) {
-            if (prev.classList?.contains("bb-flower-label")) prev.style.opacity = "1";
-            prev = prev.previousElementSibling;
-          }
+      const flowerBlocks = document.querySelectorAll(".bb-flower-select");
+
+      flowerBlocks.forEach(block => {
+        const labels = block.querySelectorAll(".bb-flower-label");
+        labels.forEach(label => {
+          label.addEventListener("click", () => {
+            const score = parseInt(label.getAttribute("data-score"), 10);
+
+            // marcar radio correcto
+            const radioInput = block.querySelector("#rating" + score);
+            if (radioInput) {
+              radioInput.checked = true;
+            }
+
+            // prender de izq→der
+            labels.forEach(l => {
+              const lScore = parseInt(l.getAttribute("data-score"), 10);
+              l.style.opacity = (lScore <= score) ? "1" : "0.4";
+            });
+          });
         });
       });
     });
-
   </script>
-
 
   {% block extra_js %}{% endblock %}
 </body>

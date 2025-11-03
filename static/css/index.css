@@ -1,5 +1,6 @@
 /* ===============================
    HERO DE ANCHO COMPLETO
+   index.css
    =============================== */
 
 .hero-wrapper {
@@ -35,11 +36,18 @@
     rgba(255, 255, 255, 0.85)
   );
 }
+.bb-header-inner {
+  height: 95px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
 
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
+  /* Tres zonas: logo | nav principal | acciones */
+  grid-template-columns: auto 1fr auto;
+
+  align-items: center;
+  column-gap: 24px;
+  padding: 14px 20px;
 }
 
 .hero-title {

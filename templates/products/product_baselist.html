@@ -1,33 +1,63 @@
 {% comment %}
 Template reutilizable para mostrar productos en formato tarjeta.
-Se usa en product_list.html y search_results.html
-Variables esperadas:
-- products: queryset con los productos a mostrar
+Usado en product_list.html, home (destacados), search_results.html.
+Muestra botones:
+- View details (primary / rosa)
+- Add to cart (secondary / blanco)
 {% endcomment %}
 
 {% load static i18n %}
 
 <div class="product-grid">
-    {% for product in products %}
-        <div class="product-card">
-            <a href="{% url 'products:detail' product.id %}" class="product-media">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            </a>
-            <div class="product-body">
-                <h3 class="product-title">{{ product.name }}</h3>
-                <p class="product-price">${{ product.price }}</p>
+  {% for product in products %}
+    <div class="product-card">
+      
+      <!-- Imagen del producto -->
+      <a href="{% url 'products:product_detail' product.id %}" class="product-media">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}">
+        {% endif %}
+      </a>
 
-                <div class="product-actions">
-                    <a href="{% url 'products:detail' product.id %}" class="btn btn-primary">
-                        {% trans "Ver detalle" %}
-                    </a>
-                    <a href="#" class="btn btn-outline">
-                        {% trans "Añadir al carrito" %}
-                    </a>
-                </div>
-            </div>
+      <!-- Información -->
+      <div class="product-body">
+        <h3 class="product-title">{{ product.name }}</h3>
+        <p class="product-price">${{ product.price|floatformat:0 }}</p>
+
+        <!-- Acciones -->
+        <div class="bb-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start;">
+
+          <!-- Botón principal (rosa): Ver detalles -->
+          <a
+            href="{% url 'products:product_detail' product.id %}"
+            class="bb-btn primary"
+            style="text-decoration:none;"
+          >
+            {% trans "View details" %}
+          </a>
+
+          <!-- Botón secundario (blanco): Añadir al carrito -->
+          <form
+            method="post"
+            action="{% url 'orders:add_to_cart' product.id %}"
+            style="display:inline; margin:0;"
+          >
+            {% csrf_token %}
+            <input type="hidden" name="quantity" value="1">
+            <button
+              type="submit"
+              class="bb-btn secondary"
+            >
+              {% trans "Add to cart" %}
+            </button>
+          </form>
+
         </div>
-    {% empty %}
-        <p>{% trans "No hay productos disponibles." %}</p>
-    {% endfor %}
+      </div>
+    </div>
+  {% empty %}
+    <p>{% trans "No hay productos disponibles." %}</p>
+  {% endfor %}
 </div>

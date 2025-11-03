@@ -152,7 +152,7 @@
 
 .bb-flower-select {
   display: inline-flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: center;
   gap: 8px;
 }

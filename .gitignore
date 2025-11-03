@@ -3,6 +3,7 @@ env/
 venv/
 .idea/
 .vscode/
+.env
 
 # Compilados / caché
 __pycache__/
@@ -24,3 +25,11 @@ node_modules/
 
 # Sistemas
 .DS_Store
+
+# Archivos temporales de migraciones o compilación
+*.pot
+*.sqlite3-journal
+*.tmp
+
+# Archivos de caché de Django
+*.cache/
