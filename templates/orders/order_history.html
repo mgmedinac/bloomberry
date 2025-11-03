@@ -5,6 +5,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
 <div class="bb-order-history">
   <h2>{% trans "Historial de compras" %}</h2>
 
@@ -28,7 +29,7 @@
             <td>${{ order.total|floatformat:2 }}</td>
             <td>
               <a href="{% url 'orders:invoice_format' order.id 'pdf' %}" class="btn btn-primary">{% trans "Descargar PDF" %}</a>
-              <a href="{% url 'orders:invoice_format' order.id 'excel' %}" class="btn btn-outline-primary">{% trans "Descargar Excel" %}</a>
+              <a href="{% url 'orders:invoice_format' order.id 'excel' %}" class="bb-btn secondary">{% trans "Descargar Excel" %}</a>
             </td>
           </tr>
         {% endfor %}
