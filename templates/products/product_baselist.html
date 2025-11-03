@@ -21,9 +21,12 @@ Variables esperadas:
                     <a href="{% url 'products:detail' product.id %}" class="btn btn-primary">
                         {% trans "Ver detalle" %}
                     </a>
-                    <a href="#" class="btn btn-outline">
+                    <form method="post" action="{% url 'orders:add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="bb-btn primary">
                         {% trans "Añadir al carrito" %}
-                    </a>
+                    </button>
+                    </form>
                 </div>
             </div>
         </div>

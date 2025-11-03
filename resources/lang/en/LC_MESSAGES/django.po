@@ -234,7 +234,7 @@ msgstr "Status"
 msgid "Factura"
 msgstr "Invoice"
 
-#: templates/orders/order_history.html:31
+#: templates/orders/order_history.html:30
 msgid "Descargar PDF"
 msgstr "Download PDF"
 
@@ -491,3 +491,8 @@ msgstr "Profile updated."
 #: users/views.py:55
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
+
+#: templates/orders/order_history.html:31
+msgid "Descargar Excel"
+msgstr "Download Excel"
+
