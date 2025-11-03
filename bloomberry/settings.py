@@ -20,9 +20,9 @@ from django.utils.translation import gettext_lazy as t
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
-
+from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / "env" / ".env")
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True
@@ -94,17 +94,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internacionalización
-LANGUAGE_CODE = 'es'
-TIME_ZONE = 'America/Bogota'
+LANGUAGE_CODE = 'es'  
+
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
-LANGUAGES = [
-    ("es", t("Español")),
-    ("en", t("English")),
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
 ]
 
-LOCALE_PATHS = [BASE_DIR / 'resources' / 'lang']
+LANGUAGES = [
+    ('es', 'Español'),
+    ('en', 'English'),
+]
+
 
 # Static & Media
 STATIC_URL = '/static/'
