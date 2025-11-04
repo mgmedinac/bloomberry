@@ -1,31 +1,32 @@
-# Dockerfile
-FROM python:3.11-slim AS base
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+# ===============================
+# BloomBerry - Dockerfile Final
+# ===============================
 
+# Imagen base ligera con Python
+FROM python:3.11-slim
+
+# Evitar buffer de salida y escritura de bytecode
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Para compilar traducciones (.po -> .mo)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gettext \
+# Instalar dependencias del sistema necesarias para compilar y usar Django + Gunicorn
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar dependencias de Python
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt && pip check || true
+# Copiar e instalar dependencias del proyecto
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo el proyecto
-COPY . /app
+# Copiar el resto del proyecto
+COPY . .
 
-# Variables por defecto (se pueden sobrescribir en compose)
-ENV DJANGO_SETTINGS_MODULE=bloomberry.settings \
-    DEBUG=0 \
-    ALLOWED_HOSTS="*" \
-    PORT=8000
-
-# Compilar traducciones y recopilar estáticos dentro de la imagen
-RUN python manage.py compilemessages || true
-RUN python manage.py collectstatic --noinput || true
-
+# Exponer el puerto donde correrá Django
 EXPOSE 8000
+
+# Ejecutar migraciones y luego lanzar Gunicorn
+CMD python manage.py migrate && exec gunicorn --bind 0.0.0.0:$PORT bloomberry.wsgi:application
