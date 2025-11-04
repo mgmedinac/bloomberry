@@ -73,7 +73,8 @@ def search_products(request):
 def top_selling_products(request):
     top_products = (
         Product.objects
-        .annotate(total_sold=Sum('orderitem__quantity'))  # suma de todas las cantidades vendidas
+        .annotate(total_sold=Sum('orderitem__quantity')) 
+        .filter(total_sold__gte=5) 
         .order_by('-total_sold')[:3]
     )
     return render(request, "products/top_selling.html", {"top_products": top_products})
@@ -84,32 +85,41 @@ def most_reviewed_products(request):
     most_reviewed = (
         Product.objects
         .annotate(num_reviews=Count('reviews'))
+        .filter(num_reviews__gte=6) 
         .order_by('-num_reviews')[:4]
     )
     return render(request, "products/most_reviewed.html", {"most_reviewed": most_reviewed})
 
 
 @login_required
+
 def add_review(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    if request.method == 'POST':
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
-            # Si ya existe reseña del mismo usuario para el producto, la actualiza;
-            # si no, la crea.
-            Review.objects.update_or_create(
+            Review.objects.create(
                 product=product,
                 user=request.user,
-                defaults={
-                    'rating': form.cleaned_data['rating'],
-                    'comment': form.cleaned_data['comment']
-                }
+                rating=form.cleaned_data['rating'],
+                comment=form.cleaned_data['comment']
             )
-            messages.success(request, _("Tu reseña fue guardada."))
+            messages.success(request, "Gracias por tu reseña 💖")
+            return redirect('products:product_detail', product_id=product.id)
         else:
-            messages.error(request, _("Hubo un error al enviar la reseña."))
-    return redirect('products:detail', product_id=product.id)
+            messages.error(request, "Hubo un problema con tu reseña.")
+    else:
+        form = ReviewForm()
 
+    # si GET: render detalle otra vez
+    reviews = product.reviews.order_by('-created_at')
+    return render(request, 'products/product_detail.html', {
+        'product': product,
+        'reviews': reviews,
+        'review_form': form,
+        'in_wishlist': ...,
+    })
 @login_required
 def wishlist_view(request):
     wishlist, _ = Wishlist.objects.get_or_create(user=request.user, name="Favoritos")

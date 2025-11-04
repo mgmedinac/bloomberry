@@ -60,3 +60,12 @@
     font-size: 0.95rem;
   }
 }
+/* Botón blanco con borde gris (secundario) */
+.bb-btn.secondary {
+  background: #fff;
+  color: #333;
+  border-color: #ddd;
+}
+.bb-btn.secondary:hover {
+  background: #f7f7f7;
+}

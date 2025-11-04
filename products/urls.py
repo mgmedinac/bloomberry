@@ -17,8 +17,8 @@ app_name = 'products'
 urlpatterns = [
     path("", views.home_view, name="home"),
     path("list/", views.product_list, name="list"),
-    path("category/<slug:category_slug>/", views.product_list, name="category"),  # 👈 Filtro por categoría
-    path("<int:product_id>/", views.product_detail, name="detail"),
+    path("category/<slug:category_slug>/", views.product_list, name="category"),  
+    path("<int:product_id>/", views.product_detail, name='product_detail'),
 
     # Wishlist
     path("<int:product_id>/wishlist/", views.add_to_wishlist, name="add_to_wishlist"),

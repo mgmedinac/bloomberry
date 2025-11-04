@@ -16,6 +16,9 @@
 
       <h1 class="hero-title">
         🌿 {% trans "Vive tu esencia natural" %}
+        
+        
+
       </h1>
 
       <p class="hero-text">
@@ -66,7 +69,7 @@
           </p>
           {% endif %}
 
-          <a href="{% url 'products:detail' product.id %}" class="btn-outline">
+          <a href="{% url 'products:product_detail' product.id %}" class="btn-outline">
             {% trans "Ver más" %}
           </a>
         </div>

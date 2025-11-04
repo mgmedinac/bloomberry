@@ -1,25 +1,23 @@
-# BloomBerry English Translations
-# Copyright (C) 2025 BloomBerry
-# This file is distributed under the same license as the BloomBerry project.
-# Maria Clara <EMAIL@ADDRESS>, 2025.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: BloomBerry 1.0\n"
+"Project-Id-Version: BloomBerry\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 20:16-0500\n"
-"PO-Revision-Date: 2025-10-30 22:00+0000\n"
-"Last-Translator: Maria Clara <EMAIL@ADDRESS>\n"
-"Language-Team: English <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-11-03 21:47-0600\n"
+"PO-Revision-Date: 2025-11-03 21:45-0600\n"
+"Last-Translator: BloomBerry Team <dev@bloomberry.local>\n"
+"Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# -----------------------
+# Admin messages / Forms
+# -----------------------
 #: products/admin_views.py:45
 msgid "Producto creado correctamente."
-msgstr "Product created successfully."
+msgstr "Product created correctly."
 
 #: products/admin_views.py:56
 msgid "Producto actualizado correctamente."
@@ -27,7 +25,7 @@ msgstr "Product updated successfully."
 
 #: products/admin_views.py:66
 msgid "Producto eliminado."
-msgstr "Product deleted."
+msgstr "Product removed."
 
 #: products/forms.py:34
 msgid "Nombre"
@@ -54,14 +52,9 @@ msgstr "Image"
 msgid "Descripción"
 msgstr "Description"
 
-#: products/views.py:80
-msgid "Tu reseña fue guardada."
-msgstr "Your review was saved."
-
-#: products/views.py:82
-msgid "Hubo un error al enviar la reseña."
-msgstr "There was an error submitting your review."
-
+# -----------------------
+# Admin templates
+# -----------------------
 #: templates/admin/product_confirm_delete.html:4
 msgid "Eliminar producto"
 msgstr "Delete product"
@@ -101,71 +94,125 @@ msgid "Lista de todos los productos disponibles"
 msgstr "List of all available products"
 
 #: templates/admin/products_list.html:22 templates/products/home.html:56
-#: templates/products/product_detail.html:20
+#: templates/products/product_baselist.html:20
+#: templates/products/product_detail.html:28
 msgid "Sin imagen"
-msgstr "No image"
+msgstr "Without image"
 
 #: templates/admin/products_list.html:32
-#: templates/products/product_baselist.html:22
 msgid "Ver detalle"
-msgstr "View details"
+msgstr "See detail"
 
 #: templates/admin/products_list.html:37
-#: templates/products/product_baselist.html:25
-#: templates/products/product_detail.html:35
+#: templates/products/product_detail.html:119
 msgid "Añadir al carrito"
 msgstr "Add to cart"
 
 #: templates/admin/products_list.html:44
 msgid "No hay productos."
-msgstr "No products available."
+msgstr "There are no products."
 
-#: templates/base.html:31
-msgid "Categorías"
+# -----------------------
+# Base / Header
+# -----------------------
+#: templates/base.html:37
+msgid "Categorias"
 msgstr "Categories"
 
-#: templates/base.html:39
+#: templates/base.html:43
 msgid "No hay categorías disponibles"
-msgstr "No categories available"
+msgstr "There are no categories available"
 
-#: templates/base.html:48
-msgid "Buscar productos…"
-msgstr "Search products…"
+#: templates/base.html:54
+msgid "Top Vendidos"
+msgstr "Top Sellers"
 
-#: templates/base.html:48
+#: templates/base.html:55
+msgid "Más Comentados"
+msgstr "Most Commented"
+
+#: templates/base.html:64
+msgid "Buscar productos"
+msgstr "Search Products"
+
+#: templates/base.html:65
 msgid "Buscar"
 msgstr "Search"
 
-#: templates/base.html:49
+#: templates/base.html:66
 msgid "Limpiar"
 msgstr "Clear"
 
-#: templates/base.html:56 templates/base.html:59 templates/users/profile.html:9
+#: templates/base.html:79
+msgid "Hola,"
+msgstr "Hello,"
+
+#: templates/base.html:82 templates/users/profile.html:9
 #: templates/users/profile.html:13
 msgid "Mi perfil"
 msgstr "My profile"
 
-#: templates/base.html:61
-msgid "Hola,"
-msgstr "Hello,"
-
-#: templates/base.html:62
+#: templates/base.html:84
 msgid "Salir"
-msgstr "Logout"
+msgstr "Exit"
 
-#: templates/base.html:64
-msgid "Panel Admin"
+#: templates/base.html:87
+msgid "Panel de admin"
 msgstr "Admin Panel"
 
-#: templates/base.html:68 templates/base.html:71
-#: templates/registration/login.html:4 templates/registration/login.html:12
+#: templates/base.html:97 templates/registration/login.html:4
+#: templates/registration/login.html:12
 msgid "Ingresar"
 msgstr "Login"
 
-#: templates/base.html:75
+#: templates/base.html:104
 msgid "Carrito"
 msgstr "Cart"
 
+#: templates/base.html:108
+msgid "Favoritos"
+msgstr "Favorites"
+
+# -----------------------
+# Chat
+# -----------------------
+#: templates/chat/chat.html:6
+msgid "Asistente BloomBerry"
+msgstr "BloomBerry Assistant"
+
+#: templates/chat/chat.html:13
+msgid "Asistente"
+msgstr "Assistant"
+
+#: templates/chat/chat.html:19
+msgid ""
+"\n"
+"        ¡Hola! Soy tu asistente virtual de BloomBerry 😊.  \n"
+"        Puedo ayudarte con productos de cuidado facial, maquillaje,  \n"
+"        medicamentos naturales, esencias y suplementos diarios.  \n"
+"        ¿Qué estás buscando hoy?\n"
+"        "
+msgstr ""
+"\n"
+"        Hello! I’m your BloomBerry virtual assistant 😊.  \n"
+"        I can help you with facial care products, makeup,  \n"
+"        natural medicines, essences, and daily supplements.  \n"
+"        What are you looking for today?\n"
+"        "
+
+#: templates/chat/chat.html:31
+msgid "Escribe tu duda…"
+msgstr "Type your question…"
+
+#: templates/chat/chat.html:32
+#, fuzzy
+#| msgid "Enviar reseña"
+msgid "Enviar"
+msgstr "Submit review"
+
+# -----------------------
+# Orders / Cart / Checkout
+# -----------------------
 #: templates/orders/cart.html:12
 msgid "Carrito de compras"
 msgstr "Shopping cart"
@@ -176,7 +223,7 @@ msgstr "Product"
 
 #: templates/orders/cart.html:21 templates/orders/checkout.html:19
 msgid "Cantidad"
-msgstr "Quantity"
+msgstr "Amount"
 
 #: templates/orders/cart.html:22 templates/orders/checkout.html:21
 msgid "Subtotal"
@@ -190,13 +237,13 @@ msgstr "Actions"
 msgid "Actualizar"
 msgstr "Update"
 
-#: templates/orders/cart.html:59 templates/orders/order_history.html:18
+#: templates/orders/cart.html:59 templates/orders/order_history.html:19
 msgid "Total"
 msgstr "Total"
 
 #: templates/orders/cart.html:63
 msgid "Ir a pagar"
-msgstr "Proceed to checkout"
+msgstr "Go to pay"
 
 #: templates/orders/cart.html:66
 msgid "Tu carrito está vacío."
@@ -208,47 +255,54 @@ msgstr "Confirm purchase"
 
 #: templates/orders/checkout.html:37
 msgid "Confirmar Orden"
-msgstr "Confirm order"
+msgstr "Confirm Order"
 
 #: templates/orders/checkout.html:40 templates/payments/checkout.html:23
 msgid "Volver al carrito"
-msgstr "Back to cart"
+msgstr "Return to cart"
 
-#: templates/orders/order_history.html:4 templates/orders/order_history.html:9
+#: templates/orders/order_history.html:4 templates/orders/order_history.html:10
 msgid "Historial de compras"
 msgstr "Purchase history"
 
-#: templates/orders/order_history.html:15
+#: templates/orders/order_history.html:16
 msgid "Orden"
 msgstr "Order"
 
-#: templates/orders/order_history.html:16
+#: templates/orders/order_history.html:17
 msgid "Fecha"
 msgstr "Date"
 
-#: templates/orders/order_history.html:17
+#: templates/orders/order_history.html:18
 msgid "Estado"
 msgstr "Status"
 
-#: templates/orders/order_history.html:19
+#: templates/orders/order_history.html:20
 msgid "Factura"
-msgstr "Invoice"
+msgstr "Bill"
 
-#: templates/orders/order_history.html:30
+#: templates/orders/order_history.html:31
 msgid "Descargar PDF"
 msgstr "Download PDF"
 
+#: templates/orders/order_history.html:32
+msgid "Descargar Excel"
+msgstr "Download Excel"
+
 #: templates/orders/order_history.html:39
 msgid "No tienes compras registradas aún."
-msgstr "You have no purchases yet."
+msgstr "You have no registered purchases yet."
 
+# -----------------------
+# Payments
+# -----------------------
 #: templates/payments/checkout.html:4
 msgid "Pago · BloomBerry"
 msgstr "Payment · BloomBerry"
 
 #: templates/payments/checkout.html:12
 msgid "Pago de la Orden"
-msgstr "Order payment"
+msgstr "Order Payment"
 
 #: templates/payments/checkout.html:13
 msgid "Total a pagar:"
@@ -268,7 +322,7 @@ msgstr "Payment ID:"
 
 #: templates/payments/success.html:11
 msgid "Monto:"
-msgstr "Amount:"
+msgstr "Amount"
 
 #: templates/payments/success.html:12
 msgid "Estado:"
@@ -276,12 +330,15 @@ msgstr "Status:"
 
 #: templates/payments/success.html:16
 msgid "Ver mis compras"
-msgstr "View my purchases"
+msgstr "See my purchases"
 
 #: templates/payments/success.html:19
 msgid "Seguir comprando"
 msgstr "Continue shopping"
 
+# -----------------------
+# Products - Home / Lists / Detail
+# -----------------------
 #: templates/products/home.html:4
 msgid "Inicio · BloomBerry"
 msgstr "Home · BloomBerry"
@@ -321,7 +378,7 @@ msgstr ""
 "\n"
 "    A special selection of our favorites. If you want to see all available "
 "products,\n"
-"    click on “see more”.\n"
+"    click on \"see more\".\n"
 "    "
 
 #: templates/products/home.html:70
@@ -332,53 +389,107 @@ msgstr "See more"
 msgid "Ver todos los productos"
 msgstr "View all products"
 
-#: templates/products/product_baselist.html:31
+#: templates/products/home.html:86
+msgid "Alma Viajera"
+msgstr "Alma Viajera"
+
+#: templates/products/home.html:90
+msgid ""
+"\n"
+"      Descubre productos únicos y experiencias inolvidables con nuestro "
+"aliado Alma Viajera.\n"
+"      "
+msgstr ""
+"\n"
+"      Discover unique products and unforgettable experiences with our "
+"partner Alma Viajera.\n"
+"      "
+
+#: templates/products/home.html:98
+msgid "Explorar Alma Viajera"
+msgstr "Explore Alma Viajera"
+
+#: templates/products/most_reviewed.html:6
+#: templates/products/most_reviewed.html:15
+msgid "Top 4 Productos Más Comentados"
+msgstr "Top 4 Most Commented Products"
+
+#: templates/products/most_reviewed.html:25
+#: templates/products/top_selling.html:24
+msgid "Imagen no disponible"
+msgstr "Image not available"
+
+#: templates/products/most_reviewed.html:30
+msgid "Comentarios"
+msgstr "Comments"
+
+#: templates/products/most_reviewed.html:33
+#: templates/products/top_selling.html:34
+msgid "Ver Detalles"
+msgstr "View details"
+
+#: templates/products/most_reviewed.html:42
+msgid "No hay comentarios aún en los productos."
+msgstr "There are no reviews yet for the products."
+
+#: templates/products/product_baselist.html:38
+msgid "Ver detalles"
+msgstr "See detail"
+
+#: templates/products/product_baselist.html:53
+msgid "Agregar al carrito"
+msgstr "Add to cart"
+
+#: templates/products/product_baselist.html:61
 msgid "No hay productos disponibles."
 msgstr "No products available."
 
-#: templates/products/product_detail.html:45
-msgid "En tus favoritos"
-msgstr "In your favorites"
-
-#: templates/products/product_detail.html:47
-msgid "Agregar a favoritos"
-msgstr "Add to favorites"
-
-#: templates/products/product_detail.html:67
+#: templates/products/product_detail.html:37
 msgid "Reseñas"
 msgstr "Reviews"
 
-#: templates/products/product_detail.html:68
-msgid "Promedio"
-msgstr "Average"
-
-#: templates/products/product_detail.html:79
+#: templates/products/product_detail.html:76
 msgid "Aún no hay reseñas para este producto."
 msgstr "There are no reviews for this product yet."
 
-#: templates/products/product_detail.html:85
+#: templates/products/product_detail.html:129
+msgid "En tus favoritos"
+msgstr "In your favorites"
+
+#: templates/products/product_detail.html:131
+msgid "Agregar a favoritos"
+msgstr "Add to favorites"
+
+#: templates/products/product_detail.html:141
 msgid "Deja tu reseña"
 msgstr "Leave your review"
 
-#: templates/products/product_detail.html:103
+#: templates/products/product_detail.html:154
+msgid "Tu calificación"
+msgstr "Your rating"
+
+#: templates/products/product_detail.html:189
 msgid "Enviar reseña"
 msgstr "Submit review"
 
-#: templates/products/product_detail.html:108
+#: templates/products/product_detail.html:194
 msgid "Debes"
 msgstr "You must"
 
-#: templates/products/product_detail.html:110
+#: templates/products/product_detail.html:196
 msgid "iniciar sesión"
 msgstr "log in"
 
-#: templates/products/product_detail.html:112
+#: templates/products/product_detail.html:198
 msgid "para dejar una reseña."
 msgstr "to leave a review."
 
-#: templates/products/product_list.html:8
 #: templates/products/product_list.html:11
 msgid "Productos"
+msgstr "Products"
+
+#: templates/products/product_list.html:14
+msgid "Products"
 msgstr "Products"
 
 #: templates/products/search_results.html:8
@@ -390,18 +501,33 @@ msgstr "Search results"
 msgid "Mostrando resultados para:"
 msgstr "Showing results for:"
 
-#: templates/products/wishlist.html:12
+#: templates/products/top_selling.html:5 templates/products/top_selling.html:14
+msgid "Top 3 Productos Más Vendidos"
+msgstr "Top 3 Best Selling Products"
+
+#: templates/products/top_selling.html:30
+msgid "Ventas"
+msgstr "Sales"
+
+#: templates/products/top_selling.html:43
+msgid "No hay productos vendidos aún."
+msgstr "No products sold yet."
+
+#: templates/products/wishlist.html:13
 msgid "Mis favoritos"
 msgstr "My favorites"
 
-#: templates/products/wishlist.html:39
+#: templates/products/wishlist.html:40
 msgid "Ver"
 msgstr "View"
 
-#: templates/products/wishlist.html:40
+#: templates/products/wishlist.html:41
 msgid "Quitar"
 msgstr "Remove"
 
+# -----------------------
+# Auth
+# -----------------------
 #: templates/registration/logged_out.html:6
 msgid "Has cerrado sesión."
 msgstr "You have logged out."
@@ -420,7 +546,7 @@ msgstr "Password"
 
 #: templates/registration/login.html:27
 msgid "Entrar"
-msgstr "Enter"
+msgstr "Sign in"
 
 #: templates/registration/login.html:31
 msgid "¿No tienes cuenta?"
@@ -436,7 +562,7 @@ msgstr "Create account"
 
 #: templates/registration/register.html:12
 msgid "Crear Cuenta"
-msgstr "Create Account"
+msgstr "Create account"
 
 #: templates/registration/register.html:33
 msgid "Confirmar contraseña"
@@ -446,6 +572,9 @@ msgstr "Confirm password"
 msgid "Registrarse"
 msgstr "Register"
 
+# -----------------------
+# Users
+# -----------------------
 #: templates/users/admin_dashboard.html:4
 #: templates/users/admin_dashboard.html:7
 msgid "Panel de administración interno"
@@ -492,7 +621,9 @@ msgstr "Profile updated."
 msgid "Revisa los errores y vuelve a intentar."
 msgstr "Check the errors and try again."
 
-#: templates/orders/order_history.html:31
-msgid "Descargar Excel"
-msgstr "Download Excel"
+# Obsoletas (dejarlas comentadas)
+#~ msgid "View details"
+#~ msgstr "View details"
 
+#~ msgid "Add to cart"
+#~ msgstr "Add to cart"

@@ -1,134 +1,284 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n humanize l10n %}
+
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
 <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+
+
 {% endblock %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
 <div class="bb-main">
-  <div class="bb-product-detail">
-    
-    <!-- Imagen -->
-    <div class="bb-product-image">
-      {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-      {% else %}
-        <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}">
-      {% endif %}
-    </div>
 
-    <!-- Info del producto -->
-    <div class="bb-product-info">
-      <h1>{{ product.name }}</h1>
-      <p class="description">{{ product.description }}</p>
-      <p class="price">${{ product.price|floatformat:0 }}</p>
+  <!-- GRID DE 2 COLUMNAS -->
+  <div class="bb-product-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
 
-      <div class="bb-actions">
-        <!-- Botón añadir al carrito -->
-        <form method="post" action="{% url 'orders:add_to_cart' product.id %}">
-          {% csrf_token %}
-          <button type="submit" class="bb-btn primary">
-            {% trans "Añadir al carrito" %}
-          </button>
-        </form>
+    <!-- ========== COLUMNA IZQUIERDA: IMAGEN + REVIEWS ========== -->
+    <div class="bb-left-col" style="display:flex; flex-direction:column; gap:1.5rem; max-width:540px;">
 
-        <!-- Botón wishlist -->
-        <form method="post" action="{% url 'products:add_to_wishlist' product.id %}" style="display:inline;">
-          {% csrf_token %}
-          <input type="hidden" name="wishlist_name" value="Favoritos">
-          <button type="submit" class="bb-btn secondary">
-            {% if in_wishlist %}
-              {% trans "En tus favoritos" %}
-            {% else %}
-              {% trans "Agregar a favoritos" %}
-            {% endif %}
-          </button>
-        </form>
+      <!-- Imagen -->
+      <div class="bb-product-image">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
+        {% else %}
+          <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
+        {% endif %}
       </div>
+
+      <!-- Reviews debajo de la imagen -->
+      <section class="bb-reviews"
+               style="background:#fff; border:1px solid rgba(0,0,0,0.05); border-radius:12px; box-shadow:0 12px 32px rgba(0,0,0,0.06); padding:1rem 1rem 0.75rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem;">
+          <h2 style="margin:0; font-size:0.95rem; font-weight:600; color:var(--pink);">
+            {% trans "Reseñas" %} ({{ product.quantity_of_reviews }})
+          </h2>
+          <span style="font-size:0.9rem; color:var(--pink); line-height:1;">▾</span>
+        </div>
+
+        {% if reviews %}
+          <div class="bb-review-list" style="max-height:260px; overflow-y:auto; display:flex; flex-direction:column; gap:0.75rem; padding-right:.5rem;">
+            {% for review in reviews %}
+              <div class="bb-review"
+                   style="border:1px solid rgba(0,0,0,0.07); border-radius:8px; padding:0.75rem .9rem; background:#fff;">
+                <div class="bb-review-header"
+                     style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:0.8rem; line-height:1.3;">
+                  <strong style="font-size:0.8rem;">{{ review.user.username }}</strong>
+
+                  <div class="bb-rating" style="display:flex; gap:4px; font-size:1rem; line-height:1;">
+                    {% for i in "12345" %}
+                      {% if forloop.counter <= review.rating|add:"0" %}
+                        <span>🌸</span>
+                      {% else %}
+                        <span style="opacity:0.3;">🌸</span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  <small style="color:#777; font-size:0.75rem;">
+                    {{ review.created_at|date:"SHORT_DATETIME_FORMAT" }}
+                  </small>
+                </div>
+
+                {% if review.comment %}
+                  <p style="margin:.5rem 0 0; font-size:0.9rem; line-height:1.4; color:#333;">
+                    {{ review.comment|linebreaks }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p style="font-size:0.9rem; color:#555; margin:0;">
+            {% trans "Aún no hay reseñas para este producto." %}
+          </p>
+        {% endif %}
+      </section>
+
     </div>
-  </div>
+    <!-- /columna izquierda -->
+
+    <!-- ========== COLUMNA DERECHA: INFO + ADD TO CART + FORMULARIO ========== -->
+    <div class="bb-right-col" style="max-width:540px;">
+
+      <!-- Info del producto -->
+      <div class="bb-product-info">
+        <h1 style="font-size:1.4rem; font-weight:600; color:#111; margin:0 0 .75rem 0;">
+          {{ product.name }}
+        </h1>
+
+        <p class="description" style="color:#444; font-size:0.95rem; line-height:1.45; margin:0 0 1rem 0;">
+          {{ product.description }}
+        </p>
+
+        <!-- Precio original -->
+        <p class="price" style="color:#111; font-weight:600; margin:0;">
+          ${{ product.price|floatformat:0|intcomma }}
+
+        </p>
+
+        <!-- Conversión COP -> USD -->
+        <div class="converted-price"
+            data-price-cop="{{ product.price|unlocalize|floatformat:'2' }}">
+          <span class="label">≈</span>
+          <span id="price-usd" class="value">Cargando...</span>
+          <span class="currency">USD</span>
+        </div>
+
+
+        <!-- Botones carrito / favoritos -->
+        <div class="bb-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; margin-bottom:2rem; margin-top:1rem;">
+          <!-- Botón principal (rosa): Add to cart -->
+          <form method="post" action="{% url 'orders:add_to_cart' product.id %}" style="margin:0;">
+            {% csrf_token %}  
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="bb-btn primary">
+              {% trans "Añadir al carrito" %}
+            </button>
+          </form>
+
+          <!-- Botón secundario (blanco): Add to favorites -->
+          <form method="post" action="{% url 'products:add_to_wishlist' product.id %}" style="display:inline; margin:0;">
+            {% csrf_token %}
+            <input type="hidden" name="wishlist_name" value="Favoritos">
+            <button type="submit" class="bb-btn secondary">
+              {% if in_wishlist %}
+                {% trans "En tus favoritos" %}
+              {% else %}
+                {% trans "Agregar a favoritos" %}
+              {% endif %}
+            </button>
+          </form>
+        </div>
+
+        <!-- ===== FORMULARIO DEJAR RESEÑA ===== -->
+        <section class="bb-leave-review"
+                 style="background:#fff; border:1px solid rgba(0,0,0,0.05); border-radius:12px; box-shadow:0 12px 32px rgba(0,0,0,0.06); padding:1.25rem 1rem 1.5rem; max-width:100%;">
+          <h3 style="color: var(--pink); font-weight:700; margin:0 0 1rem; text-align:center;">
+            {% trans "Deja tu reseña" %}
+          </h3>
+
+          {% if user.is_authenticated %}
+            <form method="post"
+                  action="{% url 'products:add_review' product.id %}"
+                  style="margin:0; display:flex; flex-direction:column; gap:1rem;">
+              {% csrf_token %}
+              {{ review_form.non_field_errors }}
+
+              <!-- Selector de calificación -->
+              <div class="form-row bb-rating-input" style="display:flex; flex-direction:column; gap:.4rem;">
+                <label style="font-weight:600; font-size:0.9rem; color:#222;">
+                  {% trans "Tu calificación" %}
+                </label>
+
+                <div class="bb-flower-select"
+                      style="display:flex; gap:4px; align-items:center;">
+                  {% for i in "12345" %}
+                    <input
+                      type="radio"
+                      id="rating{{ i }}"
+                      name="rating"
+                      value="{{ i }}"
+                      style="display:none;"
+                    >
+                    <label
+                      for="rating{{ i }}"
+                      class="bb-flower-label"
+                      data-score="{{ i }}"
+                      style="cursor:pointer; font-size:1.4rem; line-height:1; user-select:none; opacity:0.4;"
+                    >🌸</label>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Comentario -->
+              <div class="form-row" style="display:flex; flex-direction:column; gap:.4rem;">
+                <label for="{{ review_form.comment.id_for_label }}" style="font-weight:600; font-size:0.9rem; color:#222;">
+                  {{ review_form.comment.label }}
+                </label>
+                {{ review_form.comment }}
+              </div>
+
+              <!-- Botón enviar reseña -->
+              <button type="submit"
+                      class="bb-btn primary"
+                      style="align-self:center;">
+                {% trans "Enviar reseña" %}
+              </button>
+            </form>
+          {% else %}
+            <p style="font-size:0.95rem; text-align:center;">
+              {% trans "Debes" %}
+              <a href="{% url 'login' %}?next={{ request.path }}" style="color:var(--pink); font-weight:600; text-decoration:none;">
+                {% trans "iniciar sesión" %}
+              </a>
+              {% trans "para dejar una reseña." %}
+            </p>
+          {% endif %}
+        </section>
+        <!-- ===== /FORMULARIO DEJAR RESEÑA ===== -->
+
+      </div><!-- /.bb-product-info -->
+
+    </div>
+    <!-- /columna derecha -->
+
+  </div><!-- /.bb-product-grid -->
 
   <!-- Mensajes de feedback -->
   {% if messages %}
-    <ul class="messages">
+    <ul class="messages" style="margin-top:2rem;">
       {% for message in messages %}
         <li class="{{ message.tags }}">{{ message }}</li>
       {% endfor %}
     </ul>
   {% endif %}
 
-  <!-- Reseñas -->
-  <section class="bb-reviews">
-    <h2>
-      {% trans "Reseñas" %} ({{ product.quantity_of_reviews }})
-    </h2>
+</div><!-- /.bb-main -->
 
-    {% if reviews %}
-      {% for review in reviews %}
-        <div class="bb-review">
-          <div class="bb-review-header">
-            <strong>{{ review.user.username }}</strong>
-            <div class="bb-rating">
-              {% for i in "12345" %}
-                {% if forloop.counter <= review.rating %}
-                  🌸
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <p>{{ review.comment|linebreaks }}</p>
-          <small>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }}</small>
-        </div>
-      {% endfor %}
-    {% else %}
-      <p>{% trans "Aún no hay reseñas para este producto." %}</p>
-    {% endif %}
-  </section>
+<!-- === Script para conversión COP → USD === -->
+<script>
+(function () {
+  const box = document.querySelector('.converted-price');
+  if (!box) return;
 
-  <!-- Formulario para dejar reseña -->
-  <section class="bb-leave-review">
-    <h3>{% trans "Deja tu reseña" %}</h3>
+  // ── Parseo robusto (maneja espacios, NBSP, puntos y comas)
+  function toNumber(str) {
+    if (str == null) return NaN;
+    let s = String(str).trim()
+      .replace(/\u00A0/g, '')   // NBSP
+      .replace(/\s+/g, '');     // espacios
+    const hasComma = s.includes(',');
+    const hasDot   = s.includes('.');
+    if (hasComma && hasDot) {
+      // El último símbolo decide el separador decimal
+      if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+        s = s.replace(/\./g, '').replace(',', '.'); // coma decimal
+      } else {
+        s = s.replace(/,/g, '');                    // punto decimal
+      }
+    } else if (hasComma) {
+      s = s.replace(',', '.');                      // solo coma -> decimal
+    }
+    return Number(s);
+  }
 
-    {% if user.is_authenticated %}
-      <form method="post" action="{% url 'products:add_review' product.id %}">
-        {% csrf_token %}
-        {{ review_form.non_field_errors }}
+  const raw = box.getAttribute('data-price-cop');
+  const cop = toNumber(raw);   // ← ya no dará NaN
 
-        <!-- Selector de calificación -->
-        <div class="form-row bb-rating-input">
-          <label>{% trans "Tu calificación" %}</label>
-          <div class="bb-flower-select">
-            {% for i in "54321" %}
-              <input type="radio" id="rating{{ i }}" name="rating" value="{{ i }}">
-              <label for="rating{{ i }}" class="bb-flower-label">🌸</label>
-            {% endfor %}
-          </div>
-        </div>
+  const out = document.getElementById('price-usd');
+  const fmtUSD = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
-        <!-- Comentario -->
-        <div class="form-row">
-          <label for="{{ review_form.comment.id_for_label }}">{{ review_form.comment.label }}</label>
-          {{ review_form.comment }}
-        </div>
+  const CACHE_KEY = 'rate_COP_USD';
+  const cached = sessionStorage.getItem(CACHE_KEY);
+  const cacheObj = cached ? JSON.parse(cached) : null;
+  const isFresh = cacheObj && (Date.now() - cacheObj.t) < (1000 * 60 * 30);
 
-        <!-- Botón enviar -->
-        <button type="submit" class="bb-btn primary">
-          {% trans "Enviar reseña" %}
-        </button>
-      </form>
-    {% else %}
-      <p>
-        {% trans "Debes" %}
-        <a href="{% url 'login' %}?next={{ request.path }}">
-          {% trans "iniciar sesión" %}
-        </a>
-        {% trans "para dejar una reseña." %}
-      </p>
-    {% endif %}
-  </section>
-</div>
+  function render(rate) {
+    const usd = cop * rate;
+    out.textContent = isFinite(usd) ? fmtUSD.format(usd) : '—';
+  }
+
+  async function fetchRate() {
+    try {
+      const API_KEY = "a802b0563a53230a8e0d21f3";
+      const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/COP`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const rate = data?.conversion_rates?.USD;
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ r: rate, t: Date.now() }));
+      render(rate);
+    } catch (e) {
+      out.textContent = '—';
+      console.error('Exchange API error:', e);
+    }
+  }
+
+  if (isFresh) render(cacheObj.r); else fetchRate();
+})();
+</script>
+
 {% endblock %}

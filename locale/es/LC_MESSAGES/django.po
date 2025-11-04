@@ -1,21 +1,23 @@
-# Traducciones al Español para BloomBerry
-# Copyright (C) 2025 BloomBerry
-# Este archivo se distribuye bajo la misma licencia que el paquete BloomBerry.
-# Maria Clara Medina <EMAIL@ADDRESS>, 2025.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: BloomBerry 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 19:51-0500\n"
-"PO-Revision-Date: 2025-09-03 07:25-0500\n"
-"Last-Translator: Maria Clara Medina <EMAIL@ADDRESS>\n"
-"Language-Team: Spanish\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-11-03 17:33-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
 
 #: env/lib/python3.11/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"
@@ -836,10 +838,8 @@ msgid "feb"
 msgstr ""
 
 #: env/lib/python3.11/site-packages/django/utils/dates.py:41
-#, fuzzy
-#| msgid "Comprar"
 msgid "mar"
-msgstr "Comprar"
+msgstr ""
 
 #: env/lib/python3.11/site-packages/django/utils/dates.py:42
 msgid "apr"
@@ -1149,6 +1149,7 @@ msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
 msgstr ""
 
 #: env/lib/python3.11/site-packages/django/views/generic/detail.py:56
+#: env/lib/python3.11/site-packages/parler/views.py:168
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
@@ -1226,6 +1227,53 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
+#: env/lib/python3.11/site-packages/parler/admin.py:210
+#: env/lib/python3.11/site-packages/parler/admin.py:222
+msgid "Languages"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/admin.py:470
+#, python-brace-format
+msgid "{0} translation of {1}"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/admin.py:478
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/admin.py:496
+#: env/lib/python3.11/site-packages/parler/models.py:137
+#, python-brace-format
+msgid "{0} Translation"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/admin.py:498
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/admin.py:500
+msgid "Are you sure?"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/models.py:1122
+msgid "Language"
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/templates/admin/parler/deletion_not_allowed.html:5
+#, python-format
+msgid ""
+"Deletion of the %(language_name)s translation of %(object_name)s "
+"'%(escaped_object)s' is not allowed, because it is the last available "
+"translation of this instance."
+msgstr ""
+
+#: env/lib/python3.11/site-packages/parler/templates/admin/parler/language_tabs.html:15
+#: env/lib/python3.11/site-packages/parler/templates/admin/parler/language_tabs.html:17
+msgid "Delete Translation"
+msgstr ""
+
 #: products/admin_views.py:45
 msgid "Producto creado correctamente."
 msgstr ""
@@ -1261,14 +1309,6 @@ msgstr ""
 
 #: products/forms.py:39
 msgid "Descripción"
-msgstr ""
-
-#: products/views.py:80
-msgid "Tu reseña fue guardada."
-msgstr ""
-
-#: products/views.py:82
-msgid "Hubo un error al enviar la reseña."
 msgstr ""
 
 #: templates/admin/product_confirm_delete.html:4
@@ -1310,18 +1350,17 @@ msgid "Lista de todos los productos disponibles"
 msgstr ""
 
 #: templates/admin/products_list.html:22 templates/products/home.html:56
-#: templates/products/product_detail.html:20
+#: templates/products/product_baselist.html:20
+#: templates/products/product_detail.html:28
 msgid "Sin imagen"
 msgstr ""
 
 #: templates/admin/products_list.html:32
-#: templates/products/product_baselist.html:22
 msgid "Ver detalle"
 msgstr ""
 
 #: templates/admin/products_list.html:37
-#: templates/products/product_baselist.html:25
-#: templates/products/product_detail.html:35
+#: templates/products/product_detail.html:119
 msgid "Añadir al carrito"
 msgstr ""
 
@@ -1329,50 +1368,88 @@ msgstr ""
 msgid "No hay productos."
 msgstr ""
 
-#: templates/base.html:31
-msgid "Categorías"
+#: templates/base.html:37
+msgid "Categorias"
 msgstr ""
 
-#: templates/base.html:39
+#: templates/base.html:43
 msgid "No hay categorías disponibles"
 msgstr ""
 
-#: templates/base.html:48
-msgid "Buscar productos…"
+#: templates/base.html:54
+msgid "Top Vendidos"
 msgstr ""
 
-#: templates/base.html:48
+#: templates/base.html:55
+msgid "Más Comentados"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Buscar productos"
+msgstr ""
+
+#: templates/base.html:65
 msgid "Buscar"
 msgstr ""
 
-#: templates/base.html:49
+#: templates/base.html:66
 msgid "Limpiar"
 msgstr ""
 
-#: templates/base.html:56 templates/base.html:59 templates/users/profile.html:9
+#: templates/base.html:79
+msgid "Hola,"
+msgstr ""
+
+#: templates/base.html:82 templates/users/profile.html:9
 #: templates/users/profile.html:13
 msgid "Mi perfil"
 msgstr ""
 
-#: templates/base.html:61
-msgid "Hola,"
-msgstr ""
-
-#: templates/base.html:62
+#: templates/base.html:84
 msgid "Salir"
 msgstr ""
 
-#: templates/base.html:64
-msgid "Panel Admin"
+#: templates/base.html:87
+msgid "Panel de admin"
 msgstr ""
 
-#: templates/base.html:68 templates/base.html:71
-#: templates/registration/login.html:4 templates/registration/login.html:12
+#: templates/base.html:97 templates/registration/login.html:4
+#: templates/registration/login.html:12
 msgid "Ingresar"
 msgstr ""
 
-#: templates/base.html:75
+#: templates/base.html:104
 msgid "Carrito"
+msgstr ""
+
+#: templates/base.html:108
+msgid "Favoritos"
+msgstr ""
+
+#: templates/chat/chat.html:6
+msgid "Asistente BloomBerry"
+msgstr ""
+
+#: templates/chat/chat.html:13
+msgid "Asistente"
+msgstr ""
+
+#: templates/chat/chat.html:19
+msgid ""
+"\n"
+"        ¡Hola! Soy tu asistente virtual de BloomBerry 😊.  \n"
+"        Puedo ayudarte con productos de cuidado facial, maquillaje,  \n"
+"        medicamentos naturales, esencias y suplementos diarios.  \n"
+"        ¿Qué estás buscando hoy?\n"
+"        "
+msgstr ""
+
+#: templates/chat/chat.html:31
+msgid "Escribe tu duda…"
+msgstr ""
+
+#: templates/chat/chat.html:32
+msgid "Enviar"
 msgstr ""
 
 #: templates/orders/cart.html:12
@@ -1399,7 +1476,7 @@ msgstr ""
 msgid "Actualizar"
 msgstr ""
 
-#: templates/orders/cart.html:59 templates/orders/order_history.html:18
+#: templates/orders/cart.html:59 templates/orders/order_history.html:19
 msgid "Total"
 msgstr ""
 
@@ -1423,23 +1500,23 @@ msgstr ""
 msgid "Volver al carrito"
 msgstr ""
 
-#: templates/orders/order_history.html:4 templates/orders/order_history.html:9
+#: templates/orders/order_history.html:4 templates/orders/order_history.html:10
 msgid "Historial de compras"
 msgstr ""
 
-#: templates/orders/order_history.html:15
+#: templates/orders/order_history.html:16
 msgid "Orden"
 msgstr ""
 
-#: templates/orders/order_history.html:16
+#: templates/orders/order_history.html:17
 msgid "Fecha"
 msgstr ""
 
-#: templates/orders/order_history.html:17
+#: templates/orders/order_history.html:18
 msgid "Estado"
 msgstr ""
 
-#: templates/orders/order_history.html:19
+#: templates/orders/order_history.html:20
 msgid "Factura"
 msgstr ""
 
@@ -1447,15 +1524,17 @@ msgstr ""
 msgid "Descargar PDF"
 msgstr ""
 
+#: templates/orders/order_history.html:32
+msgid "Descargar Excel"
+msgstr ""
+
 #: templates/orders/order_history.html:39
 msgid "No tienes compras registradas aún."
 msgstr ""
 
 #: templates/payments/checkout.html:4
-#, fuzzy
-#| msgid "Bienvenido a BloomBerry"
 msgid "Pago · BloomBerry"
-msgstr "Bienvenido a BloomBerry"
+msgstr ""
 
 #: templates/payments/checkout.html:12
 msgid "Pago de la Orden"
@@ -1494,10 +1573,8 @@ msgid "Seguir comprando"
 msgstr ""
 
 #: templates/products/home.html:4
-#, fuzzy
-#| msgid "Bienvenido a BloomBerry"
 msgid "Inicio · BloomBerry"
-msgstr "Bienvenido a BloomBerry"
+msgstr ""
 
 #: templates/products/home.html:18
 msgid "Vive tu esencia natural"
@@ -1536,53 +1613,87 @@ msgstr ""
 msgid "Ver todos los productos"
 msgstr ""
 
-#: templates/products/product_baselist.html:31
+#: templates/products/most_reviewed.html:6
+#: templates/products/most_reviewed.html:15
+msgid "Top 4 Productos Más Comentados"
+msgstr ""
+
+#: templates/products/most_reviewed.html:25
+#: templates/products/top_selling.html:24
+msgid "Imagen no disponible"
+msgstr ""
+
+#: templates/products/most_reviewed.html:30
+msgid "Comentarios"
+msgstr ""
+
+#: templates/products/most_reviewed.html:33
+#: templates/products/top_selling.html:34
+msgid "Ver Detalles"
+msgstr ""
+
+#: templates/products/most_reviewed.html:42
+msgid "No hay comentarios aún en los productos."
+msgstr ""
+
+#: templates/products/product_baselist.html:38
+msgid "Ver detalles"
+msgstr ""
+
+#: templates/products/product_baselist.html:53
+msgid "Agregar al carrito"
+msgstr ""
+
+#: templates/products/product_baselist.html:61
 msgid "No hay productos disponibles."
 msgstr ""
 
-#: templates/products/product_detail.html:45
-msgid "En tus favoritos"
-msgstr ""
-
-#: templates/products/product_detail.html:47
-msgid "Agregar a favoritos"
-msgstr ""
-
-#: templates/products/product_detail.html:67
+#: templates/products/product_detail.html:37
 msgid "Reseñas"
 msgstr ""
 
-#: templates/products/product_detail.html:68
-msgid "Promedio"
-msgstr ""
-
-#: templates/products/product_detail.html:79
+#: templates/products/product_detail.html:76
 msgid "Aún no hay reseñas para este producto."
 msgstr ""
 
-#: templates/products/product_detail.html:85
+#: templates/products/product_detail.html:129
+msgid "En tus favoritos"
+msgstr ""
+
+#: templates/products/product_detail.html:131
+msgid "Agregar a favoritos"
+msgstr ""
+
+#: templates/products/product_detail.html:141
 msgid "Deja tu reseña"
 msgstr ""
 
-#: templates/products/product_detail.html:103
+#: templates/products/product_detail.html:154
+msgid "Tu calificación"
+msgstr ""
+
+#: templates/products/product_detail.html:189
 msgid "Enviar reseña"
 msgstr ""
 
-#: templates/products/product_detail.html:108
+#: templates/products/product_detail.html:194
 msgid "Debes"
 msgstr ""
 
-#: templates/products/product_detail.html:110
+#: templates/products/product_detail.html:196
 msgid "iniciar sesión"
 msgstr ""
 
-#: templates/products/product_detail.html:112
+#: templates/products/product_detail.html:198
 msgid "para dejar una reseña."
 msgstr ""
 
-#: templates/products/product_list.html:8
 #: templates/products/product_list.html:11
 msgid "Productos"
+msgstr ""
+
+#: templates/products/product_list.html:14
+msgid "Products"
 msgstr ""
 
 #: templates/products/search_results.html:8
@@ -1594,15 +1705,27 @@ msgstr ""
 msgid "Mostrando resultados para:"
 msgstr ""
 
-#: templates/products/wishlist.html:12
+#: templates/products/top_selling.html:5 templates/products/top_selling.html:14
+msgid "Top 3 Productos Más Vendidos"
+msgstr ""
+
+#: templates/products/top_selling.html:30
+msgid "Ventas"
+msgstr ""
+
+#: templates/products/top_selling.html:43
+msgid "No hay productos vendidos aún."
+msgstr ""
+
+#: templates/products/wishlist.html:13
 msgid "Mis favoritos"
 msgstr ""
 
-#: templates/products/wishlist.html:39
+#: templates/products/wishlist.html:40
 msgid "Ver"
 msgstr ""
 
-#: templates/products/wishlist.html:40
+#: templates/products/wishlist.html:41
 msgid "Quitar"
 msgstr ""
 
@@ -1695,6 +1818,3 @@ msgstr ""
 #: users/views.py:55
 msgid "Revisa los errores y vuelve a intentar."
 msgstr ""
-
-#~ msgid "Bienvenido a BloomBerry"
-#~ msgstr "Bienvenido a BloomBerry"

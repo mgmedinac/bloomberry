@@ -1,0 +1,34 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Cuidado personal",
+    "slug": "cuidado-personal"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Maquillaje",
+    "slug": "maquillaje"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Medicamentos",
+    "slug": "medicamentos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Aromas y esencias",
+    "slug": "aromas-esencias"
+  }
+}
+]

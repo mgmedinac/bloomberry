@@ -152,7 +152,7 @@
 
 .bb-flower-select {
   display: inline-flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: center;
   gap: 8px;
 }
@@ -230,3 +230,23 @@
     min-height: 110px;
   }
 }
+  /* --- Ajustes nuevos --- */
+  .converted-price {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .converted-price .label {
+    opacity: 0.8;
+  }
+  .converted-price .value {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--pink);
+  }
+  .bb-leave-review {
+    margin-top: 30px; /* baja un poco el bloque de reseñas */
+  }

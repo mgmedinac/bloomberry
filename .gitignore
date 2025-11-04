@@ -1,26 +1,39 @@
-# Entornos y editor
+# === ENTORNOS Y EDITOR ===
 env/
 venv/
 .idea/
 .vscode/
+.env
 
-# Compilados / caché
+# === COMPILADOS / CACHÉ ===
 __pycache__/
 *.pyc
 
-# Base de datos local (¡no versionarla!)
+# === BASE DE DATOS LOCAL (¡no versionarla!) ===
 db.sqlite3
 
-# Archivos de i18n compilados (se regeneran)
+# === ARCHIVOS DE I18N COMPILADOS (se regeneran) ===
 *.mo
 
-# Archivos generados / build
+# === ARCHIVOS GENERADOS / BUILD ===
 staticfiles/
 media/
 *.log
 
-# Node / otros
+# === NODE / OTROS ===
 node_modules/
 
-# Sistemas
+# === SISTEMAS ===
 .DS_Store
+
+# === ARCHIVOS TEMPORALES DE MIGRACIONES O COMPILACIÓN ===
+*.pot
+*.sqlite3-journal
+*.tmp
+
+# === ARCHIVOS DE CACHÉ DE DJANGO ===
+*.cache/
+
+# === EXCEPCIÓN: subir solo los fixtures JSON ===
+!fixtures/
+!fixtures/*.json

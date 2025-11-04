@@ -3,28 +3,33 @@
 
 {% block content %}
 <div class="container my-4">
-  <h2>Asistente BloomBerry</h2>
+  <h2>{% trans "Asistente BloomBerry" %}</h2>
 
   <div id="chat" class="border rounded p-3" style="height:60vh; overflow-y:auto;">
     {# OJO: chat_messages, no messages #}
     {% for m in chat_messages %}
       <div class="p-2 my-2 {% if m.role == 'user' %}bg-light text-end{% else %}bg-white border{% endif %}">
-        {% if m.role != 'user' %}<div class="text-muted small mb-1">Asistente</div>{% endif %}
+        {% if m.role != 'user' %}
+          <div class="text-muted small mb-1">{% trans "Asistente" %}</div>
+        {% endif %}
         <div>{{ m.content|linebreaksbr }}</div>
       </div>
     {% empty %}
       <div class="text-muted">
-        ¡Hola! Soy tu asistente virtual de BloomBerry 😊. Puedo ayudarte con productos de cuidado facial, maquillaje,
-        medicamentos naturales, esencias y suplementos diarios. ¿Qué estás buscando hoy?
+        {% blocktrans %}
+        ¡Hola! Soy tu asistente virtual de BloomBerry 😊.  
+        Puedo ayudarte con productos de cuidado facial, maquillaje,  
+        medicamentos naturales, esencias y suplementos diarios.  
+        ¿Qué estás buscando hoy?
+        {% endblocktrans %}
       </div>
     {% endfor %}
   </div>
 
   <form id="chat-form" method="post" action="{% url 'chat:send_message' %}" class="d-flex gap-2 mt-3">
     {% csrf_token %}
-    <input id="msg" type="text" name="message" class="form-control" placeholder="Escribe tu duda…">
-    <button class="btn btn-primary" type="submit">Enviar</button>
+    <input id="msg" type="text" name="message" class="form-control" placeholder="{% trans 'Escribe tu duda…' %}">
+    <button class="btn btn-primary" type="submit">{% trans "Enviar" %}</button>
   </form>
 </div>
-…
 {% endblock %}
