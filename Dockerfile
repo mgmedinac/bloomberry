@@ -25,7 +25,5 @@ EXPOSE 8000
 
 # Ejecutar migraciones, cargar fixtures y arrancar el servidor con Gunicorn
 CMD python manage.py migrate && \
-    python manage.py loaddata fixtures/seed_categories.json && \
-    python manage.py loaddata fixtures/seed_products.json && \
     python manage.py loaddata fixtures/seed_data.json && \
     gunicorn --bind 0.0.0.0:$PORT bloomberry.wsgi:application
