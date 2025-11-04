@@ -8,6 +8,5 @@ __pycache__/
 .idea/
 .env
 *.log
-media/
 venv/
 .venv/
