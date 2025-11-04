@@ -1,31 +1,45 @@
 # ===============================
-# BloomBerry - Dockerfile Final con imágenes funcionando en Cloud Run
+# BloomBerry - Dockerfile Final
 # ===============================
 
+# Imagen base ligera con Python
 FROM python:3.11-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Evitar buffer de salida
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y build-essential libpq-dev && rm -rf /var/lib/apt/lists/*
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gettext \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
+# Copiar e instalar dependencias Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el proyecto completo (incluyendo media)
+# Copiar todo el proyecto
 COPY . .
 
-# Crear carpetas si no existen
-RUN mkdir -p /app/staticfiles /app/media
+# Compilar archivos de traducción (.po → .mo)
+RUN django-admin compilemessages -l es -l en
 
-# Recolectar estáticos y cargar datos
+# Recopilar archivos estáticos
 RUN python manage.py collectstatic --noinput
 
-# Ejecutar migraciones y cargar fixtures en el arranque
-CMD python manage.py migrate && \
-    python manage.py loaddata fixtures/seed_data.json && \
-    gunicorn --bind 0.0.0.0:$PORT bloomberry.wsgi:application
+# Aplicar migraciones
+RUN python manage.py migrate --noinput
 
+# Cargar fixtures JSON (ajusta los nombres si son diferentes)
+RUN python manage.py loaddata fixtures/seed_data.json || true
+
+# Exponer el puerto de Django
 EXPOSE 8000
+
+# Comando de inicio
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "bloomberry.wsgi:application"]
