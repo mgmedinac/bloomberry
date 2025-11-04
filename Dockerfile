@@ -1,24 +1,35 @@
-# ============================
-# BloomBerry - Dockerfile
-# ============================
+# ===============================
+# BloomBerry - Dockerfile Final
+# ===============================
 
-# 1️⃣ Imagen base
+# Imagen base ligera con Python
 FROM python:3.11-slim
 
-# 2️⃣ Variables de entorno
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Evitar buffer de salida
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# 3️⃣ Crear directorio y copiar proyecto
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
-COPY . /app/
 
-# 4️⃣ Instalar dependencias
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# 5️⃣ Exponer puerto (el que usa Django)
+# Copiar archivos de requerimientos
+COPY requirements.txt .
+
+# Instalar dependencias Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar todo el proyecto
+COPY . .
+
+# Exponer el puerto donde corre Django
 EXPOSE 8000
 
-# 6️⃣ Comando por defecto
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Comando de arranque: migrar, cargar datos y correr el servidor
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "bloomberry.wsgi:application"]
+
