@@ -16,8 +16,6 @@ db.sqlite3
 *.mo
 
 # === ARCHIVOS GENERADOS / BUILD ===
-staticfiles/
-media/
 *.log
 
 # === NODE / OTROS ===

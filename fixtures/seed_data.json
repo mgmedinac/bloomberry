@@ -1,94 +1,162 @@
 [
-{
-  "model": "products.category",
-  "pk": 1,
-  "fields": {
-    "name": "Cuidado personal",
-    "slug": "cuidado-personal"
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Cuidado facial",
+      "slug": "cuidado-facial"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Maquillaje",
+      "slug": "maquillaje"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Medicamentos",
+      "slug": "medicamentos"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Aromas y esencias",
+      "slug": "aromas-y-esencias"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "Cuidado diario",
+      "slug": "cuidado-diario"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Lip Balm",
+      "description": "Bálsamo hidratante para labios de fresa, con manteca de cacao y vitamina E. Hidrata y nutre tus labios naturalmente.",
+      "price": "15000.00",
+      "stock": 10,
+      "fabrication_date": "2025-09-01",
+      "image": "products/IMG-20250905-WA0049.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-06T12:58:05.112Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "category": 4,
+      "name": "Kit aromático",
+      "description": "Incluye aceites esenciales de árbol de té, romero, lavanda y un jabón líquido artesanal con aroma natural.",
+      "price": "80000.00",
+      "stock": 5,
+      "fabrication_date": "2025-09-07",
+      "image": "products/IMG-20250905-WA0054.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-07T18:34:26.614Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "category": 5,
+      "name": "Desodorante natural",
+      "description": "Desodorante ecológico libre de químicos agresivos, con extractos naturales para mantener frescura todo el día.",
+      "price": "20000.00",
+      "stock": 15,
+      "fabrication_date": "2025-09-08",
+      "image": "products/descarga_2.jpeg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-08T18:18:09.772Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "name": "Pestañina negra",
+      "description": "Máscara para pestañas natural con aceites vegetales. Aporta volumen sin dañar ni resecar.",
+      "price": "18000.00",
+      "stock": 18,
+      "fabrication_date": "2025-09-03",
+      "image": "products/descarga.jpeg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-08T19:02:09.515Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "category": 1,
+      "name": "Tónico facial de rosas",
+      "description": "Refresca, hidrata y equilibra el pH de tu piel con extracto natural de pétalos de rosa orgánicos.",
+      "price": "25000.00",
+      "stock": 12,
+      "fabrication_date": "2025-09-10",
+      "image": "products/tonico_rosas.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-10T10:05:32.000Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "category": 5,
+      "name": "Crema corporal de almendras",
+      "description": "Crema hidratante elaborada con aceite de almendras dulces, ideal para piel seca o sensible.",
+      "price": "28000.00",
+      "stock": 20,
+      "fabrication_date": "2025-09-12",
+      "image": "products/crema_almendras.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-12T09:42:10.000Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "category": 4,
+      "name": "Difusor de bambú con esencia natural",
+      "description": "Difusor decorativo con esencia de vainilla y bambú natural, ideal para aromatizar espacios.",
+      "price": "60000.00",
+      "stock": 8,
+      "fabrication_date": "2025-09-14",
+      "image": "products/difusor_bambu.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-14T15:11:24.000Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "category": 3,
+      "name": "Pomada natural calmante",
+      "description": "Elaborada con caléndula y aloe vera. Ideal para aliviar irritaciones leves y quemaduras solares.",
+      "price": "18000.00",
+      "stock": 25,
+      "fabrication_date": "2025-09-16",
+      "image": "products/pomada_calendula.jpg",
+      "quantity_of_reviews": 0,
+      "created_at": "2025-09-16T08:20:45.000Z"
+    }
   }
-},
-{
-  "model": "products.category",
-  "pk": 2,
-  "fields": {
-    "name": "Maquillaje",
-    "slug": "maquillaje"
-  }
-},
-{
-  "model": "products.category",
-  "pk": 3,
-  "fields": {
-    "name": "Medicamentos",
-    "slug": "medicamentos"
-  }
-},
-{
-  "model": "products.category",
-  "pk": 4,
-  "fields": {
-    "name": "Aromas y esencias",
-    "slug": "aromas-esencias"
-  }
-},
-{
-  "model": "products.product",
-  "pk": 3,
-  "fields": {
-    "category": 1,
-    "name": "Lip Balm",
-    "description": "Bálsamo hidratante.",
-    "price": "15000.00",
-    "stock": 10,
-    "fabrication_date": "2025-11-04",
-    "image": "products/lipbalm.jpg",
-    "quantity_of_reviews": 0,
-    "created_at": "2025-11-04T01:26:37.298Z"
-  }
-},
-{
-  "model": "products.product",
-  "pk": 4,
-  "fields": {
-    "category": 1,
-    "name": "Kit aromático",
-    "description": "Aceites esenciales y jabón.",
-    "price": "80000.00",
-    "stock": 5,
-    "fabrication_date": "2025-11-04",
-    "image": "products/kit.jpg",
-    "quantity_of_reviews": 0,
-    "created_at": "2025-11-04T01:26:37.301Z"
-  }
-},
-{
-  "model": "products.product",
-  "pk": 5,
-  "fields": {
-    "category": 1,
-    "name": "Desodorante natural",
-    "description": "Ingredientes suaves.",
-    "price": "20000.00",
-    "stock": 15,
-    "fabrication_date": "2025-11-04",
-    "image": "products/desodorante.jpeg",
-    "quantity_of_reviews": 0,
-    "created_at": "2025-11-04T01:26:37.302Z"
-  }
-},
-{
-  "model": "products.product",
-  "pk": 6,
-  "fields": {
-    "category": 1,
-    "name": "Pestañina negra",
-    "description": "Volumen sin resecar.",
-    "price": "18000.00",
-    "stock": 18,
-    "fabrication_date": "2025-11-04",
-    "image": "products/pestañina.jpeg",
-    "quantity_of_reviews": 0,
-    "created_at": "2025-11-04T01:26:37.303Z"
-  }
-}
 ]
