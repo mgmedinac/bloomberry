@@ -17,3 +17,5 @@
 *.woff2 binary
 *.eot binary
 *.ttf binary
+
+/Users/macla/Desktop/Bloomberry_Final/bloomberry/templates/products/product_baselist.html merge=ours
