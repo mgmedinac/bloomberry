@@ -18,7 +18,7 @@ def product_list_api(request):
             if product.image else None
         )
         detail_url = request.build_absolute_uri(
-            reverse('products:detail', args=[product.id])
+            reverse('products:product_detail', args=[product.id])
         )
 
         data.append({
