@@ -1,0 +1,23 @@
+# docker-compose.dev.yml (DEV)
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bloomberry:web-dev
+    container_name: bloomberry_web_dev
+    environment:
+      DJANGO_SETTINGS_MODULE: bloomberry.settings
+      DEBUG: "1"
+      ALLOWED_HOSTS: "*"
+      PORT: "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app               # hot-reload (código, templates, locale, static src)
+      - ./media:/app/media   # mismas imágenes/subidas
+      - ./db.sqlite3:/app/db.sqlite3  # misma base de datos local
+    command: ["/app/Docker/entrypoint.dev.sh"]
+    restart: unless-stopped

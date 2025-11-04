@@ -1,0 +1,25 @@
+# docker-compose.yml (PROD)
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bloomberry:web
+    container_name: bloomberry_web
+    env_file:
+      - .env    # opcional; si no tienes .env, se usan los defaults de abajo
+    environment:
+      DJANGO_SETTINGS_MODULE: bloomberry.settings
+      DEBUG: "0"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
+      PORT: "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mantén tus archivos tal cual:
+      - ./media:/app/media          # imágenes/subidas existentes
+      - ./db.sqlite3:/app/db.sqlite3  # misma base de datos local
+    command: ["/app/Docker/entrypoint.prod.sh"]  # OJO: carpeta 'Docker' con D mayúscula
+    restart: unless-stopped
