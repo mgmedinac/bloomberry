@@ -138,6 +138,8 @@ def remove_from_wishlist(request, item_id):
     else:
         messages.info(request, "El producto no estaba en tu lista.")
     return redirect("products:view_wishlist")
+
+
 # Servicio JSON que nos provee el otro equipo: Alma viajera
 def api_viajera_view(request):
     url = "https://alma-viajera-190826772076.us-central1.run.app/api/item/5/"
