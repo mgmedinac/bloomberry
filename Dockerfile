@@ -15,31 +15,20 @@ WORKDIR /app
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     build-essential \
-    gettext \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar e instalar dependencias Python
+# Copiar archivos de requerimientos
 COPY requirements.txt .
+
+# Instalar dependencias Python
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar todo el proyecto
 COPY . .
 
-# Compilar archivos de traducción (.po → .mo)
-RUN django-admin compilemessages -l es -l en
-
-# Recopilar archivos estáticos
-RUN python manage.py collectstatic --noinput
-
-# Aplicar migraciones
-RUN python manage.py migrate --noinput
-
-# Cargar fixtures JSON (ajusta los nombres si son diferentes)
-RUN python manage.py loaddata fixtures/seed_data.json || true
-
-# Exponer el puerto de Django
+# Exponer el puerto donde corre Django
 EXPOSE 8000
 
-# Comando de inicio
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "bloomberry.wsgi:application"]
+# Comando de arranque: migrar, cargar datos y correr el servidor
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "bloomberry.wsgi:application"]
