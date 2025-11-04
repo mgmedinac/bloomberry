@@ -27,6 +27,9 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://bloomberry-app-1067375337365.us-central1.run.app'
+]
 
 
 # APPS
