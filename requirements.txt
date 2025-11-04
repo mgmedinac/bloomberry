@@ -1,0 +1,34 @@
+# ===============================
+# BloomBerry - Dependencias principales
+# ===============================
+
+Django==4.2
+gunicorn==21.2.0
+whitenoise==6.7.0
+psycopg2-binary==2.9.9
+pillow==11.3.0
+django-parler==2.3
+python-dotenv==1.1.1
+
+# ===============================
+# Librerías auxiliares
+# ===============================
+numpy==2.3.4
+pandas==2.3.3
+openpyxl==3.1.5
+reportlab==4.4.3
+requests==2.32.5
+
+# ===============================
+# Requeridas por Django internamente
+# ===============================
+asgiref==3.9.1
+sqlparse==0.5.3
+tzdata==2025.2
+six==1.17.0
+charset-normalizer==3.4.3
+idna==3.10
+certifi==2025.8.3
+urllib3==2.5.0
+python-dateutil==2.9.0.post0
+et_xmlfile==2.0.0

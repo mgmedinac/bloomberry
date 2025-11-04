@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BloomBerry\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 21:47-0600\n"
+"POT-Creation-Date: 2025-11-04 16:47-0600\n"
 "PO-Revision-Date: 2025-11-03 21:45-0600\n"
 "Last-Translator: BloomBerry Team <dev@bloomberry.local>\n"
 "Language-Team: English\n"
@@ -93,7 +93,7 @@ msgstr "Save"
 msgid "Lista de todos los productos disponibles"
 msgstr "List of all available products"
 
-#: templates/admin/products_list.html:22 templates/products/home.html:56
+#: templates/admin/products_list.html:22 templates/products/home.html:59
 #: templates/products/product_baselist.html:20
 #: templates/products/product_detail.html:28
 msgid "Sin imagen"
@@ -347,7 +347,7 @@ msgstr "Home · BloomBerry"
 msgid "Vive tu esencia natural"
 msgstr "Live your natural essence"
 
-#: templates/products/home.html:22
+#: templates/products/home.html:25
 msgid ""
 "\n"
 "        Productos ecológicos pensados para cuidar de ti y del planeta.\n"
@@ -359,15 +359,15 @@ msgstr ""
 "        Natural ingredients, sustainable packaging, and real results.\n"
 "        "
 
-#: templates/products/home.html:29
+#: templates/products/home.html:32
 msgid "Explorar catálogo"
 msgstr "Browse catalog"
 
-#: templates/products/home.html:39
+#: templates/products/home.html:42
 msgid "Productos destacados"
 msgstr "Featured products"
 
-#: templates/products/home.html:43
+#: templates/products/home.html:46
 msgid ""
 "\n"
 "    Una selección especial de nuestros favoritos. Si quieres ver todos los "
@@ -381,19 +381,19 @@ msgstr ""
 "    click on \"see more\".\n"
 "    "
 
-#: templates/products/home.html:70
+#: templates/products/home.html:73
 msgid "Ver más"
 msgstr "See more"
 
-#: templates/products/home.html:79
+#: templates/products/home.html:82
 msgid "Ver todos los productos"
 msgstr "View all products"
 
-#: templates/products/home.html:86
+#: templates/products/home.html:89
 msgid "Alma Viajera"
 msgstr "Alma Viajera"
 
-#: templates/products/home.html:90
+#: templates/products/home.html:93
 msgid ""
 "\n"
 "      Descubre productos únicos y experiencias inolvidables con nuestro "
@@ -405,7 +405,7 @@ msgstr ""
 "partner Alma Viajera.\n"
 "      "
 
-#: templates/products/home.html:98
+#: templates/products/home.html:101
 msgid "Explorar Alma Viajera"
 msgstr "Explore Alma Viajera"
 
@@ -524,6 +524,10 @@ msgstr "View"
 #: templates/products/wishlist.html:41
 msgid "Quitar"
 msgstr "Remove"
+
+#: templates/products/wishlist.html:48
+msgid "Todavia no has agregado productos a tu lista"
+msgstr "You haven't added any products to your list yet."
 
 # -----------------------
 # Auth
