@@ -1,5 +1,5 @@
 # ===============================
-# BloomBerry - Dockerfile Final con Imágenes
+# BloomBerry - Dockerfile Final con imágenes funcionando en Cloud Run
 # ===============================
 
 FROM python:3.11-slim
@@ -14,17 +14,18 @@ RUN apt-get update && apt-get install -y build-essential libpq-dev && rm -rf /va
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo el código (incluyendo static y media)
+# Copiar el proyecto completo (incluyendo media)
 COPY . .
 
-# Crear carpetas necesarias
+# Crear carpetas si no existen
 RUN mkdir -p /app/staticfiles /app/media
 
-# Exponer puerto
-EXPOSE 8000
+# Recolectar estáticos y cargar datos
+RUN python manage.py collectstatic --noinput
 
-# Ejecutar migraciones, cargar datos, recolectar archivos estáticos y correr Gunicorn
+# Ejecutar migraciones y cargar fixtures en el arranque
 CMD python manage.py migrate && \
     python manage.py loaddata fixtures/seed_data.json && \
-    python manage.py collectstatic --noinput && \
     gunicorn --bind 0.0.0.0:$PORT bloomberry.wsgi:application
+
+EXPOSE 8000
