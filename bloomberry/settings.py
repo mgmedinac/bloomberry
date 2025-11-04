@@ -26,7 +26,8 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = 'dev-secret-key'   # mover a variables de entorno en prod
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 # APPS
 INSTALLED_APPS = [
