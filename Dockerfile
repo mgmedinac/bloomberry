@@ -31,4 +31,7 @@ COPY . .
 EXPOSE 8000
 
 # Comando de arranque: migrar, cargar datos y correr el servidor
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "bloomberry.wsgi:application"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "bloomberry.wsgi:application"]
+
+# --- al final del Dockerfile ---
+CMD sh -c "gunicorn bloomberry.wsgi:application --bind 0.0.0.0:${PORT}"
