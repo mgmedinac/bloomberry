@@ -28,7 +28,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Exponer el puerto donde corre Django
-EXPOSE 8080
+EXPOSE 8000
 
-# gunicorn escuchando el puerto que Cloud Run inyecta
-CMD ["gunicorn","--workers","2","--timeout","120","--bind","0.0.0.0:$PORT","bloomberry.wsgi:application"]
+# Comando de arranque: migrar, cargar datos y correr el servidor
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "bloomberry.wsgi:application"]
