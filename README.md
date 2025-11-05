@@ -88,8 +88,7 @@ django-admin makemessages -l es
 django-admin compilemessages
 
 ## 7) Ejecución
-python manage.py runserver
-Accede en tu navegador a: http://localhost:8000
+Accede en tu navegador a: https://bloomberry-app-1067375337365.us-central1.run.app
 
 
 
