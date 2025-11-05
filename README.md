@@ -1,61 +1,52 @@
 # 🌸 BloomBerry – E-commerce Django Project
 
-##  Descripción
-BloomBerry es una aplicación web de comercio electrónico desarrollada en **Django**, como proyecto académico de **Tópicos Especiales en Ingeniería de Software**.  
-Permite a los usuarios navegar productos, gestionar un carrito de compras, realizar pedidos, consultar historial de órdenes y descargar facturas en PDF.  
-Además, incluye integración con un **chatbot de IA** que responde a comandos definidos y funcionalidades de internacionalización (i18n).
+## 📝 Descripción
+**BloomBerry** es una aplicación web de comercio electrónico desarrollada en **Django**, como proyecto académico de **Tópicos Especiales en Ingeniería de Software**.
+
+Permite a los usuarios navegar productos, gestionar un carrito de compras, realizar pedidos, consultar el historial de órdenes y descargar facturas en PDF.  
+Incluye un **chatbot de IA**, soporte **multilenguaje (Español / Inglés)** mediante i18n, servicios JSON, consumo de APIs externas, aplicación del principio de **Inversión de Dependencias (DI)** y **despliegue en Google Cloud Run con Docker**.
 
 ---
 
-##  Integrantes
-- Maria Clara Medina Gómez  
-- Salomé Serna  
+## 👩‍💻 Integrantes
+- **María Clara Medina Gómez** – Arquitecta principal (Entrega 1)
+- **Salomé Serna** – Arquitecta (Entrega 2) 
 
 ---
 
-##  Funcionalidades principales
-- **Catálogo de productos** con búsqueda y wishlist.  
-- **Carrito de compras** persistente por usuario.  
-- **Checkout y gestión de órdenes**.  
-- **Historial de compras** con descarga de **factura PDF**.  
-- **Autenticación de usuarios** (registro, login, perfil).  
-- **Perfil de usuario** editable.  
-- **Traducciones i18n** (Español / Inglés) con ficheros `.po`/`.mo`.  
-- **Chatbot de IA** conectado a API externa.  
+## 🚀 Funcionalidades principales
+- 🛍️ **Catálogo de productos** con búsqueda, wishlist y paginación.
+- 🛒 **Carrito de compras** persistente por usuario.
+- 💳 **Checkout y gestión de órdenes** con facturas PDF.
+- 👤 **Autenticación y perfiles** de usuario editables.
+- 🌎 **Internacionalización (i18n)** en Español / Inglés.
+- 🧾 **Servicio JSON público** con información de productos.
+- 🤝 **Consumo de servicio aliado** (productos del equipo anterior).
+- 🌐 **Consumo de API externa** para conversión COP ⇄ USD.
+- 🧩 **Inversión de dependencias (DI)** en el módulo de conversión de moneda.
+- 🧪 **Pruebas unitarias** en productos y órdenes.
+- 🐳 **Despliegue en Docker + Google Cloud Run**.
 
 ---
 
 ## 🗂️ Estructura del proyecto
-
+```txt
 BLOOMBERRYPROJECT/
-├── bloomberry/ # Configuración principal Django
-
-├── chat/ # Chatbot con integración a API de IA
-
-├── orders/ # Órdenes, historial, facturas PDF
-
-├── payments/ # Pasarela de pagos (simulada)
-
-├── products/ # Productos, búsqueda, wishlist
-
-├── users/ # Autenticación y perfiles
-
-├── fixtures/ # Datos iniciales en JSON (productos, usuarios, etc.)
-
-├── static/ # Archivos estáticos (CSS, imágenes, JS)
-
-├── templates/ # Templates globales y de apps
-
-├── resources/lang/ # Archivos de traducción (.po / .mo)
-
-├── manage.py
-
-└── requirements.txt
-
-
-
----
-
+├── bloomberry/               # Configuración principal Django
+├── chat/                     # Chatbot con integración IA
+├── orders/                   # Órdenes, historial, facturas PDF
+├── payments/                 # Pasarela de pagos simulada
+├── products/                 # Productos, API JSON
+├── users/                    # Autenticación y perfiles
+├── core/services/            # Inversión de dependencias (CurrencyConverter)
+├── fixtures/                 # Datos iniciales en JSON
+├── static/                   # Archivos estáticos (CSS, imágenes, JS)
+├── templates/                # Templates globales
+├── resources/lang/           # Traducciones (.po / .mo)
+├── Dockerfile
+├── netlify.toml
+└── manage.py
+```
 
 ##  Instalación y configuración
 
