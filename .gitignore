@@ -35,3 +35,5 @@ node_modules/
 # === EXCEPCIÓN: subir solo los fixtures JSON ===
 !fixtures/
 !fixtures/*.json
+google-cloud-sdk/
+google-cloud-cli-*.tar.gz
