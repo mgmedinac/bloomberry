@@ -1,3 +1,10 @@
+[build]
+  command = "echo ok"
+  publish = "."
+
+[build.environment]
+  NETLIFY_SKIP_INSTALL = "true"
+
 [[redirects]]
   from = "/*"
   to = "https://bloomberry-app-1067375337365.us-central1.run.app/:splat"
