@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://bloomberry-app-1067375337365.us-central1.run.app/:splat"
+  status = 200
+  force = true
