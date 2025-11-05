@@ -12,14 +12,16 @@ Muestra botones:
   {% for product in products %}
     <div class="product-card">
       
-      <!-- Imagen del producto -->
-      <a href="{% url 'products:product_detail' product.id %}" class="product-media">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-          <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}">
-        {% endif %}
-      </a>
+    <!-- Imagen del producto -->
+    <a href="{% url 'products:product_detail' product.id %}" class="product-media">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% elif product.image_url %}
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+      {% else %}
+        <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}">
+      {% endif %}
+    </a>
 
       <!-- Información -->
       <div class="product-body">

@@ -20,14 +20,16 @@
     <!-- ========== COLUMNA IZQUIERDA: IMAGEN + REVIEWS ========== -->
     <div class="bb-left-col" style="display:flex; flex-direction:column; gap:1.5rem; max-width:540px;">
 
-      <!-- Imagen -->
-      <div class="bb-product-image">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
-        {% else %}
-          <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
-        {% endif %}
-      </div>
+    <!-- Imagen -->
+    <div class="bb-product-image">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
+      {% elif product.image_url %}
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
+      {% else %}
+        <img src="{% static 'img/no-image.png' %}" alt="{% trans 'Sin imagen' %}" style="width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,0.08);">
+      {% endif %}
+    </div>
 
       <!-- Reviews debajo de la imagen -->
       <section class="bb-reviews"

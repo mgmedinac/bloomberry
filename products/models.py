@@ -33,6 +33,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     fabrication_date = models.DateField()
     image = models.ImageField(upload_to="products/", blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
     quantity_of_reviews = models.PositiveIntegerField(default=0) 
     created_at = models.DateTimeField(auto_now_add=True)
 
