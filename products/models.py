@@ -1,12 +1,11 @@
 # Autor: Salome Serna
 # Proyecto: BloomBerry
 # Archivo: products/models.py
-# Descripción: Modelos para productos, categorias, reseñas y listas de deseos.
+# Descripción: Modelos para productos, categorías, reseñas y listas de deseos.
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse  
-
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -15,41 +14,36 @@ class Category(models.Model):
     slug = models.SlugField(max_length=120, unique=True)
 
     class Meta:
+        verbose_name = "Category"
         verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
 
 
-
 class Product(models.Model):
-    """Modelo para los productos ecológicos de la tienda"""
+    """Modelo para los productos de la tienda"""
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="products", null=True, blank=True
     )
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField()  # <- usar 'description' en plantillas
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
     fabrication_date = models.DateField()
     image = models.ImageField(upload_to="products/", blank=True, null=True)
-    image_url = models.URLField(blank=True, null=True)
-    quantity_of_reviews = models.PositiveIntegerField(default=0) 
+    image_url = models.URLField(blank=True, null=True)  # <- respaldo por URL
+    quantity_of_reviews = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         """
-        Devuelve la URL de detalle del producto.
-        Si tu ruta es path("<int:pk>/", views.product_detail, name="product_detail"),
-        esto generará "/<pk>/" (ej. /1/).
+        URL de detalle; coincide con el namespace usado en los templates.
         """
-        return reverse("product_detail", args=[self.pk])
-
-    def __str__(self):
-        return self.name
+        return reverse("products:product_detail", args=[self.pk])
 
 
 class Review(models.Model):

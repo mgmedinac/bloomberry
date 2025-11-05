@@ -52,27 +52,30 @@
   <div class="featured-grid">
     {% for product in featured_products|slice:":3" %}
       <div class="featured-card">
-        <div class="featured-image-wrapper">
-          {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% else %}
-            <img src="{% static 'img/placeholder.png' %}" alt="{% trans 'Sin imagen' %}">
-          {% endif %}
-        </div>
+      <div class="featured-image-wrapper">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% elif product.image_url %}
+          <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'img/placeholder.png' %}" alt="{% trans 'Sin imagen' %}">
+        {% endif %}
+      </div>
 
-        <div class="featured-info">
-          <h3 class="featured-name">{{ product.name }}</h3>
+      <div class="featured-info">
+        <h3 class="featured-name">{{ product.name }}</h3>
 
-          {% if product.descripcion %}
+        {% if product.description %}
           <p class="featured-desc">
-            {{ product.descripcion|truncatechars:100 }}
+            {{ product.description|truncatechars:100 }}
           </p>
-          {% endif %}
+        {% endif %}
 
-          <a href="{% url 'products:product_detail' product.id %}" class="btn-outline">
-            {% trans "Ver más" %}
-          </a>
-        </div>
+        <a href="{% url 'products:product_detail' product.id %}" class="btn-outline">
+          {% trans "Ver más" %}
+        </a>
+      </div>
+
       </div>
     {% endfor %}
   </div>
